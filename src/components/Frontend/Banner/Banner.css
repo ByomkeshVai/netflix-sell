@@ -1,0 +1,8 @@
+.banner{
+    background-image: url(../../../assets/banner/Rectangle-5.png);
+    background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: #fff;
+        padding: 30px;
+}
