@@ -6,9 +6,9 @@ import "../Banner/Banner.css";
 const Banner = () => {
   return (
     <>
-      <div className="mt-[-320px] absolute z-5 ">
+      <div className="lg:mt-[-350px] mt-[-300px] xl:mt-[-410px] 2xl:mt-[-310px] absolute z-5 ">
         <Marquee>
-          <img src={banner2} alt="" className=" mt-[-290px]" />
+          <img src={banner2} alt="" className=" lg:mt-[-290px] mt-[-270px]" />
         </Marquee>
       </div>
     </>
