@@ -36,7 +36,6 @@ const AddItems = () => {
           price: parseFloat(price),
           image: data.data.display_url,
           category,
-          status: "pending",
           purchased: parseInt(0),
         };
 

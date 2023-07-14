@@ -1,11 +1,17 @@
 import React from "react";
+import { useContext } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet";
 import EmptyState from "../Shared/EmptyState";
+import TableData from "./TableData";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const AllItems = () => {
   const [axiosSecure] = useAxiosSecure();
   const { user, loading } = useContext(AuthContext);
   const { refetch, data: items = [] } = useQuery({
-    queryKey: ["items", user?.email],
+    queryKey: ["items"],
     enabled: !loading,
     queryFn: async () => {
       const res = await axiosSecure(
@@ -79,11 +85,11 @@ const AllItems = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {classes &&
-                      classes.map((classes) => (
-                        <ClassDataRow
-                          key={classes?._id}
-                          classes={classes}
+                    {items &&
+                      items.map((items) => (
+                        <TableData
+                          key={items?._id}
+                          items={items}
                           refetch={refetch}
                         />
                       ))}
@@ -94,7 +100,7 @@ const AllItems = () => {
           </div>
         </div>
       ) : (
-        <EmptyState message="No Class data available." />
+        <EmptyState message="No Items data available." />
       )}
     </>
   );

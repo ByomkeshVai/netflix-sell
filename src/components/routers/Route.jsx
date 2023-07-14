@@ -8,6 +8,7 @@ import CustomerRoute from "./CustomerRoute";
 import ADashboard from "../AdminPanel/ADashboard";
 import CDashboard from "../CustomerPanel/CDashboard";
 import AddItems from "../AdminPanel/AddItems";
+import AllItems from "../AdminPanel/AllItems";
 
 export const router = createBrowserRouter([
   {
@@ -40,7 +41,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/admin/dashboard/all",
-        element: <AddItems />,
+        element: <AllItems />,
       },
       //   {
       //     path: "/admin/dashboard/users",
