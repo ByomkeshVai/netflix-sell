@@ -4,7 +4,7 @@ import { BiCameraMovie } from "react-icons/Bi";
 
 const HeroCard = () => {
   return (
-    <div className="flex items-center justify-center gap-5 py-8">
+    <div className="lg:flex lg:flex-rows items-center justify-center lg:gap-5 py-8 ">
       <HeroSingleCard
         image={"https://cdn-icons-png.flaticon.com/512/2798/2798007.png"}
         title={"Get Free Trail"}

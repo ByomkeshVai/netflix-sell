@@ -7,7 +7,7 @@ const AllPackage = () => {
     <>
       <div className="">
         <SectionHead slogan={"Our Top Packages"}></SectionHead>
-        <div className="py-10 max-w-screen-2xl mx-auto grid grid-cols-4 gap-10">
+        <div className="py-10 max-w-screen-2xl mx-auto grid lg:grid-cols-4 gap-10 grid-cols-1 px-6">
           <div className="card lg:w-80 w-full bg-base-100 shadow-xl lg:ml-6 hover:scale-110 px-2 text-slate-50 bg-gradient-to-r from-blue-700 to-slate-600">
             <figure className="px-2 pt-3">
               <img

@@ -71,8 +71,8 @@ const Header = () => {
             </div>
             <div className="mr-auto md:w-48 flex-shrink-0">
               <img
-                className="h-8 md:h-10"
-                src="https://i.ibb.co/98pHdFq/2021-10-27-15h51-15.png"
+                className="h-14 sm:h-18"
+                src="https://images.ctfassets.net/4cd45et68cgf/7LrExJ6PAj6MSIPkDyCO86/542b1dfabbf3959908f69be546879952/Netflix-Brand-Logo.png?w=700&h=456"
                 alt=""
               />
             </div>
