@@ -44,7 +44,7 @@ const AddItems = () => {
           .then((data) => {
             setUploadButtonText("Uploaded!");
             setLoading(false);
-            toast.success("Class Added!");
+            toast.success("Items Added!");
             navigate("/admin/dashboard/allItem");
           })
           .catch((err) => console.log(err));

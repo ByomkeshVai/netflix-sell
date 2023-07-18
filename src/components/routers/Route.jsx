@@ -44,7 +44,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/admin/dashboard/all",
+        path: "/admin/dashboard/allItem",
         element: (
           <AdminRoute>
             <AllItems />

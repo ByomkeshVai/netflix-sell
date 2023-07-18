@@ -24,7 +24,7 @@ const AllItems = () => {
   return (
     <>
       <Helmet>
-        <title>SportsShala - My Class</title>
+        <title>NeflixHub - My Items</title>
       </Helmet>
       {items && Array.isArray(items) && items.length > 0 ? (
         <div className="container mx-auto px-4 sm:px-8">
@@ -56,7 +56,7 @@ const AllItems = () => {
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
-                        Stocks
+                        Price (৳- BDT)
                       </th>
                       <th
                         scope="col"
@@ -68,13 +68,13 @@ const AllItems = () => {
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
-                        Price
+                        Stocks
                       </th>
                       <th
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
-                        Status
+                        Duration
                       </th>
                       <th
                         scope="col"

@@ -1,10 +1,12 @@
-import { deleteItem } from "../../api/item";
+import { deleteItem, editItem } from "../../api/item";
 import { useState } from "react";
 import DeleteModal from "../Modal/DeleteModal";
 import { toast } from "react-hot-toast";
+import EditModal from "./EditModal";
 
 const TableData = ({ items, refetch }) => {
   let [isOpen, setIsOpen] = useState(false);
+  let [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   function openModal() {
     setIsOpen(true);
@@ -29,7 +31,7 @@ const TableData = ({ items, refetch }) => {
             <div className="block relative">
               <img
                 alt="profile"
-                src={classes?.image}
+                src={items?.image}
                 className="mx-auto object-cover rounded h-10 w-15 "
               />
             </div>
@@ -43,36 +45,61 @@ const TableData = ({ items, refetch }) => {
         <p className="text-gray-900 whitespace-no-wrap">{items?.category}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 whitespace-no-wrap">{items?.price}</p>
+        <p className="text-gray-900 whitespace-no-wrap">৳{items?.price}</p>
+      </td>
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <p className="text-gray-900 whitespace-no-wrap">{items?.purchased}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900 whitespace-no-wrap">{items?.stock}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 whitespace-no-wrap">${items?.duration}</p>
+        <p className="text-gray-900 whitespace-no-wrap">{items?.duration}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className={`text-gray-900 whitespace-no-wrap`}>
-          {(items?.status).toUpperCase()}
-        </p>
-      </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <span
-          onClick={openModal}
-          className="relative cursor-pointer inline-block px-3 py-1 font-semibold text-slate-50 leading-tight"
-        >
-          <span
-            aria-hidden="true"
-            className="absolute inset-0 bg-red-600  rounded-full"
-          ></span>
-          <span className="relative">Delete</span>
-        </span>
-        <DeleteModal
-          isOpen={isOpen}
-          closeModal={closeModal}
-          modalHandler={modalHandler}
-          id={items._id}
-        />
+        <div className="action-area flex gap-3">
+          <div className="delete-area">
+            <span className="relative cursor-pointer inline-block px-3 py-1 font-semibold text-slate-50 leading-tight">
+              <span
+                aria-hidden="true"
+                className="absolute inset-0 bg-blue-600  rounded-full"
+              ></span>
+              <span
+                className="relative"
+                onClick={() => setIsEditModalOpen(true)}
+              >
+                Edit
+              </span>
+            </span>
+            <EditModal
+              isEditModalOpen={isEditModalOpen}
+              closeModal={() => setIsEditModalOpen(false)}
+              items={items}
+              id={items._id}
+              refetch={refetch}
+              setIsEditModalOpen={setIsEditModalOpen}
+            />
+          </div>
+
+          <div className="edit-area">
+            <span
+              onClick={openModal}
+              className="relative cursor-pointer inline-block px-3 py-1 font-semibold text-slate-50 leading-tight"
+            >
+              <span
+                aria-hidden="true"
+                className="absolute inset-0  bg-red-600  rounded-full"
+              ></span>
+              <span className="relative">Delete</span>
+            </span>
+            <DeleteModal
+              isOpen={isOpen}
+              closeModal={closeModal}
+              modalHandler={modalHandler}
+              id={items._id}
+            />
+          </div>
+        </div>
       </td>
     </tr>
   );

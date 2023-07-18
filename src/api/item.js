@@ -25,3 +25,19 @@ export const deleteItem = async (id) => {
   const result = await response.json();
   return result;
 };
+
+export const editItem = async (itemData, id) => {
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/edit/items/${id}`,
+    {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("access-token")}`,
+      },
+      body: JSON.stringify(itemData),
+    }
+  );
+  const result = await response.json();
+  return result;
+};
