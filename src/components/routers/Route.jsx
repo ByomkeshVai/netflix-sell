@@ -9,6 +9,7 @@ import ADashboard from "../AdminPanel/ADashboard";
 import CDashboard from "../CustomerPanel/CDashboard";
 import AddItems from "../AdminPanel/AddItems";
 import AllItems from "../AdminPanel/AllItems";
+import EachPackage from "../Frontend/EachPackage/EachPackage";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Signup></Signup>,
+      },
+      {
+        path: "/all/items/:category",
+        element: <EachPackage></EachPackage>,
       },
     ],
   },
