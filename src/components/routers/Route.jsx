@@ -10,6 +10,9 @@ import CDashboard from "../CustomerPanel/CDashboard";
 import AddItems from "../AdminPanel/AddItems";
 import AllItems from "../AdminPanel/AllItems";
 import EachPackage from "../Frontend/EachPackage/EachPackage";
+import SelectedItem from "../CustomerPanel/SelectedItem";
+import PaymentSuccess from "../CustomerPanel/Payment/PaymentSuccess";
+import PaymentFailed from "../CustomerPanel/Payment/PaymentFailed";
 
 export const router = createBrowserRouter([
   {
@@ -70,15 +73,19 @@ export const router = createBrowserRouter([
     path: "/customer/dashboard",
     element: <CDashboard />,
     // errorElement: <ErrorPage />,
-    // children: [
-    //   {
-    //     path: "/customer/dashboard",
-    //     element: (
-    //       <CustomerRoute>
-    //         <AddClass />
-    //       </CustomerRoute>
-    //     ),
-    //   },
-    // ],
+    children: [
+      {
+        path: "/customer/dashboard/selected",
+        element: <SelectedItem />,
+      },
+      {
+        path: "/customer/dashboard/payment/success/:tranId",
+        element: <PaymentSuccess></PaymentSuccess>,
+      },
+      {
+        path: "/customer/dashboard/payment/fail/:tranId",
+        element: <PaymentFailed></PaymentFailed>,
+      },
+    ],
   },
 ]);

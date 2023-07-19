@@ -11,7 +11,7 @@ const PackageFR = ({ label, description, img, selected }) => {
       <figure className="px-2 pt-3">
         <img
           src={img}
-          alt="Shoes"
+          alt="images"
           className="mx-auto object-cover h-56 w-56 rounded-xl"
         />
       </figure>

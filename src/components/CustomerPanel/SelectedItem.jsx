@@ -1,32 +1,28 @@
-import React from "react";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
+import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet";
 import EmptyState from "../Shared/EmptyState";
-import TableData from "./TableData";
-import { AuthContext } from "../../providers/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
+import SelectDataRow from "./SelectDataRow";
 
-const AllItems = () => {
-  const [axiosSecure] = useAxiosSecure();
+const SelectedItem = () => {
   const { user, loading } = useContext(AuthContext);
-  const { refetch, data: items = [] } = useQuery({
-    queryKey: ["items"],
+  const [axiosSecure] = useAxiosSecure();
+  const { refetch, data: select = [] } = useQuery({
+    queryKey: ["select", user?.email],
     enabled: !loading,
     queryFn: async () => {
-      const res = await axiosSecure(
-        `${import.meta.env.VITE_API_URL}/all/items`
-      );
-
+      const res = await axiosSecure(`/customer/select?email=${user?.email}`);
       return res.data;
     },
   });
   return (
     <>
       <Helmet>
-        <title>NeflixHub - My Items</title>
+        <title>NetflixHub - Selected Items</title>
       </Helmet>
-      {items && Array.isArray(items) && items.length > 0 ? (
+      {select && Array.isArray(select) && select.length > 0 ? (
         <div className="container mx-auto px-4 sm:px-8">
           <div className="py-8">
             <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
@@ -50,21 +46,8 @@ const AllItems = () => {
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
-                        Category
+                        Price
                       </th>
-                      <th
-                        scope="col"
-                        className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
-                      >
-                        Price (৳- BDT)
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
-                      >
-                        Purchased
-                      </th>
-
                       <th
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
@@ -75,17 +58,25 @@ const AllItems = () => {
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
+                        Payment
+                      </th>
+
+                      <th
+                        scope="col"
+                        className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                      >
                         Action
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {items &&
-                      items.map((items) => (
-                        <TableData
-                          key={items?._id}
-                          items={items}
+                    {select &&
+                      select.map((select) => (
+                        <SelectDataRow
+                          key={select?._id}
+                          select={select}
                           refetch={refetch}
+                          user={user}
                         />
                       ))}
                   </tbody>
@@ -101,4 +92,4 @@ const AllItems = () => {
   );
 };
 
-export default AllItems;
+export default SelectedItem;

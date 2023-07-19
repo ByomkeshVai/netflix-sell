@@ -5,9 +5,11 @@ import Footer from "./Footer/Footer";
 
 const Main = () => {
   return (
-    <div className="hero-overlay bg-opacity-60">
+    <div className="hero-overlay bg-opacity-60 ">
       <Header></Header>
-      <Outlet></Outlet>
+      <div className="min-h-[calc(100vh-18px)]">
+        <Outlet />
+      </div>
       <Footer></Footer>
     </div>
   );

@@ -31,23 +31,6 @@ const UpdateItemForm = ({
               required
             />
           </div>
-          <div className="space-y-1 text-sm">
-            <label htmlFor="stock" className="block text-gray-600">
-              stock
-            </label>
-            <input
-              value={itemDatas?.stock}
-              onChange={(event) =>
-                setItemDatas({ ...itemDatas, stock: event.target.value })
-              }
-              className="w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md "
-              name="stock"
-              id="stock"
-              type="number"
-              placeholder="stock"
-              defaultValue={itemDatas?.stock}
-            />
-          </div>
 
           <div className="space-y-1 text-sm">
             <label htmlFor="category" className="block text-gray-600">
@@ -111,7 +94,7 @@ const UpdateItemForm = ({
             </div>
 
             <div className="space-y-1 text-sm">
-              <label htmlFor="guest" className="block text-gray-600">
+              <label htmlFor="duration" className="block text-gray-600">
                 Duration
               </label>
               <input
@@ -120,10 +103,10 @@ const UpdateItemForm = ({
                   setItemDatas({ ...itemDatas, duration: event.target.value })
                 }
                 className="w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md "
-                name="total_guest"
-                id="guest"
+                name="duration"
+                id="duration"
                 type="number"
-                placeholder="Total guest"
+                placeholder="Duration in Month"
                 required
               />
             </div>
