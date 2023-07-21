@@ -26,7 +26,7 @@ const SelectDataRow = ({ select, refetch, user }) => {
 
   // Item state
   const [selectInfo, setSelectInfo] = useState({
-    classId: select.selectItemId,
+    itemId: select.selectItemId,
   });
 
   return (

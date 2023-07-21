@@ -4,13 +4,14 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { Link } from "react-router-dom";
 import useAdmin from "../../../hooks/useAdmin";
 import useCustomer from "../../../hooks/useCustomer";
+import { RiSunLine, RiMoonLine } from "react-icons/Ri";
 
 const variants = {
   open: { opacity: 1, x: 0 },
   closed: { opacity: 0, x: "-100%" },
 };
 
-const Header = () => {
+const Header = ({ toggleDarkMode, darkMode }) => {
   const { user, logOut } = useContext(AuthContext);
   const [isAdmin] = useAdmin();
   const [isCustomer] = useCustomer();
@@ -20,7 +21,7 @@ const Header = () => {
       .then()
       .catch((error) => console.log(error));
   };
-
+  const Icon = darkMode ? RiSunLine : RiMoonLine;
   const [isOpen, setIsOpen] = useState(false);
   const Navbar = (
     <>
@@ -90,6 +91,11 @@ const Header = () => {
               <span className="font-semibold text-sm text-gray-400">
                 Support 24/7
               </span>
+            </div>
+            <div>
+              <button className="ml-14" onClick={toggleDarkMode}>
+                <Icon size={26} />
+              </button>
             </div>
             <ul className="ml-4 xl:w-48 flex items-center justify-end">
               <li className="ml-2 lg:ml-4 relative inline-block">

@@ -50,9 +50,9 @@ export const setSelect = async (selectItem) => {
 
 // update seats
 // update room status
-export const updateSeats = async (id) => {
+export const updateItems = async (id) => {
   const response = await fetch(
-    `${import.meta.env.VITE_API_URL}/class/update/${id}`,
+    `${import.meta.env.VITE_API_URL}/item/update/${id}`,
     {
       method: "PUT",
       headers: {

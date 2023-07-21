@@ -62,6 +62,7 @@ const SinglePackage = ({ items }) => {
           <h2 className="font-bold mt-[-24px] text-2xl">{items?.name}</h2>
           <p className="text-xl">Price: {items?.price} BDT</p>
           <p className="text-md">Duration: {items?.duration}</p>
+          <p className="text-sm">Stock: {items?.stock}</p>
           <p className="text-sm">Purchased: {items?.purchased}</p>
           <div className="card-actions">
             <button

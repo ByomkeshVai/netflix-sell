@@ -92,6 +92,22 @@ const UpdateItemForm = ({
                 placeholder="Price"
               />
             </div>
+            <div className="space-y-1 text-sm">
+              <label htmlFor="stock" className="block text-gray-600">
+                Stock
+              </label>
+              <input
+                value={itemDatas?.stock}
+                onChange={(event) =>
+                  setItemDatas({ ...itemDatas, stock: event.target.value })
+                }
+                className="w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md "
+                name="stock"
+                id="stock"
+                type="number"
+                placeholder="Price"
+              />
+            </div>
 
             <div className="space-y-1 text-sm">
               <label htmlFor="duration" className="block text-gray-600">

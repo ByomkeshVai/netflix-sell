@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import SectionHead from "../../Shared/SectionHead";
 
 const ClientTesitimonial = () => {
   return (
@@ -17,9 +18,9 @@ const ClientTesitimonial = () => {
               <p class="text-lg font-medium text-gray-600 font-pj">
                 2,157 people have said how good NetflixBD
               </p>
-              <h2 class="mt-4 text-3xl font-bold text-gray-900 sm:text-4xl xl:text-5xl font-pj">
-                Our happy clients say about us
-              </h2>
+              <SectionHead
+                slogan={"Our happy clients say about us"}
+              ></SectionHead>
             </div>
             <Swiper
               breakpoints={{
