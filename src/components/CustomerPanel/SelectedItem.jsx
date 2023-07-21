@@ -20,7 +20,7 @@ const SelectedItem = () => {
   return (
     <>
       <Helmet>
-        <title>NetflixHub - Selected Items</title>
+        <title>Stream Cart - Selected Items</title>
       </Helmet>
       {select && Array.isArray(select) && select.length > 0 ? (
         <div className="container mx-auto px-4 sm:px-8">

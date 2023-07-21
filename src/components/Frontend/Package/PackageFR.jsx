@@ -9,11 +9,7 @@ const PackageFR = ({ label, description, img, selected }) => {
   return (
     <div className="card lg:w-80 w-full bg-base-100 shadow-xl lg:ml-6 hover:scale-110 px-2 text-slate-50 bg-gradient-to-r from-blue-700 to-slate-600">
       <figure className="px-2 pt-3">
-        <img
-          src={img}
-          alt="images"
-          className="mx-auto object-cover h-56 w-56 rounded-xl"
-        />
+        <img src={img} alt="images" className="mx-auto h-48 w-48 rounded-xl" />
       </figure>
       <div className="card-body items-center text-center">
         <h2 className="font-bold mt-[-24px] text-2xl">{label}</h2>

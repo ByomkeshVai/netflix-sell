@@ -64,7 +64,7 @@ const AddItems = () => {
   return (
     <div className="">
       <Helmet>
-        <title>NetflixHub - Add Items</title>
+        <title>Stream Cart - Add Items</title>
       </Helmet>
       <AddItemForm
         handleSubmit={handleSubmit}

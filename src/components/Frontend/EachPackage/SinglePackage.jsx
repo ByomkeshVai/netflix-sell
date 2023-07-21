@@ -64,20 +64,22 @@ const SinglePackage = ({ items }) => {
           <p className="text-md">Duration: {items?.duration}</p>
           <p className="text-sm">Stock: {items?.stock}</p>
           <p className="text-sm">Purchased: {items?.purchased}</p>
-          <div className="card-actions">
-            <button
-              className="btn btn-md rounded-md px-10 border-0 btn-error text-slate-50 bg-gradient-to-r from-red-700 to-red-500"
-              disabled={isAdmin}
-            >
-              Buy Now
-            </button>
-            <button
-              className="btn btn-md rounded-md px-10 border-0 btn-error text-slate-50 bg-gradient-to-r from-red-700 to-red-500"
-              disabled={isAdmin}
-              onClick={() => handleAddToSelect(items)}
-            >
-              Add to Cart
-            </button>
+          <div className="">
+            <div className="flex gap-7 justify-center mt-5">
+              <button
+                className="btn btn-md rounded-md px-5 border-0 btn-error text-slate-50 bg-gradient-to-r from-red-700 to-red-500"
+                disabled={isAdmin}
+              >
+                <Link to="/customer/dashboard/selected">Buy Now</Link>
+              </button>
+              <button
+                className="btn btn-md rounded-md px-5 border-0 btn-error text-slate-50 bg-gradient-to-r from-rose-700 to-rose-500"
+                disabled={isAdmin}
+                onClick={() => handleAddToSelect(items)}
+              >
+                Add to Cart
+              </button>
+            </div>
           </div>
         </div>
       </div>

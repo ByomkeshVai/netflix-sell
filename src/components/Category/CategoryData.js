@@ -3,42 +3,36 @@ export const categories = [
     label: "Netflix",
     image:
       "https://static.vecteezy.com/system/resources/previews/022/101/069/original/netflix-logo-transparent-free-png.png",
-    description: "This property is close to the beach!",
+    description: "Grab the Best Deal of Netflix",
   },
   {
     label: "Amazon Prime",
     image:
-      "https://static.vecteezy.com/system/resources/previews/022/101/069/original/netflix-logo-transparent-free-png.png",
-    description: "This property is has windmills!",
+      "https://download.logo.wine/logo/Amazon_Prime/Amazon_Prime-Logo.wine.png",
+    description: "Grab the Best Deal of Amazon Prime!",
   },
   {
-    label: "Sony LIV",
+    label: "Chorki",
     image:
-      "https://static.vecteezy.com/system/resources/previews/022/101/069/original/netflix-logo-transparent-free-png.png",
-    description: "This property is modern!",
+      "https://upload.wikimedia.org/wikipedia/commons/d/d2/Chorki_Logo.png",
+    description: "Grab the Best Deal of Chorki!",
   },
   {
-    label: "ESPN",
+    label: "Disney+",
     image:
-      "https://static.vecteezy.com/system/resources/previews/022/101/069/original/netflix-logo-transparent-free-png.png",
-    description: "This property is in the countryside!",
+      "https://i.pinimg.com/originals/d4/1e/e2/d41ee24c13ec89901e118a8d5b1f6200.png",
+    description: "Grab the Best Deal of Disney+!",
   },
   {
-    label: "Cartoon",
+    label: "Hoichoi",
     image:
-      "https://static.vecteezy.com/system/resources/previews/022/101/069/original/netflix-logo-transparent-free-png.png",
-    description: "This is property has a beautiful pool!",
+      "https://upload.wikimedia.org/wikipedia/commons/b/b0/Hoichoi-720p-transperant.png",
+    description: "Grab the Best Deal of Hoichoi!",
   },
   {
-    label: "Epson",
+    label: "Nord VPN",
     image:
-      "https://static.vecteezy.com/system/resources/previews/022/101/069/original/netflix-logo-transparent-free-png.png",
-    description: "This property is on an island!",
-  },
-  {
-    label: "Intel",
-    image:
-      "https://static.vecteezy.com/system/resources/previews/022/101/069/original/netflix-logo-transparent-free-png.png",
-    description: "This property is near a lake!",
+      "https://miro.medium.com/v2/resize:fit:1400/1*8ewjWRYXtLabIKh6sUNz_Q.png",
+    description: "Grab the Best Deal of Nord VPN!",
   },
 ];

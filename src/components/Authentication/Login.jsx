@@ -74,7 +74,7 @@ const Login = () => {
     <>
       <div>
         <Helmet>
-          <title>NetflixHub - Login</title>
+          <title>Stream Cart - Login</title>
         </Helmet>
         <div className="">
           <div className="hero-content flex-col lg:flex-row-reverse mx-auto text-center">

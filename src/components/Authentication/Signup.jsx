@@ -66,7 +66,7 @@ const Signup = () => {
   return (
     <div>
       <Helmet>
-        <title>NetflixHub - Register</title>
+        <title>Stream Cart - Register</title>
       </Helmet>
       <div className="">
         <div className="hero-content flex-col lg:flex-row-reverse mx-auto text-center">

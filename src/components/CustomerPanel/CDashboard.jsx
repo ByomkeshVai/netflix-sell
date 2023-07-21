@@ -9,7 +9,7 @@ const CDashboard = () => {
   return (
     <>
       <Helmet>
-        <title>NetflixHub - Customer Dashboard</title>
+        <title>Stream Cart - Customer Dashboard</title>
       </Helmet>
       <div className="relative min-h-screen md:flex">
         <CustomerSidebar />

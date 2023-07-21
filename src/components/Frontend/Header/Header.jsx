@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import useAdmin from "../../../hooks/useAdmin";
 import useCustomer from "../../../hooks/useCustomer";
 import { RiSunLine, RiMoonLine } from "react-icons/Ri";
+import logo from "../../../assets/main.png";
+import useSelect from "../../../hooks/useSelect";
 
 const variants = {
   open: { opacity: 1, x: 0 },
@@ -15,6 +17,14 @@ const Header = ({ toggleDarkMode, darkMode }) => {
   const { user, logOut } = useContext(AuthContext);
   const [isAdmin] = useAdmin();
   const [isCustomer] = useCustomer();
+  const [select] = useSelect();
+
+  const priceData = select?.map((select) => parseInt(select.price));
+
+  const totalSum = priceData.reduce((acc, price) => {
+    const priceInt = parseFloat(price, 10);
+    return isNaN(priceInt) ? acc : acc + priceInt;
+  }, 0);
 
   const handleLogOut = () => {
     logOut()
@@ -25,23 +35,23 @@ const Header = ({ toggleDarkMode, darkMode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const Navbar = (
     <>
-      <li class="p-4 border-b-2 border-green-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer active">
-        <a href="">Accueil</a>
+      <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer active">
+        <Link to="">Streaming</Link>
       </li>
-      <li class="p-4 border-b-2 border-green-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer">
-        <a href="">Produits</a>
+      <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer">
+        <Link to="">Air Ticket</Link>
       </li>
-      <li class="p-4 border-b-2 border-green-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer">
-        <a href="">Collections</a>
+      <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer">
+        <Link to="">About</Link>
       </li>
-      <li class="p-4 border-b-2 border-green-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer">
-        <a href="">Contact</a>
+      <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer">
+        <Link to="">Contact</Link>
       </li>
     </>
   );
   return (
-    <header className="relative z-50 bg-gradient-to-r to-transparent max-w-screen-2xl mx-auto text-white font-bold ">
-      <div className="container flex items-center">
+    <header className="relative z-50 bg-gradient-to-r to-transparent  mx-auto  font-bold  ">
+      <div className="container flex items-center max-w-screen-2xl mx-auto">
         <div class="navbar ">
           <div class="navbar-start">
             <div class="dropdown">
@@ -74,20 +84,18 @@ const Header = ({ toggleDarkMode, darkMode }) => {
                 </ul>
               </motion.nav>
             </div>
-            <div className="mr-auto md:w-48 flex-shrink-0">
-              <img
-                className="h-14 sm:h-18"
-                src="https://images.ctfassets.net/4cd45et68cgf/7LrExJ6PAj6MSIPkDyCO86/542b1dfabbf3959908f69be546879952/Netflix-Brand-Logo.png?w=700&h=456"
-                alt=""
-              />
-            </div>
+            <Link to="/">
+              <div className="mr-auto md:w-48 flex-shrink-0">
+                <img className="h-14 sm:h-28" src={logo} alt="" />
+              </div>
+            </Link>
           </div>
           <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1">{Navbar}</ul>
           </div>
           <div class="navbar-end">
             <div className="ml-auto md:w-48 hidden sm:flex flex-col place-items-end">
-              <span className="font-bold md:text-xl">8 800 332 65-66</span>
+              <span className="font-bold md:text-xl">+880 1313 988866</span>
               <span className="font-semibold text-sm text-gray-400">
                 Support 24/7
               </span>
@@ -135,11 +143,10 @@ const Header = ({ toggleDarkMode, darkMode }) => {
                   </Link>
                 )}
               </li>
-
-              <li className="ml-2 lg:ml-4 relative inline-block">
-                <a className="" href="">
+              <Link to="/customer/dashboard/selected">
+                <li className="ml-2 lg:ml-4 relative inline-block">
                   <div className="absolute -top-1 right-0 z-10 bg-yellow-400 text-xs font-bold px-1 py-0.5 rounded-sm">
-                    12
+                    {select?.length || 0}
                   </div>
                   <svg
                     className="h-9 lg:h-10 p-2 text-gray-500 svg-inline--fa fa-shopping-cart fa-w-18 fa-9x"
@@ -156,14 +163,17 @@ const Header = ({ toggleDarkMode, darkMode }) => {
                       d="M551.991 64H144.28l-8.726-44.608C133.35 8.128 123.478 0 112 0H12C5.373 0 0 5.373 0 12v24c0 6.627 5.373 12 12 12h80.24l69.594 355.701C150.796 415.201 144 430.802 144 448c0 35.346 28.654 64 64 64s64-28.654 64-64a63.681 63.681 0 0 0-8.583-32h145.167a63.681 63.681 0 0 0-8.583 32c0 35.346 28.654 64 64 64 35.346 0 64-28.654 64-64 0-18.136-7.556-34.496-19.676-46.142l1.035-4.757c3.254-14.96-8.142-29.101-23.452-29.101H203.76l-9.39-48h312.405c11.29 0 21.054-7.869 23.452-18.902l45.216-208C578.695 78.139 567.299 64 551.991 64zM208 472c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm256 0c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm23.438-200H184.98l-31.31-160h368.548l-34.78 160z"
                     ></path>
                   </svg>
-                </a>
-              </li>
+                </li>
+              </Link>
             </ul>
           </div>
-          <div className="ml-4 hidden sm:flex flex-col font-bold">
-            <span className="text-xs text-gray-400">Your Cart</span>
-            <span>$2,650,59</span>
-          </div>
+          <Link to="/customer/dashboard/selected">
+            <div className="ml-4 hidden sm:flex flex-col font-bold flex">
+              <span className="text-xs text-gray-400">Your Cart</span>
+
+              <span>৳{totalSum}</span>
+            </div>
+          </Link>
         </div>
       </div>
     </header>

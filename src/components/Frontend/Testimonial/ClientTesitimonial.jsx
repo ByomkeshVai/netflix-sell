@@ -30,10 +30,10 @@ const ClientTesitimonial = () => {
                 1024: { slidesPerView: 3, spaceBetween: 20 },
               }}
               slidesPerView={3}
-              // autoplay={{
-              //   delay: 1500,
-              //   disableOnInteraction: false,
-              // }}
+              autoplay={{
+                delay: 1500,
+                disableOnInteraction: false,
+              }}
               pagination={{
                 clickable: true,
               }}
