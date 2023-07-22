@@ -101,6 +101,26 @@ const AdminSidebar = () => {
                 <span className="mx-4 font-medium">Manage Orders</span>
               </NavLink>
               <NavLink
+                to="/admin/dashboard/addpromo"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  }`
+                }
+              >
+                <span className="mx-4 font-medium">Add Promo</span>
+              </NavLink>
+              <NavLink
+                to="/admin/dashboard/allpromo"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  }`
+                }
+              >
+                <span className="mx-4 font-medium">All Promo</span>
+              </NavLink>
+              <NavLink
                 to="/admin/dashboard/users"
                 className={({ isActive }) =>
                   `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${

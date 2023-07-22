@@ -25,6 +25,7 @@ const AddItems = () => {
     const stock = event.target.stock.value;
     const image = event.target.image.files[0];
     const category = event.target.category.value;
+    const promo = event.target.promo.value;
     setUploadButtonText("Uploading...");
     // Upload image
     imageUpload(image)
@@ -39,7 +40,7 @@ const AddItems = () => {
           purchased: parseInt(0),
         };
 
-        // post room data to server
+        // post item data to server
         addItemData(itemData)
           .then((data) => {
             setUploadButtonText("Uploaded!");

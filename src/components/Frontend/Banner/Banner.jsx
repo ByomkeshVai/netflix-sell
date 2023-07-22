@@ -11,8 +11,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { BiMoviePlay } from "react-icons/Bi";
+import { BiLinkExternal, BiMoviePlay, BiPhoneCall } from "react-icons/Bi";
 import { TbBrandNetflix } from "react-icons/Tb";
+import { AiOutlinePaperClip } from "react-icons/Ai";
+import { GrFacebook } from "react-icons/Gr";
+import { Link } from "react-router-dom";
+import { ImWhatsapp } from "react-icons/Im";
 
 const Banner = () => {
   return (
@@ -26,7 +30,7 @@ const Banner = () => {
             clickable: true,
           }}
           autoplay={{
-            delay: 1500,
+            delay: 5000,
             disableOnInteraction: false,
           }}
           navigation={true}
@@ -96,22 +100,46 @@ const Banner = () => {
               }}
             >
               <div className=""></div>
-              <div className="hero-content text-center text-neutral-content">
-                <div className="max-w-2xl mt-[-270px]">
-                  {/* <h1 className="mb-5 text-5xl font-bold">
-                    Unlimited movies, TV shows, and more
+              <div className="hero-content text-center text-neutral-content text-center">
+                <div className="lg:max-w-full 2xl:max-w-full xl:max-w-full max-w-md mt-[-270px]">
+                  <h1 className="mb-5 lg:text-7xl 2xl:text-7xl text-5xl font-bold font-sriracha text-gray-900 tracking-wide">
+                    Your Entertainment Partner
                   </h1>
-                  <p className="mb-5">Plans now start at USD2.99/month.</p>
-                  <div className="button-area flex justify-center gap-10">
-                    <button className="btn rounded-xl border-0 btn-error text-slate-50 bg-gradient-to-r from-red-700 to-red-500">
-                      <TbBrandNetflix size={20} className="font-red-600" />
-                      Netflix
-                    </button>
-                    <button className="btn rounded-xl border-0 btn-error text-slate-50 bg-gradient-to-r from-blue-700 to-blue-500">
-                      <BiMoviePlay size={20} /> Learn More
-                    </button>
-                  </div> */}
                 </div>
+              </div>
+              <div className="button-area lg:flex lg:justify-between mx-auto lg:items-center gap-10 mt-[310px] text-xl">
+                <p className=" flex items-center gap-2 text-gray-900 font-arial">
+                  <AiOutlinePaperClip size={20} className="font-red-600" />
+                  <a
+                    href="//streamcartbd.com"
+                    target="_blank"
+                    className="text-center"
+                  >
+                    streamcartbd.com
+                  </a>
+                </p>
+                <p className="flex items-center gap-2 text-gray-900 font-arial text-xl">
+                  <BiPhoneCall size={20} className="font-red-600" />
+                  <a href="tel:+08809638882345" className="text-center">
+                    +880 96388 82345
+                  </a>
+                </p>
+                <p className="flex items-center gap-2 text-gray-900 font-arial text-xl">
+                  <ImWhatsapp size={20} className="font-red-600" />
+                  <a href="https://wa.me/01635034289" className="text-center">
+                    +880 1518347673
+                  </a>
+                </p>
+                <p className="flex items-center gap-2 text-gray-900 font-arial text-xl">
+                  <GrFacebook size={20} className="font-red-600" />
+                  <a
+                    href="//www.facebook.com/streamcartbangladesh"
+                    target="_blank"
+                    className="text-center"
+                  >
+                    www.facebook.com/streamcartbangladesh
+                  </a>
+                </p>
               </div>
             </div>
           </SwiperSlide>

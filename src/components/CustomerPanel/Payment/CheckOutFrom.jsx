@@ -6,52 +6,91 @@ import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import { updateItems } from "../../../api/select";
+import { useQuery } from "@tanstack/react-query";
 
-const CheckOutFrom = ({ closeModal, select }) => {
+const CheckOutFrom = ({ closeModal, select, selectInfo }) => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [axiosSecure] = useAxiosSecure();
-  const [cardError, setCardError] = useState("");
-  const [clientSecret, setClientSecret] = useState("");
-  const [processing, setProcessing] = useState(false);
-  const [transactionId, setTransactionId] = useState("");
-  useEffect(() => {
-    if (select.price > 0) {
-      axiosSecure
-        .post("/create-payment-intent", { price: select.price })
-        .then((res) => {
-          setClientSecret(res.data.clientSecret);
-        });
-    }
-  }, [select, axiosSecure]);
+  // const { refetch, data: promo = [] } = useQuery({
+  //   queryKey: ["promo", user?.email],
+  //   queryFn: async () => {
+  //     const res = await axiosSecure(`/all/promo`);
+  //     return res.data;
+  //   },
+  // });
 
-  const handleSubmit = (event) => {
+  const [userId, setUserId] = useState(user?.email);
+  console.log(userId);
+  const [promoCode, setPromoCode] = useState("");
+  console.log(promoCode);
+  const [productName, setProductName] = useState(select?.name);
+  console.log(productName);
+  const [message, setMessage] = useState("");
+  const [finalPrice, setFinalPrice] = useState(null);
+  console.log(finalPrice);
+
+  const handleApplyPromoCode = (event) => {
     event.preventDefault();
-    const form = event.target;
-    const productId = select?.selectItemId;
-    const name = user.displayName;
-    const email = user.email;
-    const itemName = select?.name;
-    const price = select?.price;
-    const newPrice = parseFloat(price);
-    const useremail = form.useremail.value;
-    const username = form.username.value;
-    const checkItems = {
-      productId,
-      newPrice,
-      itemName,
-      useremail,
-      username,
-      name,
-      email,
-    };
-    console.log(checkItems);
+    axiosSecure
+      .post("/check-promo", { userId, promoCode, productName })
+      .then((response) => {
+        setMessage(response.data.message);
+        setFinalPrice(response.data.finalPrice);
+      })
+      .catch((error) => {
+        if (error.response) {
+          // Server responded with an error status code (e.g., 4xx or 5xx)
+          setMessage(error.response.data.message);
+        } else if (error.request) {
+          // Request was made but no response was received
+          setMessage("No response from the server.");
+        } else {
+          // Something happened while setting up the request or handling the response
+          setMessage("Error occurred while processing the request.");
+        }
+        setFinalPrice(null);
+      });
   };
+
+
+  // useEffect(() => {
+  //   if (discount > 0) {
+  //     axiosSecure
+  //       .post("/create-payment-intent", { price: discount })
+  //       .then((res) => {
+  //         setClientSecret(res.data.clientSecret);
+  //       });
+  //   }
+  // }, [select, axiosSecure]);
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const form = event.target;
+  //   const productId = select?.selectItemId;
+  //   const name = user.displayName;
+  //   const email = user.email;
+  //   const itemName = select?.name;
+  //   const price = select?.price;
+  //   const newPrice = parseFloat(price);
+  //   const useremail = form.useremail.value;
+  //   const username = form.username.value;
+  //   const checkItems = {
+  //     productId,
+  //     newPrice,
+  //     itemName,
+  //     useremail,
+  //     username,
+  //     name,
+  //     email,
+  //   };
+  //   console.log(checkItems);
+  // };
   return (
     <div>
       <form action="">
         <div className="flex mt-2 justify-around">
-          <form onSubmit={handleSubmit}>
+          <div>
             <div className="mt-2">
               <p className="text-md text-gray-900">
                 Items Name: {select?.name}
@@ -87,6 +126,23 @@ const CheckOutFrom = ({ closeModal, select }) => {
                 placeholder="This email will be used for create your selected account"
               />
             </div>
+            <div className="space-y-1 text-sm py-3">
+              <label htmlFor="promo" className="block text-gray-900">
+                promo
+              </label>
+              <input
+                className="w-full px-4 py-3 text-gray-900 border border-rose-300 focus:outline-rose-500 rounded-md "
+                name="promo"
+                id="promo"
+                type="promo"
+                value={promoCode}
+                onChange={(e) => setPromoCode(e.target.value)}
+                placeholder="Promo Code"
+              />
+              <button onClick={handleApplyPromoCode}>Apply Promo Code</button>
+              {message && <p>{message}</p>}
+              {finalPrice !== null && <p>Final Price: {finalPrice}</p>}
+            </div>
             <hr className="mt-8 " />
             <div className="flex mt-2 justify-around">
               <button
@@ -100,10 +156,10 @@ const CheckOutFrom = ({ closeModal, select }) => {
                 type="submit"
                 className="inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
               >
-                Pay ${select.price}
+                Pay $ {finalPrice > 0 ? finalPrice : select?.price}
               </button>
             </div>
-          </form>
+          </div>
         </div>
       </form>
     </div>

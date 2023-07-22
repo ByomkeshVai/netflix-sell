@@ -95,7 +95,9 @@ const Header = ({ toggleDarkMode, darkMode }) => {
           </div>
           <div class="navbar-end">
             <div className="ml-auto md:w-48 hidden sm:flex flex-col place-items-end">
-              <span className="font-bold md:text-xl">+880 1313 988866</span>
+              <a className="font-bold md:text-xl" href="tel:+880 9638 882345">
+                +880 9638 882345
+              </a>
               <span className="font-semibold text-sm text-gray-400">
                 Support 24/7
               </span>

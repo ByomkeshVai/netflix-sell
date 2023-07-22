@@ -13,6 +13,8 @@ import EachPackage from "../Frontend/EachPackage/EachPackage";
 import SelectedItem from "../CustomerPanel/SelectedItem";
 import PaymentSuccess from "../CustomerPanel/Payment/PaymentSuccess";
 import PaymentFailed from "../CustomerPanel/Payment/PaymentFailed";
+import AddPromo from "../AdminPanel/Promo/AddPromo";
+import AllPromo from "../AdminPanel/Promo/AllPromo";
 
 export const router = createBrowserRouter([
   {
@@ -56,6 +58,22 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AllItems />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/admin/dashboard/addpromo",
+        element: (
+          <AdminRoute>
+            <AddPromo />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/admin/dashboard/allpromo",
+        element: (
+          <AdminRoute>
+            <AllPromo />
           </AdminRoute>
         ),
       },
