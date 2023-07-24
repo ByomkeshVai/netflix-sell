@@ -7,6 +7,7 @@ import { saveUser } from "../../api/auth";
 import { Helmet } from "react-helmet";
 import { ImSpinner2 } from "react-icons/Im";
 import { AiOutlineEye } from "react-icons/Ai";
+import { imageUpload } from "../../api/utlits";
 
 const Signup = () => {
   const {
@@ -32,7 +33,6 @@ const Signup = () => {
   const onSubmit = (data) => {
     if (data.password !== data.confirmPassword) {
       setLoginError("Passwords do not match");
-      return;
     }
 
     function generateRandomID() {
@@ -40,35 +40,37 @@ const Signup = () => {
       const max = 99999; // Maximum 5-digit number (99999)
       return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-
     const randomID = generateRandomID();
 
-    createUser(data.email, data.password).then((result) => {
-      const loggedUser = result.user;
-      console.log(loggedUser);
-      updateUserProfile(data.name, data.photoURL);
-      navigate(from, { replace: true });
-      const saveUser = {
-        userID: randomID,
-        name: data.name,
-        email: data.email,
-        photo: data.photoURL,
-        role: "customer",
-      };
-      fetch(`${import.meta.env.VITE_API_URL}/users/${loggedUser.email}`, {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("access-token")}`,
-        },
-        body: JSON.stringify(saveUser),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.insertedId) {
-            toast.success("Signup Successful");
-          }
-        });
+    const images = data.image[0];
+    imageUpload(images).then((datas) => {
+      createUser(data.email, data.password).then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        updateUserProfile(data.name, datas.data.display_url);
+        navigate(from, { replace: true });
+        const saveUser = {
+          userID: randomID,
+          name: data.name,
+          email: data.email,
+          photo: datas.data.display_url,
+          role: "customer",
+        };
+        fetch(`${import.meta.env.VITE_API_URL}/users/${loggedUser.email}`, {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("access-token")}`,
+          },
+          body: JSON.stringify(saveUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              toast.success("Signup Successful");
+            }
+          });
+      });
     });
   };
 
@@ -101,14 +103,9 @@ const Signup = () => {
                   <span className="label-text">Photo URL</span>
                 </label>
                 <input
-                  type="text"
-                  {...register("photoURL", { required: true })}
-                  placeholder="Photo URL"
-                  className="input input-bordered"
+                  type="file"
+                  {...register("image", { required: "Image is required" })}
                 />
-                {errors.photoURL && (
-                  <span className="text-red-600">Photo URL is required</span>
-                )}
               </div>
               <div className="form-control">
                 <label className="label">

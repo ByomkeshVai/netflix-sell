@@ -6,6 +6,7 @@ import { Outlet } from "react-router-dom";
 
 const CDashboard = () => {
   const { user, loading } = useContext(AuthContext);
+
   return (
     <>
       <Helmet>
