@@ -3,9 +3,23 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet";
 import CustomerSidebar from "./CustomerSidebar";
 import { Outlet } from "react-router-dom";
+import { useState } from "react";
+import PaymentConfirm from "./Payment/PaymentConfirm";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const CDashboard = () => {
   const { user, loading } = useContext(AuthContext);
+  let [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [axiosSecure] = useAxiosSecure();
+  const { refetch, data: payment = [] } = useQuery({
+    queryKey: ["payment", user?.email],
+    enabled: !loading,
+    queryFn: async () => {
+      const res = await axiosSecure(`/customer/payment?email=${user?.email}`);
+      return res.data;
+    },
+  });
 
   return (
     <>
@@ -20,7 +34,21 @@ const CDashboard = () => {
               Customer Area - {user?.displayName}
             </h4>
             <div className="payment-button lg:mt-0 mt-10 lg:mr-10">
-              <button className="btn btn-lg">Apply Payment</button>
+              <button
+                className="btn btn-lg"
+                onClick={() => setIsEditModalOpen(true)}
+              >
+                Apply Payment
+              </button>
+              <PaymentConfirm
+                isEditModalOpen={isEditModalOpen}
+                closeModal={() => setIsEditModalOpen(false)}
+                payment={payment}
+                id={payment._id}
+                refetch={refetch}
+                setIsEditModalOpen={setIsEditModalOpen}
+                loading={loading}
+              />
             </div>
           </div>
           <div className="p-5">

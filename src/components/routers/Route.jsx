@@ -15,6 +15,7 @@ import PaymentSuccess from "../CustomerPanel/Payment/PaymentSuccess";
 import PaymentFailed from "../CustomerPanel/Payment/PaymentFailed";
 import AddPromo from "../AdminPanel/Promo/AddPromo";
 import AllPromo from "../AdminPanel/Promo/AllPromo";
+import Transaciton from "../CustomerPanel/Transaciton/Transaciton";
 
 export const router = createBrowserRouter([
   {
@@ -95,6 +96,10 @@ export const router = createBrowserRouter([
       {
         path: "/customer/dashboard/selected",
         element: <SelectedItem />,
+      },
+      {
+        path: "/customer/dashboard/history",
+        element: <Transaciton />,
       },
       {
         path: "/customer/dashboard/payment/success/:tranId",

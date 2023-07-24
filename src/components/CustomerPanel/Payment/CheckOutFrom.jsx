@@ -91,6 +91,8 @@ const CheckOutFrom = ({ closeModal, select, selectInfo }) => {
       email,
       selectId: select._id,
       status: "unpaid",
+      transactionId: "",
+      amount: "",
     };
 
     // post item data to server
