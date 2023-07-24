@@ -2,7 +2,12 @@ import React, { useRef, useState } from "react";
 import banner2 from "../../../assets/banner/banner2.png";
 import banner3 from "../../../assets/banner/banner3.jpg";
 // import required modules
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import {
+  Autoplay,
+  Pagination,
+  Navigation,
+  EffectCreative,
+} from "swiper/modules";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -33,8 +38,19 @@ const Banner = () => {
             delay: 5000,
             disableOnInteraction: false,
           }}
-          navigation={true}
-          modules={[Autoplay, Pagination, Navigation]}
+          grabCursor={true}
+          effect={"creative"}
+          creativeEffect={{
+            prev: {
+              shadow: true,
+              translate: ["-120%", 0, -500],
+            },
+            next: {
+              shadow: true,
+              translate: ["120%", 0, -500],
+            },
+          }}
+          modules={[Autoplay, Pagination, Navigation, EffectCreative]}
           className="w-full h-[700px]"
         >
           <SwiperSlide>
@@ -120,7 +136,7 @@ const Banner = () => {
                 </p>
                 <p className="flex items-center gap-2 text-gray-900 font-arial text-xl">
                   <BiPhoneCall size={20} className="font-red-600" />
-                  <a href="tel:+08809638882345" className="text-center">
+                  <a href="tel:+8809638882345" className="text-center">
                     +880 96388 82345
                   </a>
                 </p>

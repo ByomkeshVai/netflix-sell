@@ -14,10 +14,13 @@ const CDashboard = () => {
       <div className="relative min-h-screen md:flex">
         <CustomerSidebar />
         <div className="flex-1  md:ml-64">
-          <div className="flex flex-row items-center mt-6 -mx-2">
+          <div className="lg:flex lg:flex-row 2xl:flex-row md:flex-row mx-auto text-center  items-center mt-6 -mx-2">
             <h4 className="mx-2 mt-2 text-xl text-blue-900 font-medium text-gray-800 mx-auto text-center hover:underline">
               Customer Area - {user?.displayName}
             </h4>
+            <div className="payment-button lg:mt-0 mt-10 lg:mr-10">
+              <button className="btn btn-lg">Apply Payment</button>
+            </div>
           </div>
           <div className="p-5">
             <Outlet />

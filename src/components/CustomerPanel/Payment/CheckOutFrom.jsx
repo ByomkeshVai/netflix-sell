@@ -7,6 +7,8 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import { updateItems } from "../../../api/select";
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
+import { addPayment } from "../../../api/payment";
 
 const CheckOutFrom = ({ closeModal, select, selectInfo }) => {
   const navigate = useNavigate();
@@ -25,25 +27,30 @@ const CheckOutFrom = ({ closeModal, select, selectInfo }) => {
   const [productName, setProductName] = useState(select?.name);
   const [message, setMessage] = useState("");
   const [finalPrice, setFinalPrice] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleApplyPromoCode = (event) => {
     event.preventDefault();
     axiosSecure
       .post("/check-promo", { userId, promoCode, productName })
       .then((response) => {
-        setMessage(response.data.message);
+        Swal.fire({
+          icon: "success",
+          title: "Promo Code Added",
+          text: response.data.message,
+        });
         setFinalPrice(response.data.finalPrice);
       })
       .catch((error) => {
         if (error.response) {
           // Server responded with an error status code (e.g., 4xx or 5xx)
-          setMessage(error.response.data.message);
+          Swal.fire(error.response.data.message);
         } else if (error.request) {
           // Request was made but no response was received
-          setMessage("No response from the server.");
+          Swal.fire("No response from the server.");
         } else {
           // Something happened while setting up the request or handling the response
-          setMessage("Error occurred while processing the request.");
+          Swal.fire("Error occurred while processing the request.");
         }
         setFinalPrice(null);
       });
@@ -82,9 +89,19 @@ const CheckOutFrom = ({ closeModal, select, selectInfo }) => {
       promo,
       name,
       email,
+      selectId: select._id,
+      status: "unpaid",
     };
-    console.log(checkItems);
+
+    // post item data to server
+    addPayment(checkItems)
+      .then((data) => {
+        window.location.href =
+          "https://shop.bkash.com/stream-cart-bangladesh01601699/paymentlink/default-payment";
+      })
+      .catch((err) => console.log(err));
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -146,9 +163,9 @@ const CheckOutFrom = ({ closeModal, select, selectInfo }) => {
                   Apply Promo
                 </button>
               </div>
-              {message && (
+              {/* {message && (
                 <p className="text-md text-red-600 text-center">{message}</p>
-              )}
+              )} */}
               {finalPrice !== null && (
                 <p className="text-xl text-blue-700 text-center">
                   Final Price: {finalPrice}৳

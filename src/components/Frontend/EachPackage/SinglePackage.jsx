@@ -11,7 +11,7 @@ const SinglePackage = ({ items }) => {
     items;
 
   const [isAdmin] = useAdmin();
-  const [select] = useSelect();
+  const [, refetch] = useSelect();
 
   const { user, loading } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -41,6 +41,7 @@ const SinglePackage = ({ items }) => {
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
+            refetch();
             toast.success("Cart Updated, Check Your Dashboard");
           }
         });
@@ -50,7 +51,7 @@ const SinglePackage = ({ items }) => {
   };
   return (
     <div>
-      <div className="card lg:w-80 w-full bg-base-100 shadow-xl lg:ml-6 hover:scale-110 px-2 text-slate-50 bg-gradient-to-r from-blue-700 to-slate-600">
+      <div className="card lg:w-80 w-80 mx-auto bg-base-100 shadow-xl lg:ml-6 hover:scale-110 px-2 text-slate-50 bg-gradient-to-r from-blue-700 to-slate-600">
         <figure className="px-2 pt-3">
           <img
             src={items?.image}

@@ -25,7 +25,6 @@ const AddItems = () => {
     const stock = event.target.stock.value;
     const image = event.target.image.files[0];
     const category = event.target.category.value;
-    const promo = event.target.promo.value;
     setUploadButtonText("Uploading...");
     // Upload image
     imageUpload(image)

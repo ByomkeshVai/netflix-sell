@@ -38,12 +38,22 @@ const Login = () => {
       });
   };
 
+  function generateRandomID() {
+    const min = 10000; // Minimum 5-digit number (10000)
+    const max = 99999; // Maximum 5-digit number (99999)
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  const randomID = generateRandomID();
+
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
         // save user to db
+
         navigate(from, { replace: true });
         const saveUser = {
+          userID: randomID,
           name: result.user.displayName,
           email: result.user.email,
           photo: result.user.photoURL,
