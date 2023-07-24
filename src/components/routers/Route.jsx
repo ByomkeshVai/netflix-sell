@@ -16,6 +16,7 @@ import PaymentFailed from "../CustomerPanel/Payment/PaymentFailed";
 import AddPromo from "../AdminPanel/Promo/AddPromo";
 import AllPromo from "../AdminPanel/Promo/AllPromo";
 import Transaciton from "../CustomerPanel/Transaciton/Transaciton";
+import ManageOrder from "../AdminPanel/ManageOrder/ManageOrder";
 
 export const router = createBrowserRouter([
   {
@@ -75,6 +76,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AllPromo />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/admin/dashboard/manage-order",
+        element: (
+          <AdminRoute>
+            <ManageOrder />
           </AdminRoute>
         ),
       },
