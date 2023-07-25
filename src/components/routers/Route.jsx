@@ -17,6 +17,7 @@ import AddPromo from "../AdminPanel/Promo/AddPromo";
 import AllPromo from "../AdminPanel/Promo/AllPromo";
 import Transaciton from "../CustomerPanel/Transaciton/Transaciton";
 import ManageOrder from "../AdminPanel/ManageOrder/ManageOrder";
+import Profile from "../CustomerPanel/Profile/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -107,13 +108,18 @@ export const router = createBrowserRouter([
         element: <SelectedItem />,
       },
       {
-        path: "/customer/dashboard/history",
+        path: "/customer/dashboard/transaction",
         element: <Transaciton />,
+      },
+      {
+        path: "/customer/dashboard/profile",
+        element: <Profile />,
       },
       {
         path: "/customer/dashboard/payment/success/:tranId",
         element: <PaymentSuccess></PaymentSuccess>,
       },
+
       {
         path: "/customer/dashboard/payment/fail/:tranId",
         element: <PaymentFailed></PaymentFailed>,

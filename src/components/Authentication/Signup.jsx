@@ -40,6 +40,12 @@ const Signup = () => {
       const max = 99999; // Maximum 5-digit number (99999)
       return Math.floor(Math.random() * (max - min + 1)) + min;
     }
+
+    // const generateRandomID = () => {
+    //   const randomNumber = Math.floor(Math.random() * 99999) + 10000; // Generate a random number between 10000 and 99999
+    //   return `se${randomNumber}`; // Add the 'se' prefix to the random number
+    // };
+
     const randomID = generateRandomID();
 
     const images = data.image[0];

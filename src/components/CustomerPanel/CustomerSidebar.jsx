@@ -6,15 +6,29 @@ import { AiOutlineBars } from "react-icons/Ai";
 import useSelect from "./../../hooks/useSelect";
 import { AuthContext } from "../../providers/AuthProvider";
 import Logo from "../Shared/Logo";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const CustomerSidebar = () => {
   const [select] = useSelect();
 
   const navigate = useNavigate();
   const [toggle, setToggle] = useState(false);
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, loading } = useContext(AuthContext);
 
   const [isActive, setActive] = useState("false");
+
+  const [axiosSecure] = useAxiosSecure();
+  const { refetch, data: singleUser = [] } = useQuery({
+    queryKey: ["singleUser", user?.email],
+    enabled: !loading,
+    queryFn: async () => {
+      const res = await axiosSecure(`/single/user?email=${user?.email}`);
+      return res.data;
+    },
+  });
+
+  const userid = singleUser?.map((signleOne) => signleOne.userID);
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
@@ -71,6 +85,9 @@ const CustomerSidebar = () => {
                   {user?.email}
                 </p>
               </Link>
+              <p className="mx-2 mt-1 text-sm font-medium text-gray-900 font-bold mb-5  hover:underline">
+                #se{userid}
+              </p>
             </div>
             <div>
               <hr />
@@ -86,7 +103,7 @@ const CustomerSidebar = () => {
                 <div className="badge badge-accent">+{select?.length || 0}</div>
               </NavLink>
               <NavLink
-                to="/customer/dashboard/history"
+                to="/customer/dashboard/transaction"
                 className={({ isActive }) =>
                   `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
                     isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
@@ -102,7 +119,7 @@ const CustomerSidebar = () => {
         <div>
           <hr />
           <NavLink
-            to="/"
+            to="/customer/dashboard/profile"
             className={({ isActive }) =>
               `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
                 isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
