@@ -1,17 +1,20 @@
 import React from "react";
 
 const HistoryDataRow = ({ transaction, refetch, user }) => {
+  let itemName = transaction?.itemNames?.map((str) => str.split(","));
   return (
     <>
       <tr>
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
           <p className="text-gray-900 whitespace-no-wrap">
-            {transaction?.itemName}
+            {itemName.map((splitStrings, index) => (
+              <h2 key={index}>{splitStrings.join(", ")}</h2>
+            ))}
           </p>
         </td>
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
           <p className="text-gray-900 whitespace-no-wrap">
-            {transaction?.price} (BDT)
+            {transaction?.prices} (BDT)
           </p>
         </td>
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -30,7 +33,12 @@ const HistoryDataRow = ({ transaction, refetch, user }) => {
         </td>
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-md">
           <p className="text-gray-900 whitespace-no-wrap">
-            {transaction?.feedback}
+            {transaction?.date}
+          </p>
+        </td>
+        <td className="px-5 py-5 border-b border-gray-200 bg-white text-md">
+          <p className="text-gray-900 whitespace-no-wrap">
+            {transaction?.remarks}
           </p>
         </td>
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-md">

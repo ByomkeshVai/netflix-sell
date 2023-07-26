@@ -51,7 +51,7 @@ const Header = ({ toggleDarkMode, darkMode }) => {
   );
   return (
     <header className="relative z-50 bg-gradient-to-r to-transparent  mx-auto  font-bold  ">
-      <div className="container flex items-center max-w-screen-2xl mx-auto">
+      <div className="container flex items-center max-w-screen-2xl mx-auto lg:h-16 h-12  lg:p-6 lg:py-10">
         <div class="navbar ">
           <div class="navbar-start">
             <div class="dropdown">
@@ -86,7 +86,7 @@ const Header = ({ toggleDarkMode, darkMode }) => {
             </div>
             <Link to="/">
               <div className="mr-auto md:w-48 flex-shrink-0">
-                <img className="h-14 sm:h-28" src={logo} alt="" />
+                <img className="lg:h-36 lg:mt-[20px] mt-[10px]" src={logo} alt="" />
               </div>
             </Link>
           </div>

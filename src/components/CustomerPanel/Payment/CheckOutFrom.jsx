@@ -10,7 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { addPayment } from "../../../api/payment";
 
-const CheckOutFrom = ({ closeModal, select, selectInfo }) => {
+const CheckOutFrom = ({ closeModal, select, selectInfo, price }) => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [axiosSecure] = useAxiosSecure();
@@ -24,7 +24,7 @@ const CheckOutFrom = ({ closeModal, select, selectInfo }) => {
 
   const [userId, setUserId] = useState(user?.email);
   const [promoCode, setPromoCode] = useState("");
-  const [productName, setProductName] = useState(select?.name);
+  const [productPrice, setProductPrice] = useState(price);
   const [message, setMessage] = useState("");
   const [finalPrice, setFinalPrice] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -32,7 +32,7 @@ const CheckOutFrom = ({ closeModal, select, selectInfo }) => {
   const handleApplyPromoCode = (event) => {
     event.preventDefault();
     axiosSecure
-      .post("/check-promo", { userId, promoCode, productName })
+      .post("/check-promo", { userId, promoCode, productPrice })
       .then((response) => {
         Swal.fire({
           icon: "success",
@@ -56,6 +56,8 @@ const CheckOutFrom = ({ closeModal, select, selectInfo }) => {
       });
   };
 
+  console.log(finalPrice);
+  console.log(typeof productPrice);
   // useEffect(() => {
   //   if (discount > 0) {
   //     axiosSecure
@@ -74,17 +76,14 @@ const CheckOutFrom = ({ closeModal, select, selectInfo }) => {
     const email = user.email;
     const promo = promoCode;
     const itemName = select?.name;
-    const oldprice = select?.price;
-    const price = parseFloat(oldprice);
+    const prices = parseFloat(price);
     const discountPrice = finalPrice;
-    const useremail = form.useremail.value;
-    const username = form.username.value;
+    const remarks = form.remarks.value;
     const checkItems = {
       productId,
-      price,
+      prices,
       itemName,
-      useremail,
-      username,
+      remarks,
       discountPrice,
       promo,
       name,
@@ -93,6 +92,9 @@ const CheckOutFrom = ({ closeModal, select, selectInfo }) => {
       status: "unpaid",
       transactionId: "",
       amount: "",
+      date: new Date(),
+      selectItems: select.map((item) => item._id),
+      itemNames: select.map((item) => item.name),
     };
 
     // post item data to server
@@ -110,38 +112,17 @@ const CheckOutFrom = ({ closeModal, select, selectInfo }) => {
         <div className="flex mt-2 justify-around">
           <div>
             <div className="mt-2">
-              <p className="text-md text-gray-900">
-                Items Name: {select?.name}
-              </p>
-            </div>
-            <div className="mt-2">
-              <p className="text-md text-gray-900">
-                Main Price: {select?.price} (BDT)
-              </p>
+              <p className="text-md text-gray-900">Main Price: {price} (BDT)</p>
             </div>
             <div className="space-y-1 text-sm py-3">
-              <label htmlFor="username" className="block text-gray-900">
-                User Name:
+              <label htmlFor="rmearks" className="block text-gray-900">
+                Remarks
               </label>
-              <input
+              <textarea
                 className="w-full px-4 py-3 text-gray-900 border border-rose-300 focus:outline-rose-500 rounded-md "
-                name="username"
-                id="username"
-                type="text"
-                placeholder="This name will be used for create your selected account"
-              />
-            </div>
-
-            <div className="space-y-1 text-sm py-3">
-              <label htmlFor="useremail" className="block text-gray-900">
-                Email:
-              </label>
-              <input
-                className="w-full px-4 py-3 text-gray-900 border border-rose-300 focus:outline-rose-500 rounded-md "
-                name="useremail"
-                id="useremail"
-                type="email"
-                placeholder="This email will be used for create your selected account"
+                name="remarks"
+                id="remarks"
+                placeholder="Add Info"
               />
             </div>
             <div className="space-y-1 text-sm py-3">
@@ -165,9 +146,9 @@ const CheckOutFrom = ({ closeModal, select, selectInfo }) => {
                   Apply Promo
                 </button>
               </div>
-              {/* {message && (
+              {message && (
                 <p className="text-md text-red-600 text-center">{message}</p>
-              )} */}
+              )}
               {finalPrice !== null && (
                 <p className="text-xl text-blue-700 text-center">
                   Final Price: {finalPrice}৳
@@ -187,7 +168,7 @@ const CheckOutFrom = ({ closeModal, select, selectInfo }) => {
                 type="submit"
                 className="inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
               >
-                Pay {finalPrice > 0 ? finalPrice : select?.price}৳
+                Pay {finalPrice > 0 ? finalPrice : price}৳
               </button>
             </div>
           </div>

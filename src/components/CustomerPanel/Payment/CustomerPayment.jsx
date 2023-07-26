@@ -4,15 +4,18 @@ import { Fragment, useState } from "react";
 import CheckOutFrom from "./CheckOutFrom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { addOrder } from "../../../api/order";
+import useSelect from "../../../hooks/useSelect";
 
 const CustomerPayment = ({
   setIsEditModalOpen,
   isOpen,
   closeModal,
-  select,
   user,
   selectInfo,
 }) => {
+  const [select] = useSelect();
+  const total = select?.reduce((sum, item) => sum + parseInt(item?.price), 0);
+  const price = parseFloat(total?.toFixed(2));
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog
@@ -54,6 +57,7 @@ const CustomerPayment = ({
                 <CheckOutFrom
                   closeModal={closeModal}
                   select={select}
+                  price={price}
                   selectInfo={selectInfo}
                 />
               </Dialog.Panel>

@@ -60,30 +60,6 @@ const SelectDataRow = ({ select, refetch, user }) => {
         </td>
 
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-          <span className="relative cursor-pointer inline-block px-3 py-1 font-semibold text-slate-50 leading-tight">
-            <span
-              aria-hidden="true"
-              className="absolute inset-0 bg-blue-600 rounded-full"
-            ></span>
-            <button
-              className="relative"
-              onClick={() => setIsEditModalOpen(true)}
-            >
-              Pay Now
-            </button>
-          </span>
-          <CustomerPayment
-            isOpen={isEditModalOpen}
-            closeModal={() => setIsEditModalOpen(false)}
-            refetch={refetch}
-            setIsEditModalOpen={setIsEditModalOpen}
-            select={select}
-            user={user}
-            selectInfo={selectInfo}
-          />
-        </td>
-
-        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
           <span
             onClick={openModal}
             className="relative cursor-pointer inline-block px-3 py-1 font-semibold text-slate-50 leading-tight"

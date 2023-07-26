@@ -15,6 +15,8 @@ const PaymentConfirm = ({
 }) => {
   const navigate = useNavigate();
 
+  const [arrayValues, setArrayValues] = useState([]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -22,19 +24,27 @@ const PaymentConfirm = ({
     const amount = form.amount.value;
     const transactionId = form.transactionId.value;
     const itemName = event.target.itemName.value;
+    const grabItem = itemName.split(" , ");
+
     const setData = {
-      itemName,
+      grabItem,
       amount,
       transactionId,
     };
+    console.log(grabItem);
     setPayment(setData)
       .then((data) => {
         toast.success("Payment Added, Wait For Verification!");
-        navigate("/admin/dashboard/allItem");
+        refetch();
         setIsEditModalOpen(false);
+        console.log(data);
       })
       .catch((err) => console.log(err));
   };
+
+  const items = payment.map((itemarea) =>
+    itemarea.itemNames.map((str) => str.split(",")).join(" , ")
+  );
 
   return (
     <Transition appear show={isEditModalOpen} as={Fragment}>
@@ -118,12 +128,9 @@ const PaymentConfirm = ({
                             className="w-full px-4 py-3 border-rose-300 focus:outline-rose-500 rounded-md"
                             name="itemName"
                           >
-                            {payment.map((payment) => (
-                              <option
-                                value={payment?.itemName}
-                                key={payment?.productId}
-                              >
-                                {payment?.itemName}
+                            {items.map((item) => (
+                              <option value={item} key={item}>
+                                {item}
                               </option>
                             ))}
                           </select>

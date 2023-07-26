@@ -1,12 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet";
 import EmptyState from "../Shared/EmptyState";
 import { useQuery } from "@tanstack/react-query";
 import SelectDataRow from "./SelectDataRow";
+import PaymentArea from "./PaymentArea/PaymentArea";
+import PaymentSelect from "./PaymentArea/PaymentSelect";
+import CheckOutFrom from "./Payment/CheckOutFrom";
+import CustomerPayment from "./Payment/CustomerPayment";
 
 const SelectedItem = () => {
+  let [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const { user, loading } = useContext(AuthContext);
   const [axiosSecure] = useAxiosSecure();
   const { refetch, data: select = [] } = useQuery({
@@ -17,6 +22,11 @@ const SelectedItem = () => {
       return res.data;
     },
   });
+  const [selectInfo, setSelectInfo] = useState({
+    itemId: select.selectItemId,
+  });
+  const total = select?.reduce((sum, item) => sum + parseInt(item?.price), 0);
+  const price = parseFloat(total?.toFixed(2));
   return (
     <>
       <Helmet>
@@ -84,6 +94,30 @@ const SelectedItem = () => {
               </div>
             </div>
           </div>
+          <div className="flex flex-cols items-center gap-3 justify-end  p-4 ">
+            <h2>Total Price: {price}</h2>
+            <span className="relative cursor-pointer inline-block px-3 py-1 font-semibold text-slate-50 leading-tight">
+              <span
+                aria-hidden="true"
+                className="absolute inset-0 bg-blue-600 rounded-full"
+              ></span>
+              <button
+                className="relative"
+                onClick={() => setIsEditModalOpen(true)}
+              >
+                Checkout
+              </button>
+            </span>
+          </div>
+          <CustomerPayment
+            isOpen={isEditModalOpen}
+            closeModal={() => setIsEditModalOpen(false)}
+            refetch={refetch}
+            selectInfo={selectInfo}
+            setIsEditModalOpen={setIsEditModalOpen}
+            select={select}
+            user={user}
+          />
         </div>
       ) : (
         <EmptyState message="No Items data available." />
