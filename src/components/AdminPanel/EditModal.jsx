@@ -45,6 +45,7 @@ const EditModal = ({
         setLoading(false);
       });
   };
+
   return (
     <Transition appear show={isEditModalOpen} as={Fragment}>
       <Dialog

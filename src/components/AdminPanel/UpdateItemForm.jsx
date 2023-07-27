@@ -1,6 +1,9 @@
 import React from "react";
 import { TbFidgetSpinner } from "react-icons/Tb";
-import { categories } from "../Category/CategoryData";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { AuthContext } from "../../providers/AuthProvider";
+import { useContext } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 const UpdateItemForm = ({
   handleSubmit,
@@ -9,8 +12,21 @@ const UpdateItemForm = ({
   itemDatas,
   setItemDatas,
 }) => {
+  const [axiosSecure] = useAxiosSecure();
+  const { user } = useContext(AuthContext);
+  const { refetch, data: categories = [] } = useQuery({
+    queryKey: ["categories"],
+    enabled: !loading,
+    queryFn: async () => {
+      const res = await axiosSecure(
+        `${import.meta.env.VITE_API_URL}/all/category`
+      );
+
+      return res.data;
+    },
+  });
   return (
-    <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50">
+    <div className="">
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 gap-10">
           <div className="space-y-1 text-sm">
@@ -34,14 +50,14 @@ const UpdateItemForm = ({
 
           <div className="space-y-1 text-sm">
             <label htmlFor="category" className="block text-gray-600">
-              Category
+              Sub Category
             </label>
             <select
               onChange={(event) =>
-                setItemDatas({ ...itemDatas, category: event.target.value })
+                setItemDatas({ ...itemDatas, label: event.target.value })
               }
               required
-              defaultValue={itemDatas.category}
+              defaultValue={itemDatas.label}
               className="w-full px-4 py-3 border-rose-300 focus:outline-rose-500 rounded-md"
               name="category"
             >

@@ -16,7 +16,7 @@ const AddItemForm = ({
   const [axiosSecure] = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const { refetch, data: category = [] } = useQuery({
-    queryKey: ["items"],
+    queryKey: ["category"],
     enabled: !loading,
     queryFn: async () => {
       const res = await axiosSecure(
@@ -134,7 +134,7 @@ const AddItemForm = ({
               </div>
               <div className="space-y-1 text-sm">
                 <label htmlFor="duration" className="block text-gray-600">
-                  Duration (in Days)
+                  Validity (in Days)
                 </label>
                 <input
                   className="w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md "
@@ -142,7 +142,6 @@ const AddItemForm = ({
                   id="duration"
                   type="number"
                   placeholder="Total duration (in Days)"
-                  required
                 />
               </div>
             </div>

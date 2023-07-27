@@ -9,7 +9,7 @@ const ADashboard = () => {
   return (
     <>
       <Helmet>
-        <title>Stream Cart - Customer Dashboard</title>
+        <title>Stream Cart - Admin Dashboard</title>
       </Helmet>
       <div className="relative min-h-screen md:flex">
         <AdminSidebar />

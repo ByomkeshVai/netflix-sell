@@ -3,7 +3,7 @@ import qs from "query-string";
 
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
-const PackageFR = ({ label, description, img, selected }) => {
+const PackageFR = ({ label, description, img, refetch }) => {
   const [params, setParams] = useSearchParams();
 
   return (

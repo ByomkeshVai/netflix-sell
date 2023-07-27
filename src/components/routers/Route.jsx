@@ -43,7 +43,7 @@ export const router = createBrowserRouter([
         element: <Signup></Signup>,
       },
       {
-        path: "/all/items/:category",
+        path: "/all/items/:label",
         element: <EachPackage></EachPackage>,
       },
     ],

@@ -12,19 +12,37 @@ import { JackInTheBox } from "react-awesome-reveal";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
 
 const AllPackage = () => {
   const [showAll, setShowAll] = useState(false);
   const [params, setParams] = useSearchParams();
-  const category = params.get("category");
   const handleShowAll = () => {
     setShowAll(true);
   };
+
+  const [axiosSecure] = useAxiosSecure();
+  const { user, loading } = useContext(AuthContext);
+  const { refetch, data: category = [] } = useQuery({
+    queryKey: ["category"],
+    enabled: !loading,
+    queryFn: async () => {
+      const res = await axiosSecure(
+        `${import.meta.env.VITE_API_URL}/all/category`
+      );
+
+      return res.data;
+    },
+  });
+
   return (
     <>
       <div className="max-w-screen-xl mx-auto">
         <SectionHead slogan={"Our Top Packages"}></SectionHead>
-        <JackInTheBox damping={0.1} direction="right">
+        <JackInTheBox damping={0.5} direction="right">
           <div className="pt-12 ">
             <Swiper
               loop={true}
@@ -55,7 +73,7 @@ const AllPackage = () => {
               modules={[Autoplay, EffectCoverflow, Pagination]}
               className="mySwiper"
             >
-              {categories?.map((item) => (
+              {category?.map((item) => (
                 <SwiperSlide>
                   <PackageFR
                     label={item.label}
@@ -63,6 +81,7 @@ const AllPackage = () => {
                     img={item.image}
                     key={item.label}
                     selected={category === item.label}
+                    refetch={refetch}
                   />
                 </SwiperSlide>
               ))}

@@ -10,23 +10,22 @@ import EmptyState from "../../Shared/EmptyState";
 import EmptyItem from "../../Shared/EmptyItem";
 
 const EachPackage = () => {
-  const { category } = useParams();
+  const { label } = useParams();
+  console.log(label);
 
   const [axiosSecure] = useAxiosSecure();
   const { user, loading } = useContext(AuthContext);
   const { refetch, data: items = [] } = useQuery({
-    queryKey: ["items", category],
+    queryKey: ["items", label],
     enabled: !loading,
     queryFn: async () => {
       const res = await axiosSecure(
-        `${import.meta.env.VITE_API_URL}/all/items/${category}`
+        `${import.meta.env.VITE_API_URL}/all/items/${label}`
       );
 
       return res.data;
     },
   });
-
-  console.log(items);
 
   return (
     <>

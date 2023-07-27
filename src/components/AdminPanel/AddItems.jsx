@@ -46,7 +46,6 @@ const AddItems = () => {
           image: data.data.display_url,
           category: category,
           label: label,
-          purchased: parseInt(0),
           type: selectedOption,
         };
 
