@@ -13,6 +13,14 @@ const AddItems = () => {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
+  const [selectedOption, setSelectedOption] = useState("");
+
+  const handleOptionChange = (option) => {
+    setSelectedOption(option);
+  };
+
+  console.log(selectedOption);
+
   const [loading, setLoading] = useState(false);
   const [uploadButtonText, setUploadButtonText] = useState("Upload Image");
   // handle form submit
@@ -25,6 +33,7 @@ const AddItems = () => {
     const stock = event.target.stock.value;
     const image = event.target.image.files[0];
     const category = event.target.category.value;
+    const label = event.target.label.value;
     setUploadButtonText("Uploading...");
     // Upload image
     imageUpload(image)
@@ -35,8 +44,10 @@ const AddItems = () => {
           duration: parseInt(duration),
           price: parseFloat(price),
           image: data.data.display_url,
-          category,
+          category: category,
+          label: label,
           purchased: parseInt(0),
+          type: selectedOption,
         };
 
         // post item data to server
@@ -71,6 +82,7 @@ const AddItems = () => {
         loading={loading}
         handleImageChange={handleImageChange}
         uploadButtonText={uploadButtonText}
+        handleOptionChange={handleOptionChange}
       ></AddItemForm>
     </div>
   );

@@ -9,9 +9,11 @@ const Loader = () => {
       flex-col 
       justify-center 
       items-center 
+      mx-auto
+      w-full
     "
     >
-      <HashLoader size={100} color="#2E3181" />
+      <HashLoader size={100} color="#F13C5C" />
     </div>
   );
 };

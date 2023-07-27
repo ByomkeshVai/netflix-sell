@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { TbFidgetSpinner } from "react-icons/Tb";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
 import { categories } from "../Category/CategoryData";
 
 const AddItemForm = ({
@@ -7,7 +11,22 @@ const AddItemForm = ({
   loading,
   handleImageChange,
   uploadButtonText,
+  handleOptionChange,
 }) => {
+  const [axiosSecure] = useAxiosSecure();
+  const { user } = useContext(AuthContext);
+  const { refetch, data: category = [] } = useQuery({
+    queryKey: ["items"],
+    enabled: !loading,
+    queryFn: async () => {
+      const res = await axiosSecure(
+        `${import.meta.env.VITE_API_URL}/all/category`
+      );
+
+      return res.data;
+    },
+  });
+
   return (
     <div className="max-w-screen-xl mx-auto min-h-[calc(100vh-270px)] flex flex-col justify-center  text-gray-800 rounded-xl bg-gray-50">
       <form onSubmit={handleSubmit}>
@@ -22,13 +41,30 @@ const AddItemForm = ({
                 className="w-full px-4 py-3 border-rose-300 focus:outline-rose-500 rounded-md"
                 name="category"
               >
-                {categories.map((category) => (
-                  <option value={category.label} key={category.label}>
-                    {category.label}
+                {categories?.map((category) => (
+                  <option value={category.category} key={category.category}>
+                    {category?.category}
                   </option>
                 ))}
               </select>
             </div>
+            <div className="space-y-1 text-sm mx-auto">
+              <label htmlFor="category" className="block text-gray-600">
+                Sub Category
+              </label>
+              <select
+                required
+                className="w-full px-4 py-3 border-rose-300 focus:outline-rose-500 rounded-md"
+                name="label"
+              >
+                {category?.map((categorys) => (
+                  <option value={categorys.label} key={categorys.label}>
+                    {categorys?.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
             <div className="space-y-6">
               <div className="space-y-1 text-sm">
                 <label htmlFor="name" className="block text-gray-600">
@@ -109,6 +145,22 @@ const AddItemForm = ({
                   required
                 />
               </div>
+            </div>
+            <div className="space-y-1 text-sm mx-auto">
+              <label htmlFor="type" className="block text-gray-600">
+                Select Product Type:
+              </label>
+              <select
+                required
+                className="w-full px-4 py-3 border-rose-300 focus:outline-rose-500 rounded-md"
+                name="type"
+                onChange={(e) => handleOptionChange(e.target.value)}
+              >
+                <option value="">-- Select --</option>
+                <option value="topRated">Top Rated Product</option>
+                <option value="newArrival">New Arrival</option>
+                <option value="nowTrending">Now Trending</option>
+              </select>
             </div>
             <button
               type="submit"

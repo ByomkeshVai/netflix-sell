@@ -119,7 +119,7 @@ const Banner = () => {
                       Let's{" "}
                       <Typewriter
                         words={["Fly", "Explore", "Inspect", "Fly"]}
-                        loop={5}
+                        loop={99}
                         cursor
                         cursorStyle="_"
                         typeSpeed={70}

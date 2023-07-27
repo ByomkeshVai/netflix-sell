@@ -1,10 +1,11 @@
-import { deleteItem, editItem } from "../../api/item";
+import React from "react";
 import { useState } from "react";
-import DeleteModal from "../Modal/DeleteModal";
 import { toast } from "react-hot-toast";
-import EditModal from "./EditModal";
+import DeleteModal from "../../Modal/DeleteModal";
+import EditCategory from "./EditCategory";
+import { deleteCategory } from "../../../api/category";
 
-const TableData = ({ items, refetch }) => {
+const CategoryData = ({ category, refetch }) => {
   let [isOpen, setIsOpen] = useState(false);
   let [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
@@ -15,10 +16,10 @@ const TableData = ({ items, refetch }) => {
     setIsOpen(false);
   }
   const modalHandler = (id) => {
-    deleteItem(id)
+    deleteCategory(id)
       .then((data) => {
         refetch();
-        toast.success("items deleted");
+        toast.success("Category deleted");
       })
       .catch((err) => console.log(err));
     closeModal();
@@ -31,7 +32,7 @@ const TableData = ({ items, refetch }) => {
             <div className="block relative">
               <img
                 alt="profile"
-                src={items?.image}
+                src={category?.image}
                 className="mx-auto object-cover rounded h-10 w-15 "
               />
             </div>
@@ -39,26 +40,10 @@ const TableData = ({ items, refetch }) => {
         </div>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 whitespace-no-wrap">{items?.name}</p>
+        <p className="text-gray-900 whitespace-no-wrap">{category?.label}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 whitespace-no-wrap">{items?.category}</p>
-      </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 whitespace-no-wrap">{items?.stock}</p>
-      </td>
-
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 whitespace-no-wrap">{items?.price}</p>
-      </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 whitespace-no-wrap">{items?.purchased}</p>
-      </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 whitespace-no-wrap">{items?.duration}</p>
-      </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 whitespace-no-wrap">{items?.type}</p>
+        <p className="text-gray-900 whitespace-no-wrap">{category?.category}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <div className="action-area flex gap-3">
@@ -75,11 +60,11 @@ const TableData = ({ items, refetch }) => {
                 Edit
               </span>
             </span>
-            <EditModal
+            <EditCategory
               isEditModalOpen={isEditModalOpen}
               closeModal={() => setIsEditModalOpen(false)}
-              items={items}
-              id={items._id}
+              category={category}
+              id={category._id}
               refetch={refetch}
               setIsEditModalOpen={setIsEditModalOpen}
             />
@@ -100,7 +85,7 @@ const TableData = ({ items, refetch }) => {
               isOpen={isOpen}
               closeModal={closeModal}
               modalHandler={modalHandler}
-              id={items._id}
+              id={category._id}
             />
           </div>
         </div>
@@ -109,4 +94,4 @@ const TableData = ({ items, refetch }) => {
   );
 };
 
-export default TableData;
+export default CategoryData;

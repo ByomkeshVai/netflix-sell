@@ -21,6 +21,8 @@ import Profile from "../CustomerPanel/Profile/Profile";
 import Credential from "../AdminPanel/Credential/Credential";
 import AllCredential from "../AdminPanel/Credential/AllCredential";
 import CustomerCredential from "../CustomerPanel/Credential/CustomerCredential";
+import AddCategory from "../AdminPanel/Category/AddCategory";
+import AllCategory from "../AdminPanel/Category/AllCategory";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +53,22 @@ export const router = createBrowserRouter([
     element: <ADashboard />,
     // errorElement: <ErrorPage />,
     children: [
+      {
+        path: "/admin/dashboard/add-category",
+        element: (
+          <AdminRoute>
+            <AddCategory />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/admin/dashboard/all-category",
+        element: (
+          <AdminRoute>
+            <AllCategory />
+          </AdminRoute>
+        ),
+      },
       {
         path: "/admin/dashboard/add",
         element: (
