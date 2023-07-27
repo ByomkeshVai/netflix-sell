@@ -1,35 +1,32 @@
 import React from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment } from "react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../../../providers/AuthProvider";
-import { toast } from "react-hot-toast";
-import { UpdateOrder } from "../../../api/order";
+import { Fragment, useState } from "react";
+import toast from "react-hot-toast";
+import { TbFidgetSpinner } from "react-icons/Tb";
+import { editAccess } from "../../../api/credential";
 
-const StatusModal = ({ setIsEditModalOpen, isOpen, refetch, order, id }) => {
-  const [status, setStatus] = useState("");
-  const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
+const EditCredential = ({
+  setIsEditModalOpen,
+  isOpen,
+  refetch,
+  credential,
+  id,
+}) => {
   const [loading, setLoading] = useState(false);
-
   const handleSubmit = (event) => {
     event.preventDefault();
     setLoading(true);
-    const feedback = event.target.feedback.value;
+    const credential = event.target.credential.value;
     const feedData = {
-      status: status,
-      feedback: feedback,
+      credential,
     };
-    UpdateOrder(id, feedData)
+    editAccess(feedData, id)
       .then((data) => {
         if (data.modifiedCount == 1) {
           setLoading(false);
-          toast.success("Credential Added!");
+          toast.success("Credential Updated!");
           refetch();
           setIsEditModalOpen(false);
-          onDisable(false);
         }
       })
       .catch((err) => console.log(err));
@@ -76,33 +73,40 @@ const StatusModal = ({ setIsEditModalOpen, isOpen, refetch, order, id }) => {
 
                 <form onSubmit={handleSubmit}>
                   <div className="mt-2 max-w-screen-xl mx-auto">
-                    <label htmlFor="feedback" className="mb-5">
+                    <label htmlFor="credential" className="mb-5">
                       Remarks From Admin
                     </label>
                     <textarea
-                      name="feedback"
-                      id="feedback"
+                      name="credential"
+                      id="credential"
                       cols="40"
                       rows="5"
                       className="border border-2 mt-5"
+                      defaultValue={credential?.credential}
                       required
                     ></textarea>
                   </div>
-                  <hr className="mt-8 " />
+                  <hr className="mt-8 gap-5" />
                   <div className="mt-2 flex mt-2 justify-around">
                     <button
                       type="submit"
-                      className="disable:bg-text-600 inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
-                      onClick={() => setStatus("Approved")}
+                      className="py-2 px-5  p-2 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-rose-500"
                     >
-                      Approved
+                      {loading ? (
+                        <TbFidgetSpinner
+                          className="m-auto animate-spin"
+                          size={24}
+                        />
+                      ) : (
+                        "Update"
+                      )}
                     </button>
                     <button
-                      type="submit"
-                      className="disable:bg-text-600 inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
-                      onClick={() => setStatus("Denied")}
+                      type="button"
+                      className="py-2 px-5 p-2 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-rose-500"
+                      onClick={() => setIsEditModalOpen(false)}
                     >
-                      Denied
+                      Cancel
                     </button>
                   </div>
                 </form>
@@ -115,4 +119,4 @@ const StatusModal = ({ setIsEditModalOpen, isOpen, refetch, order, id }) => {
   );
 };
 
-export default StatusModal;
+export default EditCredential;

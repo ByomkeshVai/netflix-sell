@@ -10,7 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { addPayment } from "../../../api/payment";
 
-const CheckOutFrom = ({ closeModal, select, selectInfo, price }) => {
+const CheckOutFrom = ({ closeModal, select, selectInfo, price, refetch }) => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [axiosSecure] = useAxiosSecure();
@@ -21,6 +21,16 @@ const CheckOutFrom = ({ closeModal, select, selectInfo, price }) => {
   //     return res.data;
   //   },
   // });
+
+  const { data: singleUser = [] } = useQuery({
+    queryKey: ["singleUser", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure(`/single/user?email=${user?.email}`);
+      return res.data;
+    },
+  });
+  const singleId = singleUser.map((singleId) => singleId.userID);
+  const userCode = singleId[0];
 
   const [userId, setUserId] = useState(user?.email);
   const [promoCode, setPromoCode] = useState("");
@@ -56,8 +66,8 @@ const CheckOutFrom = ({ closeModal, select, selectInfo, price }) => {
       });
   };
 
-  console.log(finalPrice);
-  console.log(typeof productPrice);
+  // console.log(finalPrice);
+  // console.log(typeof productPrice);
   // useEffect(() => {
   //   if (discount > 0) {
   //     axiosSecure
@@ -84,6 +94,7 @@ const CheckOutFrom = ({ closeModal, select, selectInfo, price }) => {
       prices,
       itemName,
       remarks,
+      userCode,
       discountPrice,
       promo,
       name,
@@ -115,7 +126,7 @@ const CheckOutFrom = ({ closeModal, select, selectInfo, price }) => {
               <p className="text-md text-gray-900">Main Price: {price} (BDT)</p>
             </div>
             <div className="space-y-1 text-sm py-3">
-              <label htmlFor="rmearks" className="block text-gray-900">
+              <label htmlFor="remarks" className="block text-gray-900">
                 Remarks
               </label>
               <textarea

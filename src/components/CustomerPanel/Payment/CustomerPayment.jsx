@@ -12,6 +12,7 @@ const CustomerPayment = ({
   closeModal,
   user,
   selectInfo,
+  refetch,
 }) => {
   const [select] = useSelect();
   const total = select?.reduce((sum, item) => sum + parseInt(item?.price), 0);

@@ -5,6 +5,7 @@ import useAdmin from "../../../hooks/useAdmin";
 import useSelect from "./../../../hooks/useSelect";
 import { AuthContext } from "../../../providers/AuthProvider";
 import toast from "react-hot-toast";
+import { Slide } from "react-awesome-reveal";
 
 const SinglePackage = ({ items }) => {
   const { image, name, price, stock, _id, duration, category, purchased } =
@@ -51,39 +52,41 @@ const SinglePackage = ({ items }) => {
   };
   return (
     <div>
-      <div className="card lg:w-72 w-60 mx-auto bg-base-100 shadow-xl lg:ml-6 hover:scale-110 px-2 text-slate-50 bg-gradient-to-r from-blue-700 to-slate-600">
-        <figure className="px-2 pt-3">
-          <img
-            src={items?.image}
-            alt="images"
-            className="mx-auto mt-4 mb-4 object-cover h-40 w-40 rounded-xl"
-          />
-        </figure>
-        <div className="card-body items-center text-center">
-          <h2 className="font-bold mt-[-24px] text-xl">{items?.name}</h2>
-          <p className="text-md">Price: {items?.price} BDT</p>
-          <p className="text-sm">Validity: {items?.duration} Days</p>
-          <p className="text-sm">Stock: {items?.stock}</p>
-          <p className="text-sm">Purchased: {items?.purchased}</p>
-          <div className="">
-            <div className="flex gap-7 justify-center mt-5">
-              <button
-                className="btn btn-sm rounded-md px-5 border-0 btn-error text-slate-50 bg-gradient-to-r from-red-700 to-red-500"
-                disabled={isAdmin}
-              >
-                <Link to="/customer/dashboard/selected">Buy Now</Link>
-              </button>
-              <button
-                className="btn btn-sm rounded-md px-5 border-0 btn-error text-slate-50 bg-gradient-to-r from-rose-700 to-rose-500"
-                disabled={isAdmin}
-                onClick={() => handleAddToSelect(items)}
-              >
-                Add to Cart
-              </button>
+      <Slide damping={0.1} direction="right">
+        <div className="card lg:w-72 w-60 mx-auto bg-base-100 shadow-xl lg:ml-6 hover:scale-110 px-2 text-slate-50 bg-gradient-to-r from-blue-700 to-slate-600">
+          <figure className="px-2 pt-3">
+            <img
+              src={items?.image}
+              alt="images"
+              className="mx-auto mt-4 mb-4 object-cover h-40 w-40 rounded-xl"
+            />
+          </figure>
+          <div className="card-body items-center text-center">
+            <h2 className="font-bold mt-[-24px] text-xl">{items?.name}</h2>
+            <p className="text-md">Price: {items?.price} BDT</p>
+            <p className="text-sm">Validity: {items?.duration} Days</p>
+            <p className="text-sm">Stock: {items?.stock}</p>
+            <p className="text-sm">Purchased: {items?.purchased}</p>
+            <div className="">
+              <div className="flex gap-7 justify-center mt-5">
+                <button
+                  className="btn btn-sm rounded-md px-5 border-0 btn-error text-slate-50 bg-gradient-to-r from-red-700 to-red-500"
+                  disabled={isAdmin}
+                >
+                  <Link to="/customer/dashboard/selected">Buy Now</Link>
+                </button>
+                <button
+                  className="btn btn-sm rounded-md px-5 border-0 btn-error text-slate-50 bg-gradient-to-r from-rose-700 to-rose-500"
+                  disabled={isAdmin}
+                  onClick={() => handleAddToSelect(items)}
+                >
+                  Add to Cart
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </Slide>
     </div>
   );
 };

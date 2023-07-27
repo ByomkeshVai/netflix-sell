@@ -18,7 +18,7 @@ const Support = () => {
   };
 
   return (
-    <div className="lg:py-8 lg:px-5  bg-gradient-to-r from-gray-700 to-gray-500">
+    <div className="lg:py-8 lg:px-5  bg-gradient-to-r from-gray-700 to-gray-500 mt-10 py-10">
       <div className="content  flex justify-center gap-10 mx-auto items-center flex flex-col lg:flex lg:flex-row">
         <div className="w-full mt-20 mr-0 mb-0 ml-0 relative z-10 max-w-2xl lg:mt-0 lg:w-5/12 p-12">
           <div

@@ -1,32 +1,30 @@
 import React from "react";
-import { useContext } from "react";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import EmptyState from "../../Shared/EmptyState";
+import CredentialData from "./CredentialData";
 import { Helmet } from "react-helmet";
-import EmptyState from "../Shared/EmptyState";
-import TableData from "./TableData";
-import { AuthContext } from "../../providers/AuthProvider";
 
-const AllItems = () => {
+const AllCredential = () => {
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const [axiosSecure] = useAxiosSecure();
-  const { user, loading } = useContext(AuthContext);
-  const { refetch, data: items = [] } = useQuery({
-    queryKey: ["items"],
+  const { refetch, data: credential = [] } = useQuery({
+    queryKey: ["credential"],
     enabled: !loading,
     queryFn: async () => {
-      const res = await axiosSecure(
-        `${import.meta.env.VITE_API_URL}/all/items`
-      );
-
+      const res = await axiosSecure(`/credential`);
       return res.data;
     },
   });
   return (
     <>
       <Helmet>
-        <title>Streamcart - My Items</title>
+        <title>Streamcart - All Credential</title>
       </Helmet>
-      {items && Array.isArray(items) && items.length > 0 ? (
+      {credential && Array.isArray(credential) && credential.length > 0 ? (
         <div className="container mx-auto px-4 sm:px-8">
           <div className="py-8">
             <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
@@ -38,44 +36,25 @@ const AllItems = () => {
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
-                        Image
+                        User Name
                       </th>
                       <th
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
-                        Name
+                        User ID
                       </th>
                       <th
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
-                        Category
+                        Item Name
                       </th>
                       <th
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
-                        Stock
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
-                      >
-                        Price (৳- BDT)
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
-                      >
-                        Purchased
-                      </th>
-
-                      <th
-                        scope="col"
-                        className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
-                      >
-                        Duration
+                        Credential
                       </th>
                       <th
                         scope="col"
@@ -86,11 +65,11 @@ const AllItems = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {items &&
-                      items.map((items) => (
-                        <TableData
-                          key={items?._id}
-                          items={items}
+                    {credential &&
+                      credential.map((credential) => (
+                        <CredentialData
+                          key={credential?._id}
+                          credential={credential}
                           refetch={refetch}
                         />
                       ))}
@@ -101,10 +80,10 @@ const AllItems = () => {
           </div>
         </div>
       ) : (
-        <EmptyState message="No Items data available." />
+        <EmptyState message="No credential data available." />
       )}
     </>
   );
 };
 
-export default AllItems;
+export default AllCredential;

@@ -17,11 +17,13 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { BiLinkExternal, BiMoviePlay, BiPhoneCall } from "react-icons/Bi";
-import { TbBrandNetflix } from "react-icons/Tb";
+import { SiAzuredataexplorer } from "react-icons/Si";
+import { PiPopcornDuotone } from "react-icons/Pi";
 import { AiOutlinePaperClip } from "react-icons/Ai";
 import { GrFacebook } from "react-icons/Gr";
 import { Link } from "react-router-dom";
 import { ImWhatsapp } from "react-icons/Im";
+import { Typewriter } from "react-simple-typewriter";
 
 const Banner = () => {
   return (
@@ -35,7 +37,7 @@ const Banner = () => {
             clickable: true,
           }}
           autoplay={{
-            delay: 5000,
+            delay: 8000,
             disableOnInteraction: false,
           }}
           grabCursor={true}
@@ -51,7 +53,7 @@ const Banner = () => {
             },
           }}
           modules={[Autoplay, Pagination, Navigation, EffectCreative]}
-          className="w-full lg:h-[500px] h-[350px]"
+          className="w-full lg:h-[600px] h-[350px] "
         >
           <SwiperSlide>
             <div
@@ -69,8 +71,24 @@ const Banner = () => {
                   <p className="mb-5">Plans now start at USD2.99/month.</p>
                   <div className="button-area flex justify-center gap-10 lg:mt-0 mt-10">
                     <button className="btn rounded-xl btn-sm lg:btn-md border-0 btn-error text-slate-50 bg-gradient-to-r from-red-700 to-red-500">
-                      <TbBrandNetflix size={20} className="font-red-600" />
-                      Netflix
+                      <PiPopcornDuotone size={20} className="font-red-600" />{" "}
+                      <span style={{ color: "white", fontWeight: "bold" }}>
+                        {/* Style will be inherited from the parent element */}
+                        <Typewriter
+                          words={[
+                            "Netflix",
+                            "Chorki",
+                            "Hoichoi",
+                            "Amazon Prime",
+                          ]}
+                          loop={99}
+                          cursor
+                          cursorStyle="_"
+                          typeSpeed={70}
+                          deleteSpeed={50}
+                          delaySpeed={1000}
+                        />
+                      </span>
                     </button>
                     <button className="btn rounded-xl btn-sm lg:btn-md border-0 btn-error text-slate-50 bg-gradient-to-r from-blue-700 to-blue-500">
                       <BiMoviePlay size={20} /> Learn More
@@ -97,8 +115,17 @@ const Banner = () => {
                   <p className="mb-5">Plans now start at USD2.99/month.</p>
                   <div className="button-area flex justify-center gap-10 lg:mt-0 mt-10">
                     <button className="btn rounded-xl btn-sm lg:btn-md border-0 btn-error text-slate-50 bg-gradient-to-r from-sky-700 to-blue-500 ">
-                      <TbBrandNetflix size={20} className="font-red-600" />
-                      Let's Fly
+                      <SiAzuredataexplorer size={20} className="font-red-600" />
+                      Let's{" "}
+                      <Typewriter
+                        words={["Fly", "Explore", "Inspect", "Fly"]}
+                        loop={5}
+                        cursor
+                        cursorStyle="_"
+                        typeSpeed={70}
+                        deleteSpeed={50}
+                        delaySpeed={1000}
+                      />
                     </button>
                     <button className="btn rounded-xl btn-sm lg:btn-md border-0 btn-error text-slate-50 bg-gradient-to-r from-red-700 to-red-500">
                       <BiMoviePlay size={20} /> Learn More

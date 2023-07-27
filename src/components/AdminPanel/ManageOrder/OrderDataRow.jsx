@@ -4,25 +4,34 @@ import { useState } from "react";
 
 const OrderDataRow = ({ order, refetch, user }) => {
   let [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  let classPending = "bg-blue-600";
+  let classPending = "bg-yellow-600";
   let classActive = "bg-green-600";
-  let classDenied = "bg-green-600";
+  let classDenied = "bg-red-600";
+  let classProccesing = "bg-blue-600";
+
+  let itemName = order?.itemNames?.map((str) => str.split(","));
 
   const statusClass =
-    order?.status === "Approved"
+    order?.status == "processing"
+      ? classProccesing
+      : order?.status == "Approved"
       ? classActive
-      : order?.status === "unpaid"
+      : order?.status == "unpaid"
       ? classPending
       : classDenied;
   return (
     <>
       <tr>
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-          <p className="text-gray-900 whitespace-no-wrap">{order?.itemName}</p>
+          <p className="text-gray-900 whitespace-no-wrap">
+            {itemName.map((splitStrings, index) => (
+              <h2 key={index}>{splitStrings.join(", ")}</h2>
+            ))}
+          </p>
         </td>
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
           <p className="text-gray-900 whitespace-no-wrap">
-            {order?.price} (BDT)
+            {order?.prices} (BDT)
           </p>
         </td>
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -36,17 +45,14 @@ const OrderDataRow = ({ order, refetch, user }) => {
           </p>
         </td>
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-md">
+          <p className="text-gray-900 whitespace-no-wrap">
+            se{order?.userCode}
+          </p>
+        </td>
+        <td className="px-5 py-5 border-b border-gray-200 bg-white text-md">
           <p className="text-gray-900 whitespace-no-wrap">{order?.promo}</p>
         </td>
-        <td className="px-5 py-5 border-b border-gray-200 bg-white text-md">
-          <p className="text-gray-900 whitespace-no-wrap">{order?.username}</p>
-        </td>
-        <td className="px-5 py-5 border-b border-gray-200 bg-white text-md">
-          <p className="text-gray-900 whitespace-no-wrap">{order?.useremail}</p>
-        </td>
-        <td className="px-5 py-5 border-b border-gray-200 bg-white text-md">
-          <p className="text-gray-900 whitespace-no-wrap">{order?.feedback}</p>
-        </td>
+
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-md">
           <button className="relative cursor-pointer inline-block px-3 py-1 font-semibold text-slate-50 leading-tight disabled:text-gray-900">
             <span

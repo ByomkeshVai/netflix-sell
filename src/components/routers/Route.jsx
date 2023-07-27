@@ -18,6 +18,9 @@ import AllPromo from "../AdminPanel/Promo/AllPromo";
 import Transaciton from "../CustomerPanel/Transaciton/Transaciton";
 import ManageOrder from "../AdminPanel/ManageOrder/ManageOrder";
 import Profile from "../CustomerPanel/Profile/Profile";
+import Credential from "../AdminPanel/Credential/Credential";
+import AllCredential from "../AdminPanel/Credential/AllCredential";
+import CustomerCredential from "../CustomerPanel/Credential/CustomerCredential";
 
 export const router = createBrowserRouter([
   {
@@ -81,6 +84,24 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: "/admin/dashboard/credential",
+        element: (
+          <AdminRoute>
+            <Credential />
+          </AdminRoute>
+        ),
+      },
+
+      {
+        path: "/admin/dashboard/all/credential",
+        element: (
+          <AdminRoute>
+            <AllCredential />
+          </AdminRoute>
+        ),
+      },
+
+      {
         path: "/admin/dashboard/manage-order",
         element: (
           <AdminRoute>
@@ -111,10 +132,16 @@ export const router = createBrowserRouter([
         path: "/customer/dashboard/transaction",
         element: <Transaciton />,
       },
+
       {
         path: "/customer/dashboard/profile",
         element: <Profile />,
       },
+      {
+        path: "/customer/dashboard/credential",
+        element: <CustomerCredential />,
+      },
+
       {
         path: "/customer/dashboard/payment/success/:tranId",
         element: <PaymentSuccess></PaymentSuccess>,
