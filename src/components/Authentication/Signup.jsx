@@ -81,11 +81,11 @@ const Signup = () => {
   };
 
   return (
-    <div>
+    <div className="bg-gray-900">
       <Helmet>
         <title>Stream Cart - Register</title>
       </Helmet>
-      <div className="">
+      <div>
         <div className="hero-content flex-col lg:flex-row-reverse mx-auto text-center">
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">

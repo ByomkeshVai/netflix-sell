@@ -5,6 +5,7 @@ import HeroCard from "../HeroCard/HeroCard";
 import AllPackage from "../Package/AllPackage";
 import ClientTesitimonial from "../Testimonial/ClientTesitimonial";
 import Support from "../Support/Support";
+import TopRated from "../TopRated/TopRated";
 
 const Home = () => {
   return (
@@ -13,9 +14,11 @@ const Home = () => {
 
       <AllPackage></AllPackage>
 
-      <Support></Support>
+      <TopRated></TopRated>
     </>
   );
 };
-
+{
+  /* <Support></Support>; */
+}
 export default Home;

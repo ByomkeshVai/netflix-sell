@@ -83,7 +83,7 @@ const Banner = () => {
                           ]}
                           loop={99}
                           cursor
-                          cursorStyle="_"
+                          cursorStyle=""
                           typeSpeed={70}
                           deleteSpeed={50}
                           delaySpeed={1000}
@@ -121,7 +121,7 @@ const Banner = () => {
                         words={["Fly", "Explore", "Inspect", "Fly"]}
                         loop={99}
                         cursor
-                        cursorStyle="_"
+                        cursorStyle=""
                         typeSpeed={70}
                         deleteSpeed={50}
                         delaySpeed={1000}
