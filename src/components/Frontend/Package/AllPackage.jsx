@@ -39,16 +39,17 @@ const AllPackage = () => {
                 disableOnInteraction: false,
               }}
               slidesPerView={3}
-              spaceBetween={10}
+              spaceBetween={20}
               effect={"coverflow"}
               grabCursor={true}
               centeredSlides={true}
               coverflowEffect={{
-                rotate: 70,
-                stretch: 100,
-                depth: -90,
+                rotate: 30,
+                stretch: -50,
+                depth: 90,
                 modifier: 1,
                 slideShadows: false,
+                shallowReactive: 10,
               }}
               pagination={true}
               modules={[Autoplay, EffectCoverflow, Pagination]}

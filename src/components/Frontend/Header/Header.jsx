@@ -44,8 +44,25 @@ const Header = ({ toggleDarkMode, darkMode }) => {
       <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer">
         <Link to="">About</Link>
       </li>
+
       <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer">
         <Link to="">Contact</Link>
+      </li>
+      <li
+        tabIndex={0}
+        class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer"
+      >
+        <details>
+          <summary>Shop</summary>
+          <ul className="p-2">
+            <li>
+              <a>Grocery</a>
+            </li>
+            <li>
+              <a>Fruits</a>
+            </li>
+          </ul>
+        </details>
       </li>
     </>
   );
@@ -86,7 +103,11 @@ const Header = ({ toggleDarkMode, darkMode }) => {
             </div>
             <Link to="/">
               <div className="mr-auto md:w-48 flex-shrink-0">
-                <img className="lg:h-36 lg:mt-[20px] mt-[10px]" src={logo} alt="" />
+                <img
+                  className="lg:h-36 lg:mt-[20px] mt-[10px]"
+                  src={logo}
+                  alt=""
+                />
               </div>
             </Link>
           </div>
