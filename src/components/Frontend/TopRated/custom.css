@@ -1,0 +1,26 @@
+/* Custom styles for active tab */
+.tab-actives {
+    background: rgb(250, 13, 13);
+        background: linear-gradient(84deg, rgba(250, 13, 13, 0.510224158022584) 0%, rgba(131, 16, 16, 1) 0%, rgba(228, 20, 20, 1) 0%, rgba(157, 24, 53, 1) 39%, rgba(181, 17, 17, 1) 64%, rgba(61, 5, 31, 1) 100%, rgba(222, 22, 120, 1) 100%);
+    /* Change this to your desired background color */
+    color: #ffffff;
+    /* Change this to your desired text color */
+}
+
+/* Custom styles for active tab */
+.tab-actives2 {
+background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    /* Change this to your desired background color */
+    color: #ffffff;
+    /* Change this to your desired text color */
+}
+
+/* Custom styles for active tab */
+.tab-actives3 {
+background: rgb(174, 238, 178);
+    background: linear-gradient(90deg, rgba(174, 238, 178, 1) 0%, rgba(2, 126, 26, 1) 100%);
+    /* Change this to your desired background color */
+    color: #ffffff;
+    /* Change this to your desired text color */
+}

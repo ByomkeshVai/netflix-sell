@@ -78,6 +78,14 @@ const CheckOutFrom = ({ closeModal, select, selectInfo, price, refetch }) => {
   //   }
   // }, [select, axiosSecure]);
 
+  function generateRandomID() {
+    const min = 10000; // Minimum 5-digit number (10000)
+    const max = 99999; // Maximum 5-digit number (99999)
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  const randomID = generateRandomID();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -101,9 +109,10 @@ const CheckOutFrom = ({ closeModal, select, selectInfo, price, refetch }) => {
       email,
       selectId: select._id,
       status: "unpaid",
-      transactionId: "",
+      orderID: randomID.toString(),
       amount: "",
       date: new Date(),
+
       selectItems: select.map((item) => item._id),
       itemNames: select.map((item) => item.name),
     };
@@ -111,8 +120,7 @@ const CheckOutFrom = ({ closeModal, select, selectInfo, price, refetch }) => {
     // post item data to server
     addPayment(checkItems)
       .then((data) => {
-        window.location.href =
-          "https://shop.bkash.com/stream-cart-bangladesh01601699/paymentlink/default-payment";
+        navigate(`/customer/dashboard/payment-page/${randomID}`);
       })
       .catch((err) => console.log(err));
   };
@@ -125,6 +133,7 @@ const CheckOutFrom = ({ closeModal, select, selectInfo, price, refetch }) => {
             <div className="mt-2">
               <p className="text-md text-gray-900">Main Price: {price} (BDT)</p>
             </div>
+
             <div className="space-y-1 text-sm py-3">
               <label htmlFor="remarks" className="block text-gray-900">
                 Remarks

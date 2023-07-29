@@ -34,13 +34,24 @@ const CDashboard = () => {
               Customer Area - {user?.displayName}
             </h4>
             <div className="payment-button lg:mt-0 mt-10 lg:mr-10">
-              <button
+              <div className="stats bg-danger text-danger-content">
+                <div className="stat">
+                  <div className="stat-title">Account balance</div>
+                  <div className="stat-value">৳400</div>
+                  <div className="stat-actions">
+                    <button className="btn btn-sm btn-success">
+                      Add funds
+                    </button>
+                  </div>
+                </div>
+              </div>
+              {/* <button
                 className="btn btn-lg"
                 onClick={() => setIsEditModalOpen(true)}
               >
                 Apply Payment
-              </button>
-              <PaymentConfirm
+              </button> */}
+              {/* <PaymentConfirm
                 isEditModalOpen={isEditModalOpen}
                 closeModal={() => setIsEditModalOpen(false)}
                 payment={payment}
@@ -48,7 +59,7 @@ const CDashboard = () => {
                 refetch={refetch}
                 setIsEditModalOpen={setIsEditModalOpen}
                 loading={loading}
-              />
+              /> */}
             </div>
           </div>
           <div className="p-5">

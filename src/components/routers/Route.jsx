@@ -23,6 +23,8 @@ import AllCredential from "../AdminPanel/Credential/AllCredential";
 import CustomerCredential from "../CustomerPanel/Credential/CustomerCredential";
 import AddCategory from "../AdminPanel/Category/AddCategory";
 import AllCategory from "../AdminPanel/Category/AllCategory";
+import MyOrder from "../CustomerPanel/MyOrder/MyOrder";
+import PaymentPage from "../CustomerPanel/Payment/PaymentPage";
 
 export const router = createBrowserRouter([
   {
@@ -150,7 +152,14 @@ export const router = createBrowserRouter([
         path: "/customer/dashboard/transaction",
         element: <Transaciton />,
       },
-
+      {
+        path: "/customer/dashboard/my-order",
+        element: <MyOrder />,
+      },
+      {
+        path: "/customer/dashboard/payment-page/:orderID",
+        element: <PaymentPage />,
+      },
       {
         path: "/customer/dashboard/profile",
         element: <Profile />,
