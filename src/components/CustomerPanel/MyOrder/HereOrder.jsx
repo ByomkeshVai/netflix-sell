@@ -46,17 +46,41 @@ const HereOrder = ({ order, refetch, user }) => {
     setCurrentStep(statusToStep[order.status]);
   }, [order.status]);
 
+  const handlePayment = () => {
+    navigate(`/customer/dashboard/payment-page/${order?.orderID}`);
+  };
   return (
     <div className="mt-5 border border-1 p-3">
-      <div>
-        {order?.itemNames.map((item) => (
-          <h2>{item}</h2>
-        ))}
+      <div className="flex justify-between">
+        <div>
+          <div className="flex gap-2 items-center">
+            <h2 className="text-md font-bold">Order Id: {order?.orderID}</h2>
+            <span className="text-sm ">
+              (Use this Id as your Bkash Reference Code)
+            </span>
+          </div>
+          <div>
+            <h2>My Items-</h2>
+            {order?.itemNames.map((item) => (
+              <h2 className="text-md ">{item}</h2>
+            ))}
+          </div>
+          <div className="mt-5">Price: {order?.prices}</div>
+          <div>Placed On: {order?.date}</div>
+          <div>Status: {order?.status}</div>
+        </div>
+        <div>
+          <button
+            className="btn btn-active btn-error"
+            disabled={
+              order?.status == "processing" || order?.status == "Approved"
+            }
+            onClick={handlePayment}
+          >
+            <h2>payment</h2>
+          </button>
+        </div>
       </div>
-      <div>Price: {order?.prices}</div>
-      <div>Placed On: {order?.date}</div>
-      <div>Placed On: {order?.status}</div>
-      <div>Order Id: {order?.orderID}</div>
       <div className="max-w-full ">
         <CurrentStepper currentStep={currentStep} />
         {/* <ul className="steps steps-vertical lg:steps-horizontal">

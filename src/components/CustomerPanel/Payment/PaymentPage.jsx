@@ -9,7 +9,6 @@ import EmptyState from "../../Shared/EmptyState";
 
 const PaymentPage = () => {
   const { orderID } = useParams();
-  console.log(orderID);
 
   const [axiosSecure] = useAxiosSecure();
   const { user, loading } = useContext(AuthContext);

@@ -17,7 +17,7 @@ const ConfirmSingle = ({ order, refetch, user }) => {
     <>
       <div className="mt-5 border border-1 p-3">
         <div className="flex gap-2 items-center">
-          <h2 className="text-md">Order Id: {order?.orderID}</h2>
+          <h2 className="text-md font-bold">Order Id: {order?.orderID}</h2>
           <span className="text-sm">
             (Use this Id as your Bkash Reference Code)
           </span>
