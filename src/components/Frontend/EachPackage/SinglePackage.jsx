@@ -98,12 +98,6 @@ const SinglePackage = ({ items }) => {
               <div className="">
                 <div className="flex gap-7 justify-center mt-5">
                   <button
-                    className="btn btn-sm rounded-md px-5 border-0 btn-error text-slate-50 bg-gradient-to-r from-red-700 to-red-500"
-                    disabled={isAdmin}
-                  >
-                    <Link to="/customer/dashboard/selected">Buy Now</Link>
-                  </button>
-                  <button
                     className="btn btn-sm rounded-md px-5 border-0 btn-error text-slate-50 bg-gradient-to-r from-rose-700 to-rose-500"
                     disabled={isAdmin}
                     onClick={() => handleAddToSelect(items)}

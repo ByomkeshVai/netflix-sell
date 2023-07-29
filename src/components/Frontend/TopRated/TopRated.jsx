@@ -44,41 +44,42 @@ const TopRated = () => {
         <SectionHead slogan={"Best Deals For You"}></SectionHead>
         <div>
           <Tabs
-            className="flex flex-col gap-5 py-10  tabs-boxed mx-auto justify-center shadow-xl text-slate-50 bg-gradient-to-r from-red-300 to-red-100"
+            className="flex flex-col gap-5 py-10 tabs-boxed mx-auto justify-center shadow-xl text-slate-50 bg-gradient-to-r from-slate-300 to-red-100 "
             defaultIndex={0}
             onSelect={(index) => setTabIndex(index)}
           >
-            <TabList className="flex mx-auto gap-10  py-5">
+            <TabList className="lg:flex mx-auto lg:gap-10 py-3 flex-col lg:flex-row gap-10">
               <Tab
                 onClick={() => handleTabClick("topRated")}
-                className={`tab cursor-pointer flex items-center gap-5 border border-2 shadow-xl pt-3 pb-10 px-8 text-xl font-bold hover:translateY(-2px) ${
+                className={`tab  cursor-pointer flex items-center gap-5 border  border-2 shadow-xl  text-xl font-bold ${
                   selectedTab === "topRated" ? "tab-actives" : ""
                 }`}
               >
-                <button className="flex items-center gap-3  px-2">
-                  <BsFire size={28} /> <h2>Top Rated</h2>
+                <button className="flex items-center gap-3  justify-center px-2">
+                  <BsFire size={28} className="" />
+                  <h2 className="text-md font-bold ">Top Rated</h2>
                 </button>
               </Tab>
               <Tab
                 onClick={() => handleTabClick("newArrival")}
-                className={`tab cursor-pointer flex items-center gap-5 border border-2 shadow-xl pt-3 pb-10 px-8 text-xl font-bold hover:translateY(-2px) ${
+                className={`tab  cursor-pointer flex items-center gap-5 border border-2  shadow-xl  px-8 text-xl font-bold hover:translateY(-2px) ${
                   selectedTab === "newArrival" ? "tab-actives2" : ""
                 }`}
               >
                 <button className="flex items-center gap-5 px-2">
-                  <FaPlaneArrival size={28} />
-                  <h2>New Arrival</h2>
+                  <FaPlaneArrival size={28} className="" />
+                  <h2 className="text-md font-bold ">New Arrival</h2>
                 </button>
               </Tab>
               <Tab
                 onClick={() => handleTabClick("nowTrending")}
-                className={`tab cursor-pointer flex items-center gap-5 border border-2 shadow-xl pt-3 pb-10 px-8 text-xl font-bold hover:translateY(-2px) ${
+                className={`tab  cursor-pointer flex items-center gap-5 border border-2 shadow-xl  px-8 text-xl font-bold hover:translateY(-2px) ${
                   selectedTab === "nowTrending" ? "tab-actives3" : ""
                 }`}
               >
                 <button className="flex items-center gap-5 px-2">
-                  <HiTrendingUp size={28} />
-                  <h2> Now Trending</h2>
+                  <HiTrendingUp size={28} className="" />
+                  <h2 className="text-md font-bold "> Now Trending</h2>
                 </button>
               </Tab>
             </TabList>

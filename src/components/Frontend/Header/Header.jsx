@@ -36,7 +36,7 @@ const Header = ({ toggleDarkMode, darkMode }) => {
   const Navbar = (
     <>
       <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer active">
-        <Link to="">Streaming</Link>
+        <Link to="/all/streaming">Streaming</Link>
       </li>
       <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
         <Link to="">Air Ticket</Link>

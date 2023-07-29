@@ -25,6 +25,8 @@ import AddCategory from "../AdminPanel/Category/AddCategory";
 import AllCategory from "../AdminPanel/Category/AllCategory";
 import MyOrder from "../CustomerPanel/MyOrder/MyOrder";
 import PaymentPage from "../CustomerPanel/Payment/PaymentPage";
+import Streaming from "../Frontend/Streaming/Streaming";
+import StreamingArea from "../Frontend/Streaming/StreamingArea";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +49,10 @@ export const router = createBrowserRouter([
       {
         path: "/all/items/:label",
         element: <EachPackage></EachPackage>,
+      },
+      {
+        path: "/all/streaming",
+        element: <StreamingArea></StreamingArea>,
       },
     ],
   },

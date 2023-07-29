@@ -41,3 +41,17 @@ export const editItem = async (itemData, id) => {
   const result = await response.json();
   return result;
 };
+
+// get all category
+export const getAllCategory = async () => {
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/streaming/category`,
+    {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("access-token")}`,
+      },
+    }
+  );
+  const data = await response.json();
+  return data;
+};
