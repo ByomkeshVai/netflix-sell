@@ -17,6 +17,27 @@ export const categories = [
   {
     category: "Ticket",
   },
+  {
+    category: "Courier",
+  },
+  {
+    category: "Technology",
+  },
+  {
+    category: "Marketing",
+  },
+  {
+    category: "Men Clothing",
+  },
+  {
+    category: "Women Clothing",
+  },
+  {
+    category: "Cosmetics",
+  },
+  {
+    category: "Medicine",
+  },
 ];
 
 // export const categories = [
