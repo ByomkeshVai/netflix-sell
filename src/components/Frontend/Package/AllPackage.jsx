@@ -31,7 +31,7 @@ const AllPackage = () => {
     enabled: !loading,
     queryFn: async () => {
       const res = await axiosSecure(
-        `${import.meta.env.VITE_API_URL}/all/category`
+        `${import.meta.env.VITE_API_URL}/all/streaming`
       );
 
       return res.data;

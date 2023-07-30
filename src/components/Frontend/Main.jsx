@@ -10,7 +10,7 @@ const Main = () => {
   return (
     <div className={`bg-${themeClass}-background text-${themeClass}-text`}>
       <Header toggleDarkMode={toggleDarkMode} darkMode={darkMode}></Header>
-      <div className="min-h-[calc(100vh-18px)]">
+      <div className="min-h-[calc(100vh-68px)]">
         <Outlet />
       </div>
       <Footer></Footer>

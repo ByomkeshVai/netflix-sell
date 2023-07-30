@@ -5,7 +5,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
-const StreamingCard = ({ allItem }) => {
+const MCoverCard = ({ allItem }) => {
   const { image, name, price, stock, _id, duration, category } = allItem;
 
   const [isAdmin] = useAdmin();
@@ -57,17 +57,11 @@ const StreamingCard = ({ allItem }) => {
           className="mx-auto py-2 h-40 w-44 rounded-xl"
         />
       </figure>
-      <div className="card-body items-center ">
-        <h2 className="font-bold mt-[-10px] text-3xl text-center">
-          {allItem?.name}
-        </h2>
+      <div className="card-body items-center text-center">
+        <h2 className="font-bold mt-[-10px] text-3xl">{allItem?.name}</h2>
         <p className="text-md">From: {allItem?.label}</p>
-        <p className="text-md mt-[-10px] text-left">
-          Price: {allItem?.price} BDT
-        </p>
-        <p className="text-md mt-[-10px] text-left">
-          Validity: {allItem?.duration} BDT
-        </p>
+        <p className="text-md mt-[-10px]">Price: {allItem?.price} BDT</p>
+        <p className="text-md mt-[-10px]">Stock: {allItem?.stock} BDT</p>
         <div className="">
           <div className="flex gap-7 justify-center ">
             <button
@@ -84,4 +78,4 @@ const StreamingCard = ({ allItem }) => {
   );
 };
 
-export default StreamingCard;
+export default MCoverCard;

@@ -12,15 +12,17 @@ const AllLabel = () => {
     queryKey: ["categories"],
     queryFn: async () => {
       const res = await axiosSecure(
-        `${import.meta.env.VITE_API_URL}/all/category`
+        `${import.meta.env.VITE_API_URL}/all/streaming`
       );
 
       return res.data;
     },
   });
+
+  const hello = categories.map((items) => console.log(items));
   return (
     <div className="max-w-screen-xl mx-auto">
-      <div className="pt-4 flex gap-10 lg:gap-0 flex-row items-center justify-between overflow-x-auto">
+      <div className="flex gap-10 lg:gap-0 flex-row items-center justify-between overflow-x-auto">
         {categories.map((item) => (
           <LabelBox
             label={item.label}

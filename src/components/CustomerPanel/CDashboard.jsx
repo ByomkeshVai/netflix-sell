@@ -37,10 +37,10 @@ const CDashboard = () => {
               <div className="stats bg-danger text-danger-content">
                 <div className="stat">
                   <div className="stat-title">Account balance</div>
-                  <div className="stat-value">৳400</div>
+                  <div className="stat-value">৳0.00</div>
                   <div className="stat-actions">
                     <button className="btn btn-sm btn-success">
-                      Add funds
+                      Add Credit
                     </button>
                   </div>
                 </div>

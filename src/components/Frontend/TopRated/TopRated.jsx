@@ -92,14 +92,18 @@ const TopRated = () => {
               </Marquee>
             </TabPanel>
             <TabPanel className="flex items-center gap-5">
-              {filteredItems.map((item) => (
-                <EachTop key={item.id} item={item} />
-              ))}
+              <Marquee>
+                {filteredItems.map((item) => (
+                  <EachTop key={item.id} item={item} />
+                ))}
+              </Marquee>
             </TabPanel>
             <TabPanel className="flex items-center gap-5">
-              {filteredItems.map((item) => (
-                <EachTop key={item.id} item={item} />
-              ))}
+              <Marquee>
+                {filteredItems.map((item) => (
+                  <EachTop key={item.id} item={item} />
+                ))}
+              </Marquee>
             </TabPanel>
           </Tabs>
         </div>

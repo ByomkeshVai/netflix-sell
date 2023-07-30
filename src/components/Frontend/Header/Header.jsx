@@ -39,10 +39,10 @@ const Header = ({ toggleDarkMode, darkMode }) => {
         <Link to="/all/streaming">Streaming</Link>
       </li>
       <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-        <Link to="">Air Ticket</Link>
+        <Link to="/all/mobile-cover">Cover Cart</Link>
       </li>
       <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-        <Link to="">About</Link>
+        <Link to="">Air Ticket</Link>
       </li>
 
       <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
@@ -104,7 +104,7 @@ const Header = ({ toggleDarkMode, darkMode }) => {
             <Link to="/">
               <div className="mr-auto md:w-48 flex-shrink-0">
                 <img
-                  className="lg:h-36 lg:mt-[20px] mt-[10px]"
+                  className="lg:h-36 h-20 lg:mt-[20px] mt-[10px]"
                   src={logo}
                   alt=""
                 />

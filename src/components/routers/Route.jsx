@@ -27,12 +27,14 @@ import MyOrder from "../CustomerPanel/MyOrder/MyOrder";
 import PaymentPage from "../CustomerPanel/Payment/PaymentPage";
 import Streaming from "../Frontend/Streaming/Streaming";
 import StreamingArea from "../Frontend/Streaming/StreamingArea";
+import CoverArea from "../Frontend/Mcover/CoverArea";
+import ErrorPage from "../Shared/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -54,12 +56,16 @@ export const router = createBrowserRouter([
         path: "/all/streaming",
         element: <StreamingArea></StreamingArea>,
       },
+      {
+        path: "/all/mobile-cover",
+        element: <CoverArea></CoverArea>,
+      },
     ],
   },
   {
     path: "/admin/dashboard",
     element: <ADashboard />,
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/admin/dashboard/add-category",
@@ -147,32 +153,61 @@ export const router = createBrowserRouter([
   },
   {
     path: "/customer/dashboard",
-    element: <CDashboard />,
+    element: (
+      <CustomerRoute>
+        <CDashboard />
+      </CustomerRoute>
+    ),
+    errorElement: <ErrorPage />,
     // errorElement: <ErrorPage />,
     children: [
       {
         path: "/customer/dashboard/selected",
-        element: <SelectedItem />,
+        element: (
+          <CustomerRoute>
+            <SelectedItem />
+          </CustomerRoute>
+        ),
       },
       {
         path: "/customer/dashboard/transaction",
-        element: <Transaciton />,
+        element: (
+          <CustomerRoute>
+            <Transaciton />
+          </CustomerRoute>
+        ),
       },
       {
         path: "/customer/dashboard/my-order",
-        element: <MyOrder />,
+        element: (
+          <CustomerRoute>
+            <MyOrder />
+          </CustomerRoute>
+        ),
       },
       {
         path: "/customer/dashboard/payment-page/:orderID",
-        element: <PaymentPage />,
+        element: (
+          <CustomerRoute>
+            <PaymentPage />
+          </CustomerRoute>
+        ),
       },
       {
         path: "/customer/dashboard/profile",
-        element: <Profile />,
+        element: (
+          <CustomerRoute>
+            <Profile />
+          </CustomerRoute>
+        ),
       },
       {
         path: "/customer/dashboard/credential",
-        element: <CustomerCredential />,
+        element: (
+          <CustomerRoute>
+            <CustomerCredential />
+          </CustomerRoute>
+        ),
       },
 
       {

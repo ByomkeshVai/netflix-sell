@@ -45,6 +45,8 @@ const Login = () => {
   }
 
   const randomID = generateRandomID();
+  const photoUrl =
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPnb_I_OQt7Mcts15Kf9qwVchNCE7SJlkfYQ&usqp=CAU";
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()
@@ -56,7 +58,7 @@ const Login = () => {
           userID: randomID,
           name: result.user.displayName,
           email: result.user.email,
-          photo: result.user.photoURL,
+          photo: photoUrl,
           role: "customer",
         };
         fetch(`${import.meta.env.VITE_API_URL}/users/${result.user.email}`, {

@@ -3,6 +3,9 @@ export const categories = [
     category: "Streaming",
   },
   {
+    category: "Mobile-Cover",
+  },
+  {
     category: "Grocery",
   },
   {

@@ -51,18 +51,18 @@ const HereOrder = ({ order, refetch, user }) => {
   };
   return (
     <div className="mt-5 border border-1 p-3">
-      <div className="flex justify-between">
-        <div>
+      <div className="flex justify-between items-center">
+        <div className="">
           <div className="flex gap-2 items-center">
-            <h2 className="text-md font-bold">Order Id: {order?.orderID}</h2>
+            <h2 className="text-md font-bold">Order ID: {order?.orderID}</h2>
             <span className="text-sm ">
-              (Use this Id as your Bkash Reference Code)
+              (Use this ID as your Bkash Reference Number)
             </span>
           </div>
           <div>
             <h2>My Items-</h2>
-            {order?.itemNames.map((item) => (
-              <h2 className="text-md ">{item}</h2>
+            {order?.itemNames.map((item, index) => (
+              <h2 className="text-md ">{`${index + 1}: ${item}`}</h2>
             ))}
           </div>
           <div className="mt-5">Price: {order?.prices}</div>

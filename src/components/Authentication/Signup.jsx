@@ -48,35 +48,36 @@ const Signup = () => {
 
     const randomID = generateRandomID();
 
-    const images = data.image[0];
-    imageUpload(images).then((datas) => {
-      createUser(data.email, data.password).then((result) => {
-        const loggedUser = result.user;
-        console.log(loggedUser);
-        updateUserProfile(data.name, datas.data.display_url);
-        navigate(from, { replace: true });
-        const saveUser = {
-          userID: randomID,
-          name: data.name,
-          email: data.email,
-          photo: datas.data.display_url,
-          role: "customer",
-        };
-        fetch(`${import.meta.env.VITE_API_URL}/users/${loggedUser.email}`, {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-            authorization: `Bearer ${localStorage.getItem("access-token")}`,
-          },
-          body: JSON.stringify(saveUser),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.insertedId) {
-              toast.success("Signup Successful");
-            }
-          });
-      });
+    const photoUrl =
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPnb_I_OQt7Mcts15Kf9qwVchNCE7SJlkfYQ&usqp=CAU";
+
+    createUser(data.email, data.password).then((result) => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+      updateUserProfile(data.name, photoUrl);
+      navigate(from, { replace: true });
+      const saveUser = {
+        userID: randomID,
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        photo: photoUrl,
+        role: "customer",
+      };
+      fetch(`${import.meta.env.VITE_API_URL}/users/${loggedUser.email}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("access-token")}`,
+        },
+        body: JSON.stringify(saveUser),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            toast.success("Signup Successful");
+          }
+        });
     });
   };
 
@@ -106,12 +107,18 @@ const Signup = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Upload Photo</span>
+                  <span className="label-text">Phone Number</span>
                 </label>
                 <input
-                  type="file"
-                  {...register("image", { required: "Image is required" })}
+                  type="phone"
+                  {...register("phone", { required: true })}
+                  name="phone"
+                  placeholder="Phone Number"
+                  className="input input-bordered"
                 />
+                {errors.phone && (
+                  <span className="text-red-600">Phone Number is required</span>
+                )}
               </div>
               <div className="form-control">
                 <label className="label">

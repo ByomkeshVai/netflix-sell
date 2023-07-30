@@ -42,7 +42,7 @@ export const editItem = async (itemData, id) => {
   return result;
 };
 
-// get all category
+// get all category by stream
 export const getAllCategory = async () => {
   const response = await fetch(
     `${import.meta.env.VITE_API_URL}/streaming/category`,

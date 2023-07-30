@@ -59,7 +59,7 @@ const EachTop = ({ item }) => {
     }
   };
   return (
-    <div className="ml-10 card mx-auto w-72 mx-auto bg-base-100 shadow-xl text-slate-50 bg-gradient-to-r from-gray-700 to-slate-600 py-3">
+    <div className="ml-10 card mx-auto w-72 h-96 mx-auto bg-base-100 shadow-xl text-slate-50 bg-gradient-to-r from-gray-700 to-slate-600 py-3">
       <figure className="">
         <img
           src={item?.image}
@@ -69,7 +69,7 @@ const EachTop = ({ item }) => {
       </figure>
       <div className="card-body items-center text-center">
         <h2 className="font-bold mt-[-10px] text-3xl">
-          {item?.name.substring(0, 10)}
+          {item?.name.substring(0, 18)}
         </h2>
         <p className="text-md">From: {item?.label}</p>
         <p className="text-md mt-[-10px]">Price: {item?.price} BDT</p>
