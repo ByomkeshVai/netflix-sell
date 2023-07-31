@@ -96,7 +96,9 @@ const Transaciton = () => {
           </div>
         </div>
       ) : (
-        <EmptyState message="No Transaction History available." />
+        <div className="max-w-screen-xl mx-auto hero mt-14">
+          <EmptyState message="No Transaction data available." />
+        </div>
       )}
     </>
   );

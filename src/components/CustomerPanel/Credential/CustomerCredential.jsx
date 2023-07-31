@@ -71,7 +71,9 @@ const CustomerCredential = () => {
           </div>
         </div>
       ) : (
-        <EmptyState message="Buy Items For Credential." />
+        <div className="max-w-screen-xl mx-auto hero mt-14">
+          <EmptyState message="No Credential available." />
+        </div>
       )}
     </>
   );

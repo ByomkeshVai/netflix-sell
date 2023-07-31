@@ -42,7 +42,7 @@ const Streaming = () => {
           ))}
         </div>
       ) : (
-        <div className="max-w-screen-xl mx-auto mt-14">
+        <div className="max-w-screen-xl mx-auto hero mt-14">
           <Heading
             title="No Packages Available In This Category!"
             center={true}

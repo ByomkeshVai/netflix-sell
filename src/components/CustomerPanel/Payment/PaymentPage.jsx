@@ -44,7 +44,9 @@ const PaymentPage = () => {
             ))}
         </div>
       ) : (
-        <EmptyState message="No Order Data available." />
+        <div className="max-w-screen-xl mx-auto hero mt-14">
+          <EmptyState message="No Payment data available." />
+        </div>
       )}
     </>
   );

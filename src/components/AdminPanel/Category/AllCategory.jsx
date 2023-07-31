@@ -76,7 +76,9 @@ const AllCategory = () => {
           </div>
         </div>
       ) : (
-        <EmptyState message="No category data available." />
+        <div className="max-w-screen-xl mx-auto hero mt-14">
+          <EmptyState message="No Items data available." />
+        </div>
       )}
     </>
   );

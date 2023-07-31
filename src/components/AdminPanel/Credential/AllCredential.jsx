@@ -80,7 +80,9 @@ const AllCredential = () => {
           </div>
         </div>
       ) : (
-        <EmptyState message="No credential data available." />
+        <div className="max-w-screen-xl mx-auto hero mt-14">
+          <EmptyState message="No Credential data available." />
+        </div>
       )}
     </>
   );

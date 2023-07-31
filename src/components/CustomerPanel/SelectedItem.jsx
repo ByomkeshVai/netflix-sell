@@ -114,7 +114,9 @@ const SelectedItem = () => {
           />
         </div>
       ) : (
-        <EmptyState message="No Items data available." />
+        <div className="max-w-screen-xl mx-auto hero mt-14">
+          <EmptyState message="No data Available On Cart." />
+        </div>
       )}
     </>
   );

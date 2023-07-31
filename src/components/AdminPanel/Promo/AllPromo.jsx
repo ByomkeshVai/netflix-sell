@@ -82,7 +82,9 @@ const AllPromo = () => {
           </div>
         </div>
       ) : (
-        <EmptyState message="No Promo Code data available." />
+        <div className="max-w-screen-xl mx-auto hero mt-14">
+          <EmptyState message="No Promo available." />
+        </div>
       )}
     </>
   );

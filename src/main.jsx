@@ -11,13 +11,15 @@ import { ThemeProvider } from "./providers/ThemeContext";
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <ThemeProvider>
-    <AuthProvider>
-      <Toaster />
-      <QueryClientProvider client={queryClient}>
+  <>
+    <ThemeProvider>
+      <AuthProvider>
         <Toaster />
-        <RouterProvider router={router} />
-      </QueryClientProvider>
-    </AuthProvider>
-  </ThemeProvider>
+        <QueryClientProvider client={queryClient}>
+          <Toaster />
+          <RouterProvider router={router} />
+        </QueryClientProvider>
+      </AuthProvider>
+    </ThemeProvider>
+  </>
 );

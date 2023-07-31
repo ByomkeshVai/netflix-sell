@@ -6,15 +6,19 @@ import AllPackage from "../Package/AllPackage";
 import ClientTesitimonial from "../Testimonial/ClientTesitimonial";
 import Support from "../Support/Support";
 import TopRated from "../TopRated/TopRated";
+import LottieAnimation from "../../Shared/LottieAnimation ";
+import { useState } from "react";
 
 const Home = () => {
   return (
     <>
-      <Banner></Banner>
+      <div>
+        <Banner></Banner>
 
-      <AllPackage></AllPackage>
+        <AllPackage></AllPackage>
 
-      <TopRated></TopRated>
+        <TopRated></TopRated>
+      </div>
     </>
   );
 };
