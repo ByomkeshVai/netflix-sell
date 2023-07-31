@@ -38,6 +38,27 @@ const AllPackage = () => {
     },
   });
 
+  const swiperOptions = {
+    spaceBetween: 30,
+    slidesPerView: 3,
+    centeredSlides: true,
+    loop: true,
+    initialSlide: 1, // Make the first content start in the middle
+    effect: "coverflow", // Use 'coverflow' effect for 3D transition
+    grabCursor: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    coverflowEffect: {
+      rotate: 50, // Change this value to control the 3D rotation degree
+      stretch: 0,
+      depth: 100,
+      modifier: 1,
+      slideShadows: true,
+    },
+  };
+
   return (
     <>
       <div className="max-w-screen-xl mx-auto">
@@ -45,7 +66,6 @@ const AllPackage = () => {
         <JackInTheBox damping={0.5} direction="right">
           <div className="pt-12 ">
             <Swiper
-              loop={true}
               breakpoints={{
                 320: { slidesPerView: 1, spaceBetween: 80 },
                 480: { slidesPerView: 1, spaceBetween: 50 },
@@ -59,8 +79,9 @@ const AllPackage = () => {
               slidesPerView={3}
               spaceBetween={20}
               effect={"coverflow"}
+              centeredSlides={1}
               grabCursor={true}
-              centeredSlides={true}
+              loop={true}
               coverflowEffect={{
                 rotate: 30,
                 stretch: -50,
