@@ -89,7 +89,7 @@ const SelectedItem = () => {
             </div>
           </div>
           <div className="flex flex-cols items-center gap-3 justify-end  p-4 ">
-            <h2>Total Price: {price}</h2>
+            <h2>Total Price: {price} ৳</h2>
             <span className="relative cursor-pointer inline-block px-3 py-1 font-semibold text-slate-50 leading-tight">
               <span
                 aria-hidden="true"

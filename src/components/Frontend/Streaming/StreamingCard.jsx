@@ -66,7 +66,7 @@ const StreamingCard = ({ allItem }) => {
           Price: {allItem?.price} BDT
         </p>
         <p className="text-md mt-[-10px] text-left">
-          Validity: {allItem?.duration} BDT
+          Validity: {allItem?.duration} Days
         </p>
         <div className="">
           <div className="flex gap-7 justify-center ">

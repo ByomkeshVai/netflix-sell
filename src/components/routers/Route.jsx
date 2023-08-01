@@ -29,6 +29,7 @@ import Streaming from "../Frontend/Streaming/Streaming";
 import StreamingArea from "../Frontend/Streaming/StreamingArea";
 import CoverArea from "../Frontend/Mcover/CoverArea";
 import ErrorPage from "../Shared/ErrorPage";
+import Reset from "../Shared/Reset";
 
 export const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ export const router = createBrowserRouter([
         element: <CoverArea></CoverArea>,
       },
     ],
+  },
+  {
+    path: "/reset",
+    element: <Reset />,
   },
   {
     path: "/admin/dashboard",

@@ -130,7 +130,7 @@ const CustomerSidebar = () => {
                   }`
                 }
               >
-                <span className="mx-4 font-medium">Account Credential</span>
+                <span className="mx-4 font-medium">My Subscription</span>
               </NavLink>
             </div>
           </div>

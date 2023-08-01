@@ -82,6 +82,10 @@ const Login = () => {
       });
   };
 
+  const handleReset = () => {
+    navigate("/reset");
+  };
+
   return (
     <>
       <div>
@@ -126,9 +130,12 @@ const Login = () => {
                     Show Password
                   </AiOutlineEye>
                   <label className="label">
-                    <a href="#" className="label-text-alt link link-hover">
+                    <button
+                      onClick={handleReset}
+                      className="label-text-alt link link-hover"
+                    >
                       Forgot password?
-                    </a>
+                    </button>
                   </label>
                 </div>
                 <div className="form-control mt-6">
