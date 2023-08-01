@@ -8,15 +8,17 @@ import Support from "../Support/Support";
 import TopRated from "../TopRated/TopRated";
 import LottieAnimation from "../../Shared/LottieAnimation ";
 import { useState } from "react";
+import ForYou from "../../ForYou/ForYou";
 
 const Home = () => {
   return (
     <>
-      <div>
-        <Banner></Banner>
+      <Banner></Banner>
+      <ForYou></ForYou>
 
-        <AllPackage></AllPackage>
+      <AllPackage></AllPackage>
 
+      <div className="min-h-[calc(100vh-300px)] mt-10">
         <TopRated></TopRated>
       </div>
     </>
