@@ -54,7 +54,7 @@ const Banner = () => {
           },
         }}
         modules={[Autoplay, Pagination, Navigation, EffectCreative]}
-        className="w-full xl:h-[600px] lg:h-[400px] h-[300px] "
+        className="w-full xl:h-[600px] lg:h-[400px] h-[300px] z-5"
       >
         <SwiperSlide>
           <div className="hero min-h-screen">

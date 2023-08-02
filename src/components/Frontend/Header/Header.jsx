@@ -7,6 +7,7 @@ import useCustomer from "../../../hooks/useCustomer";
 import { RiSunLine, RiMoonLine } from "react-icons/Ri";
 import logo from "../../../assets/main.png";
 import useSelect from "../../../hooks/useSelect";
+import ticket from "../../../assets/ticket/ticket.jpg";
 
 const variants = {
   open: { opacity: 1, x: 0 },
@@ -33,6 +34,7 @@ const Header = ({ toggleDarkMode, darkMode }) => {
   };
   const Icon = darkMode ? RiSunLine : RiMoonLine;
   const [isOpen, setIsOpen] = useState(false);
+
   const Navbar = (
     <>
       <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer active">
@@ -41,14 +43,25 @@ const Header = ({ toggleDarkMode, darkMode }) => {
       <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
         <Link to="/all/mobile-cover">Cover Cart</Link>
       </li>
-      <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-        <Link to="">Air Ticket</Link>
+
+      <li class="relative p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+        <Link to="" className="">
+          Air Ticket
+          <div className="absolute  inset-0 flex items-center justify-center w-full h-full opacity-0 hover:opacity-100 transition-opacity z-10">
+            <img
+              src={ticket}
+              alt="Image on hover"
+              className=" z-50  h-96  w-96 mt-[470px] "
+            />
+          </div>
+        </Link>
       </li>
+
       <li tabIndex={0} className="p-4 border-b-2 duration-200 cursor-pointer">
         <details>
-          <summary className="">Shop</summary>
-          <ul className="lg:p-6 bg-transparent lg:flex p-2 max-w-full mx-auto text-center justify-center justify-items-center">
-            <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+          <summary className="rounded-xl">Shop</summary>
+          <ul className="lg:p-6 rounded-xl bg-transparent border border-2 rounded-xl lg:flex p-2 max-w-full mx-auto text-center justify-center justify-items-center">
+            <li className="p-3 bg-slate-200 rounded-l-lg border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
               <p className="text-gray-900">Boi Cart</p>
             </li>
             <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
@@ -58,7 +71,7 @@ const Header = ({ toggleDarkMode, darkMode }) => {
               <p className="text-gray-900">PC Components</p>
             </li>
             <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-              <p className="text-gray-900">Web Development Deals</p>
+              <p className="text-gray-900">Web Dev</p>
             </li>
             <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
               <p className="text-gray-900">Neon Customized Light</p>
@@ -68,6 +81,12 @@ const Header = ({ toggleDarkMode, darkMode }) => {
             </li>
             <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
               <p className="text-gray-900">Cosmetics</p>
+            </li>
+            <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+              <p className="text-gray-900">Mobile Recharge</p>
+            </li>
+            <li className="p-3 bg-slate-200 rounded-r-lg border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+              <p className="text-gray-900">Buy Like</p>
             </li>
           </ul>
         </details>
@@ -115,6 +134,7 @@ const Header = ({ toggleDarkMode, darkMode }) => {
                 </ul>
               </motion.nav>
             </div>
+
             <Link to="/">
               <div className="mr-auto md:w-48 flex-shrink-0">
                 <img
