@@ -5,7 +5,9 @@ const CurrentStepper = ({ currentStep }) => {
   const steps = [
     { title: "Unpaid" },
     { title: "Processing" },
+    { title: "Hold" },
     { title: "Approved" },
+    { title: "Delivered" },
   ];
   return (
     <Stepper

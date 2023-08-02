@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import banner1 from "../../../assets/banner/banner1.jpg";
 import banner2 from "../../../assets/banner/banner2.png";
 import banner3 from "../../../assets/banner/banner3.jpg";
 // import required modules
@@ -55,6 +56,16 @@ const Banner = () => {
         modules={[Autoplay, Pagination, Navigation, EffectCreative]}
         className="w-full xl:h-[600px] lg:h-[400px] h-[300px] "
       >
+        <SwiperSlide>
+          <div className="hero min-h-screen">
+            <div className="hero-overlay bg-[#FF0034]"></div>
+            <img
+              src={banner1}
+              alt=""
+              className=" xl:mt-[-250px] mt-[-540px]  w-full"
+            />
+          </div>
+        </SwiperSlide>
         <SwiperSlide>
           <div
             className="hero min-h-screen"

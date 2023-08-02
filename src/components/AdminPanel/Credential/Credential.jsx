@@ -57,12 +57,16 @@ const Credential = () => {
     setLoading(true);
     const itemName = event.target.itemName.value;
     const credential = event.target.credential.value;
+    const validity = event.target.validity.value;
+    const date = event.target.date.value;
     const itemData = {
       user: selectedName,
       itemName,
       email: selectedEmail,
       userID: selectedUserId,
       credential,
+      validity: validity,
+      renewDate: date,
     };
     console.log(itemData);
 
@@ -154,6 +158,37 @@ const Credential = () => {
                   className="border border-2 mt-5"
                   required
                 ></textarea>
+              </div>
+              <div className="space-y-6">
+                <div className="space-y-1 text-sm">
+                  <label htmlFor="validity" className="block text-gray-600">
+                    Validity
+                  </label>
+                  <div className="flex items-center gap-2">
+                    <input
+                      className=" px-4 w-full py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md "
+                      name="validity"
+                      id="validity"
+                      type="number"
+                      required
+                    />
+                    <h2>Days</h2>
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-6">
+                <div className="space-y-1 text-sm">
+                  <label htmlFor="date" className="block text-gray-600">
+                    Next Renew Date
+                  </label>
+                  <input
+                    className="w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md "
+                    name="date"
+                    id="date"
+                    type="date"
+                    required
+                  />
+                </div>
               </div>
 
               <button

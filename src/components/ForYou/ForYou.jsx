@@ -66,13 +66,15 @@ const ForYou = () => {
     <div className="max-w-full mx-auto mt-8 ">
       <div>
         <div className="lg:ml-32  mx-auto flex lg:gap-10 gap-3 justify-center">
-          <div className="flex items-center justify-between  bg-gray-200 lg:px-10 p-2 rounded-xl lg:py-3">
-            <h2 className="lg:text-xl flex justify-center items-center gap-1">
+          <div className="flex items-center text-slate-50 bg-gradient-to-r from-red-700 to-red-500 justify-between  bg-gray-200 lg:px-10 p-2 rounded-xl lg:py-3">
+            <h2 className="lg:text-xl  flex justify-center items-center gap-1 font-bold">
               Just For You <HiFire size={28}></HiFire>
             </h2>
           </div>
-          <div className="flex items-center justify-center">
-            <h2 className="lg:text-xl text-xm mr-5">Ending In:</h2>
+          <div className="flex items-center justify-center ">
+            <h2 className="lg:text-xl text-xm mr-5 bg-gradient-to-r text-slate-50 from-blue-700 to-blue-500 p-3 rounded-xl">
+              Ending In:
+            </h2>
             <div className="flex justify-center items-center lg:gap-5 gap-2">
               <div className=" p-2 bg-neutral rounded-box text-neutral-content">
                 <span className="countdown font-mono text-md lg:text-3xl">

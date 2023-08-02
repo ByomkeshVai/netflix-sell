@@ -39,7 +39,9 @@ const HereOrder = ({ order, refetch, user }) => {
     const statusToStep = {
       unpaid: 0,
       processing: 1,
-      Approved: 2,
+      Hold: 2,
+      Approved: 3,
+      Delivered: 4,
     };
 
     // Update the current step based on the order status
@@ -73,7 +75,10 @@ const HereOrder = ({ order, refetch, user }) => {
           <button
             className="btn btn-active btn-error"
             disabled={
-              order?.status == "processing" || order?.status == "Approved"
+              order?.status == "processing" ||
+              order?.status == "Approved" ||
+              order?.status == "Hold" ||
+              order?.status == "Delivered"
             }
             onClick={handlePayment}
           >

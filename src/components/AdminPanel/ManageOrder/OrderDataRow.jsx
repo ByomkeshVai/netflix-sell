@@ -7,7 +7,9 @@ const OrderDataRow = ({ order, refetch, user }) => {
   let classPending = "bg-yellow-600";
   let classActive = "bg-green-600";
   let classDenied = "bg-red-600";
-  let classProccesing = "bg-blue-600";
+  let classProccesing = "bg-pink-600";
+  let classDelivered = "bg-blue-600";
+  let classHold = "bg-yello-200";
 
   let itemName = order?.itemNames?.map((str) => str.split(","));
 
@@ -18,6 +20,10 @@ const OrderDataRow = ({ order, refetch, user }) => {
       ? classActive
       : order?.status == "unpaid"
       ? classPending
+      : order?.status == "Hold"
+      ? classHold
+      : order?.status == "Delivered"
+      ? classDelivered
       : classDenied;
   return (
     <>

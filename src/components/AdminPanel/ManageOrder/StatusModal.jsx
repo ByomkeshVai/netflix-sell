@@ -27,7 +27,7 @@ const StatusModal = ({ setIsEditModalOpen, isOpen, refetch, order, id }) => {
       .then((data) => {
         if (data.modifiedCount == 1) {
           setLoading(false);
-          toast.success("Credential Added!");
+          toast.success("Updated!");
           refetch();
           setIsEditModalOpen(false);
           onDisable(false);
@@ -101,6 +101,20 @@ const StatusModal = ({ setIsEditModalOpen, isOpen, refetch, order, id }) => {
                       onClick={() => setStatus("Approved")}
                     >
                       Approved
+                    </button>
+                    <button
+                      type="submit"
+                      className=" inline-flex justify-center rounded-md border border-transparent bg-yellow-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-yellow-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
+                      onClick={() => setStatus("Hold")}
+                    >
+                      Hold
+                    </button>
+                    <button
+                      type="submit"
+                      className=" inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
+                      onClick={() => setStatus("Delivered")}
+                    >
+                      Delivered
                     </button>
                     <button
                       type="submit"

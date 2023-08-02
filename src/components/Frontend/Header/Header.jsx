@@ -49,25 +49,25 @@ const Header = ({ toggleDarkMode, darkMode }) => {
           <summary className="">Shop</summary>
           <ul className="lg:p-6 bg-transparent lg:flex p-2 max-w-full mx-auto text-center justify-center justify-items-center">
             <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-              <p>Boi Cart</p>
+              <p className="text-gray-900">Boi Cart</p>
             </li>
             <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-              <p>Gadget</p>
+              <p className="text-gray-900">Gadget</p>
             </li>
             <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-              <p>PC Components</p>
+              <p className="text-gray-900">PC Components</p>
             </li>
             <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-              <p>Web Development Deals</p>
+              <p className="text-gray-900">Web Development Deals</p>
             </li>
             <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-              <p>Neon Customized Light</p>
+              <p className="text-gray-900">Neon Customized Light</p>
             </li>
             <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-              <p>Fashion</p>
+              <p className="text-gray-900">Fashion</p>
             </li>
             <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-              <p>Cosmetics</p>
+              <p className="text-gray-900">Cosmetics</p>
             </li>
           </ul>
         </details>
