@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { toast } from "react-hot-toast";
 import { UpdateOrder } from "../../../api/order";
+import { stockUpdate } from "../../../api/stock";
 
 const StatusModal = ({ setIsEditModalOpen, isOpen, refetch, order, id }) => {
   const [status, setStatus] = useState("");
@@ -36,6 +37,10 @@ const StatusModal = ({ setIsEditModalOpen, isOpen, refetch, order, id }) => {
 
     setLoading(false);
   };
+  if (status === "Approved") {
+    console.log(order.selectItems);
+    stockUpdate(order.selectItems);
+  }
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog
@@ -92,14 +97,14 @@ const StatusModal = ({ setIsEditModalOpen, isOpen, refetch, order, id }) => {
                   <div className="mt-2 flex mt-2 justify-around">
                     <button
                       type="submit"
-                      className="disable:bg-text-600 inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
+                      className=" inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
                       onClick={() => setStatus("Approved")}
                     >
                       Approved
                     </button>
                     <button
                       type="submit"
-                      className="disable:bg-text-600 inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
+                      className=" inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
                       onClick={() => setStatus("Denied")}
                     >
                       Denied

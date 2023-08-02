@@ -44,25 +44,39 @@ const Header = ({ toggleDarkMode, darkMode }) => {
       <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
         <Link to="">Air Ticket</Link>
       </li>
-
-      <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-        <Link to="">Contact</Link>
-      </li>
-      <li
-        tabIndex={0}
-        class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer"
-      >
+      <li tabIndex={0} className="p-4 border-b-2 duration-200 cursor-pointer">
         <details>
-          <summary>Shop</summary>
-          <ul className="p-2">
-            <li class="p-1 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-              <a>Grocery</a>
+          <summary className="">Shop</summary>
+          <ul className="lg:p-6 bg-transparent lg:flex p-2 max-w-full mx-auto text-center justify-center justify-items-center">
+            <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+              <p>Boi Cart</p>
             </li>
-            <li class="p-1 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-              <a>Fruits</a>
+            <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+              <p>Gadget</p>
+            </li>
+            <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+              <p>PC Components</p>
+            </li>
+            <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+              <p>Web Development Deals</p>
+            </li>
+            <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+              <p>Neon Customized Light</p>
+            </li>
+            <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+              <p>Fashion</p>
+            </li>
+            <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+              <p>Cosmetics</p>
             </li>
           </ul>
         </details>
+      </li>
+      <li className="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+        <Link to="">Contact</Link>
+      </li>
+      <li className="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+        <Link to="">Career</Link>
       </li>
     </>
   );

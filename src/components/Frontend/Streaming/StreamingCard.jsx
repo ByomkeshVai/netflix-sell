@@ -68,6 +68,9 @@ const StreamingCard = ({ allItem }) => {
         <p className="text-md mt-[-10px] text-left">
           Validity: {allItem?.duration} Days
         </p>
+        <p className="text-md mt-[-10px] text-left">
+          In Stock: {allItem?.stock}
+        </p>
         <div className="">
           <div className="flex gap-7 justify-center ">
             <button

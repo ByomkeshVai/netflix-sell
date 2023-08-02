@@ -83,21 +83,21 @@ const TopRated = () => {
         </TabList>
 
         <TabPanel className="flex items-center gap-10">
-          <Marquee>
+          <Marquee pauseOnHover={true}>
             {filteredItems.map((item) => (
               <EachTop key={item.id} item={item} />
             ))}
           </Marquee>
         </TabPanel>
         <TabPanel className="flex items-center gap-5">
-          <Marquee>
+          <Marquee pauseOnHover={true}>
             {filteredItems.map((item) => (
               <EachTop key={item.id} item={item} />
             ))}
           </Marquee>
         </TabPanel>
         <TabPanel className="flex items-center gap-5">
-          <Marquee>
+          <Marquee pauseOnHover={true}>
             {filteredItems.map((item) => (
               <EachTop key={item.id} item={item} />
             ))}
