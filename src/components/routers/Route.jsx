@@ -30,6 +30,7 @@ import StreamingArea from "../Frontend/Streaming/StreamingArea";
 import CoverArea from "../Frontend/Mcover/CoverArea";
 import ErrorPage from "../Shared/ErrorPage";
 import Reset from "../Shared/Reset";
+import ProductDetails from "../Shared/Details/ProductDetails";
 
 export const router = createBrowserRouter([
   {
@@ -60,6 +61,15 @@ export const router = createBrowserRouter([
       {
         path: "/all/mobile-cover",
         element: <CoverArea></CoverArea>,
+      },
+      {
+        path: "/productDetails/:id",
+        element: <ProductDetails></ProductDetails>,
+        loader: async ({ params }) => {
+          return fetch(
+            `${import.meta.env.VITE_API_URL}/single/items/${params.id}`
+          );
+        },
       },
     ],
   },

@@ -74,7 +74,10 @@ const EachTop = ({ item }) => {
         <p className="text-md">From: {item?.label}</p>
         <p className="text-md mt-[-10px]">Price: {item?.price} BDT</p>
         <div className="">
-          <div className="flex gap-7 justify-center ">
+          <div className="flex gap-3 justify-center ">
+            <button className="btn btn-sm rounded-md px-5 border-0 btn-error text-slate-50 bg-gradient-to-r from-rose-700 to-rose-500">
+              <Link to={`/productDetails/${item?._id}`}>View Item</Link>
+            </button>
             <button
               className="btn btn-sm rounded-md px-5 border-0 btn-error text-slate-50 bg-gradient-to-r from-rose-700 to-rose-500"
               disabled={isAdmin}

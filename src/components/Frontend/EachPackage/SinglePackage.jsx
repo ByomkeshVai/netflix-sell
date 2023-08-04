@@ -96,7 +96,12 @@ const SinglePackage = ({ items }) => {
               <p className="text-sm">Stock: {items?.stock}</p>
               <p className="text-sm">Purchased: {items?.purchased}</p>
               <div className="">
-                <div className="flex gap-7 justify-center mt-5">
+                <div className="flex gap-3 justify-center mt-5">
+                  <button className="btn btn-sm rounded-md px-5 border-0 btn-error text-slate-50 bg-gradient-to-r from-rose-700 to-rose-500">
+                    <Link to={`/productDetails/${allItem?._id}`}>
+                      View Item
+                    </Link>
+                  </button>
                   <button
                     className="btn btn-sm rounded-md px-5 border-0 btn-error text-slate-50 bg-gradient-to-r from-rose-700 to-rose-500"
                     disabled={isAdmin}

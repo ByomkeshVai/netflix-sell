@@ -19,56 +19,81 @@ const AddItems = () => {
     setSelectedOption(option);
   };
 
-  console.log(selectedOption);
-
   const [loading, setLoading] = useState(false);
   const [uploadButtonText, setUploadButtonText] = useState("Upload Image");
+  const [uploadButtonText2, setUploadButtonText2] =
+    useState("2nd Upload Image ");
+  const [uploadButtonText3, setUploadButtonText3] =
+    useState("3rd Upload Image");
+  const [uploadButtonText4, setUploadButtonText4] =
+    useState("4th Upload Image");
   // handle form submit
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
     const name = event.target.name.value;
     const price = event.target.price.value;
     const duration = event.target.duration.value;
     const stock = event.target.stock.value;
+    const description = event.target.description.value;
     const image = event.target.image.files[0];
+    const image2 = event.target.image2.files[0];
+    const image3 = event.target.image3.files[0];
+    const image4 = event.target.image4.files[0];
+
     const category = event.target.category.value;
     const label = event.target.label.value;
     setUploadButtonText("Uploading...");
-    // Upload image
-    imageUpload(image)
-      .then((data) => {
-        const itemData = {
-          name,
-          stock: parseInt(stock),
-          duration: parseInt(duration),
-          price: parseFloat(price),
-          image: data.data.display_url,
-          category: category,
-          label: label,
-          type: selectedOption,
-        };
 
-        // post item data to server
-        addItemData(itemData)
-          .then((data) => {
-            setUploadButtonText("Uploaded!");
-            setLoading(false);
-            toast.success("Items Added!");
-            navigate("/admin/dashboard/allItem");
-          })
-          .catch((err) => console.log(err));
+    try {
+      const imageData1 = await imageUpload(image);
+      const imageData2 = await imageUpload(image2);
+      const imageData3 = await imageUpload(image3);
+      const imageData4 = await imageUpload(image4);
 
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err.message);
-        setLoading(false);
-      });
+      const itemData = {
+        name,
+        stock: parseInt(stock),
+        duration: parseInt(duration),
+        price: parseFloat(price),
+        description,
+        image: imageData1.data.display_url,
+        image2: imageData2.data.display_url,
+        image3: imageData3.data.display_url,
+        image4: imageData4.data.display_url,
+        category,
+        label,
+        type: selectedOption,
+      };
+
+      console.log(itemData);
+
+      // post item data to server
+      addItemData(itemData)
+        .then(() => {
+          setUploadButtonText("Uploaded!");
+          setLoading(false);
+          toast.success("Items Added!");
+          navigate("/admin/dashboard/allItem");
+        })
+        .catch((err) => console.log(err));
+    } catch (err) {
+      console.log(err.message);
+      setLoading(false);
+    }
   };
 
   const handleImageChange = (image) => {
     setUploadButtonText(image.name);
+  };
+  const handleImageChange2 = (image2) => {
+    setUploadButtonText2(image2.name);
+  };
+  const handleImageChange3 = (image3) => {
+    setUploadButtonText3(image3.name);
+  };
+  const handleImageChange4 = (image4) => {
+    setUploadButtonText4(image4.name);
   };
 
   return (
@@ -80,7 +105,13 @@ const AddItems = () => {
         handleSubmit={handleSubmit}
         loading={loading}
         handleImageChange={handleImageChange}
+        handleImageChange2={handleImageChange2}
+        handleImageChange3={handleImageChange3}
+        handleImageChange4={handleImageChange4}
         uploadButtonText={uploadButtonText}
+        uploadButtonText2={uploadButtonText2}
+        uploadButtonText3={uploadButtonText3}
+        uploadButtonText4={uploadButtonText4}
         handleOptionChange={handleOptionChange}
       ></AddItemForm>
     </div>

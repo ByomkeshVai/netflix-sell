@@ -47,13 +47,6 @@ const Header = ({ toggleDarkMode, darkMode }) => {
       <li class="relative p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
         <Link to="" className="">
           Air Ticket
-          <div className="absolute  inset-0 flex items-center justify-center w-full h-full opacity-0 hover:opacity-100 transition-opacity z-10">
-            <img
-              src={ticket}
-              alt="Image on hover"
-              className=" z-50  h-96  w-96 mt-[470px] "
-            />
-          </div>
         </Link>
       </li>
 

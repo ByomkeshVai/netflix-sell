@@ -10,7 +10,13 @@ const AddItemForm = ({
   handleSubmit,
   loading,
   handleImageChange,
+  handleImageChange2,
+  handleImageChange3,
+  handleImageChange4,
   uploadButtonText,
+  uploadButtonText2,
+  uploadButtonText3,
+  uploadButtonText4,
   handleOptionChange,
 }) => {
   const [axiosSecure] = useAxiosSecure();
@@ -81,10 +87,11 @@ const AddItemForm = ({
               </div>
             </div>
 
-            <div className=" p-4 bg-white w-full  m-auto rounded-lg">
+            <div className=" p-4 bg-white w-full  m-auto rounded-lg ">
+              <h2 className="mb-5">Main Image</h2>
               <div className="file_upload px-5 py-3 relative border-4 border-dotted border-gray-300 rounded-lg">
                 <div className="flex flex-col w-max mx-auto text-center">
-                  <label>
+                  <label className="block text-gray-600">
                     <input
                       onChange={(event) => {
                         handleImageChange(event.target.files[0]);
@@ -103,6 +110,76 @@ const AddItemForm = ({
                 </div>
               </div>
             </div>
+            <div className=" p-4 bg-white w-full  m-auto rounded-lg ">
+              <h2 className="mb-5">2nd Image</h2>
+              <div className="file_upload px-5 py-3 relative border-4 border-dotted border-gray-300 rounded-lg">
+                <div className="flex flex-col w-max mx-auto text-center">
+                  <label className="block text-gray-600">
+                    <input
+                      onChange={(event) => {
+                        handleImageChange2(event.target.files[0]);
+                      }}
+                      className="text-sm cursor-pointer w-36 hidden"
+                      type="file"
+                      name="image2"
+                      id="image2"
+                      accept="image/*"
+                      hidden
+                    />
+                    <div className="bg-[#085885] text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-info-500">
+                      {uploadButtonText2}
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div className=" p-4 bg-white w-full  m-auto rounded-lg ">
+              <h2 className="mb-5">3rd Image</h2>
+              <div className="file_upload px-5 py-3 relative border-4 border-dotted border-gray-300 rounded-lg">
+                <div className="flex flex-col w-max mx-auto text-center">
+                  <label className="block text-gray-600">
+                    <input
+                      onChange={(event) => {
+                        handleImageChange3(event.target.files[0]);
+                      }}
+                      className="text-sm cursor-pointer w-36 hidden"
+                      type="file"
+                      name="image3"
+                      id="image3"
+                      accept="image/*"
+                      hidden
+                    />
+                    <div className="bg-[#085885] text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-info-500">
+                      {uploadButtonText3}
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div className=" p-4 bg-white w-full  m-auto rounded-lg ">
+              <h2 className="mb-5">4th Image</h2>
+              <div className="file_upload px-5 py-3 relative border-4 border-dotted border-gray-300 rounded-lg">
+                <div className="flex flex-col w-max mx-auto text-center">
+                  <label className="block text-gray-600">
+                    <input
+                      onChange={(event) => {
+                        handleImageChange4(event.target.files[0]);
+                      }}
+                      className="text-sm cursor-pointer w-36 hidden"
+                      type="file"
+                      name="image4"
+                      id="image4"
+                      accept="image/*"
+                      hidden
+                    />
+                    <div className="bg-[#085885] text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-info-500">
+                      {uploadButtonText4}
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+
             <div className="lg:flex lg:flex-row flex-col justify-between gap-2">
               <div className="space-y-1 text-sm">
                 <label htmlFor="price" className="block text-gray-600">
@@ -132,6 +209,7 @@ const AddItemForm = ({
                   />
                 </div>
               </div>
+
               <div className="space-y-1 text-sm">
                 <label htmlFor="duration" className="block text-gray-600">
                   Validity (in Days)
@@ -144,6 +222,19 @@ const AddItemForm = ({
                   placeholder="Total duration (in Days)"
                 />
               </div>
+            </div>
+            <div className="space-y-1 text-sm">
+              <label htmlFor="description" className="block text-gray-600">
+                Description
+              </label>
+              <textarea
+                className="w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md "
+                name="description"
+                id="description"
+                type="text"
+                placeholder="Item Description"
+                required
+              />
             </div>
             <div className="space-y-1 text-sm mx-auto">
               <label htmlFor="type" className="block text-gray-600">
