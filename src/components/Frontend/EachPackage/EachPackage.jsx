@@ -11,7 +11,6 @@ import EmptyItem from "../../Shared/EmptyItem";
 
 const EachPackage = () => {
   const { label } = useParams();
-  console.log(label);
 
   const [axiosSecure] = useAxiosSecure();
   const { user, loading } = useContext(AuthContext);

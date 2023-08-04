@@ -125,7 +125,7 @@ const Banner = () => {
                 <h1 className="mb-5 lg:text-5xl text-3xl font-bold">
                   Buy Air Ticket at a low Price, A world to share!
                 </h1>
-                <p className="mb-5">Plans now start at 299৳.</p>
+                <p className="mb-5">Plans now start at 2999৳.</p>
                 <div className="button-area flex justify-center gap-10 lg:mt-0 mt-10">
                   <button className="btn rounded-xl btn-sm lg:btn-md border-0 btn-error text-slate-50 bg-gradient-to-r from-sky-700 to-blue-500 ">
                     <SiAzuredataexplorer size={20} className="font-red-600" />

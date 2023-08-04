@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import useAdmin from "../../../hooks/useAdmin";
 import useSelect from "../../../hooks/useSelect";
 import { AuthContext } from "../../../providers/AuthProvider";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const StreamingCard = ({ allItem }) => {
@@ -72,7 +72,10 @@ const StreamingCard = ({ allItem }) => {
           In Stock: {allItem?.stock}
         </p>
         <div className="">
-          <div className="flex gap-7 justify-center ">
+          <div className="flex gap-3 justify-center ">
+            <button className="btn btn-sm rounded-md px-5 border-0 btn-error text-slate-50 bg-gradient-to-r from-rose-700 to-rose-500">
+              <Link to={`/productDetails/${allItem?._id}`}>View Item</Link>
+            </button>
             <button
               className="btn btn-sm rounded-md px-5 border-0 btn-error text-slate-50 bg-gradient-to-r from-rose-700 to-rose-500"
               disabled={isAdmin}

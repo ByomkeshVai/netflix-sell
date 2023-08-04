@@ -23,8 +23,6 @@ const AddPromo = () => {
     },
   });
 
-  console.log(items);
-
   const handleSubmit = (event) => {
     event.preventDefault();
     setLoading(true);

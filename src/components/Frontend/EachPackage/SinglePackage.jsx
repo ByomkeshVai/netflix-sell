@@ -81,7 +81,7 @@ const SinglePackage = ({ items }) => {
         </div>
       ) : (
         <Slide damping={0.1} direction="right">
-          <div className="card lg:w-72 w-60 mx-auto bg-base-100 shadow-xl lg:ml-6 hover:scale-110 px-2 text-slate-50 bg-gradient-to-r from-blue-700 to-slate-600">
+          <div className="card lg:w-72 w-72 mx-auto bg-base-100 shadow-xl lg:ml-6 hover:scale-110 px-2 text-slate-50 bg-gradient-to-r from-blue-700 to-slate-600">
             <figure className="px-2 pt-3">
               <img
                 src={items?.image}
@@ -98,9 +98,7 @@ const SinglePackage = ({ items }) => {
               <div className="">
                 <div className="flex gap-3 justify-center mt-5">
                   <button className="btn btn-sm rounded-md px-5 border-0 btn-error text-slate-50 bg-gradient-to-r from-rose-700 to-rose-500">
-                    <Link to={`/productDetails/${allItem?._id}`}>
-                      View Item
-                    </Link>
+                    <Link to={`/productDetails/${items?._id}`}>View Item</Link>
                   </button>
                   <button
                     className="btn btn-sm rounded-md px-5 border-0 btn-error text-slate-50 bg-gradient-to-r from-rose-700 to-rose-500"

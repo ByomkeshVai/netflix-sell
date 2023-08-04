@@ -17,7 +17,6 @@ const Streaming = () => {
     setLoading(true);
     getAllCategory()
       .then((data) => {
-        console.log(data);
         if (label) {
           const filtered = data.filter((classes) => classes.label === label);
           setAllItem(filtered);

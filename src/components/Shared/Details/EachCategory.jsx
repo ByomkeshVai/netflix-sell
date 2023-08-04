@@ -50,36 +50,37 @@ const EachCategory = ({ item }) => {
   };
 
   return (
-    <div className="card lg:w-72 w-60 mx-auto bg-base-100 shadow-xl lg:ml-6 hover:scale-110 px-2 text-slate-50 bg-gradient-to-r from-blue-700 to-slate-600">
-      <figure className="px-2 pt-3">
-        <img
-          src={item?.image}
-          alt="images"
-          className="mx-auto mt-4 mb-4 object-cover h-40 w-40 rounded-xl"
-        />
-      </figure>
-      <div className="card-body items-center text-center">
-        <h2 className="font-bold mt-[-24px] text-xl">{item?.name}</h2>
-        <p className="text-md">Price: {item?.price} BDT</p>
-        <p className="text-sm">Validity: {item?.duration} Days</p>
-        <p className="text-sm">Stock: {item?.stock}</p>
-        <p className="text-sm">Purchased: {item?.purchased}</p>
-        <div className="">
-          <div className="flex gap-3 justify-center mt-5">
-            <button className="btn btn-sm rounded-md px-5 border-0 btn-error text-slate-50 bg-gradient-to-r from-rose-700 to-rose-500">
-              <a href={`/productDetails/${item?._id}`}>View Item</a>
-            </button>
-            <button
-              className="btn btn-sm rounded-md px-5 border-0 btn-error text-slate-50 bg-gradient-to-r from-rose-700 to-rose-500"
-              disabled={isAdmin}
-              onClick={() => handleAddToSelect(item)}
-            >
-              Add to Cart
-            </button>
+    <Slide damping={0.1} direction="right">
+      <div className="card lg:w-80 w-72 mx-auto bg-base-100 shadow-xl lg:ml-6 hover:scale-110 px-2 text-slate-50 bg-gradient-to-r from-blue-700 to-slate-600">
+        <figure className="px-2 pt-3">
+          <img
+            src={item?.image}
+            alt="images"
+            className="mx-auto mt-4 mb-4 object-cover h-40 w-40 rounded-xl"
+          />
+        </figure>
+        <div className="card-body items-center text-center">
+          <h2 className="font-bold mt-[-24px] text-xl">{item?.name}</h2>
+          <p className="text-md">Price: {item?.price} BDT</p>
+          <p className="text-sm">Validity: {item?.duration} Days</p>
+          <p className="text-sm">Stock: {item?.stock}</p>
+          <div className="">
+            <div className="flex gap-3 justify-center mt-5">
+              <button className="btn btn-sm rounded-md px-5 border-0 btn-error text-slate-50 bg-gradient-to-r from-rose-700 to-rose-500">
+                <a href={`/productDetails/${item?._id}`}>View Item</a>
+              </button>
+              <button
+                className="btn btn-sm rounded-md px-5 border-0 btn-error text-slate-50 bg-gradient-to-r from-rose-700 to-rose-500"
+                disabled={isAdmin}
+                onClick={() => handleAddToSelect(item)}
+              >
+                Add to Cart
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Slide>
   );
 };
 

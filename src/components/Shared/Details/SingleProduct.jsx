@@ -123,6 +123,12 @@ const SingleProduct = ({ product }) => {
         </div>
         <p className="text-gray-700">{product?.description}</p>
         <h6 className="text-2xl font-semibold">৳ {product?.price}</h6>
+        <h6 className="text-2xl font-semibold">In Stock {product?.stock}</h6>
+        {product.duration > 0 && (
+          <h6 className="text-2xl font-semibold">
+            Validity: {product?.duration} Days
+          </h6>
+        )}
         <div className="flex flex-row items-center gap-12">
           {/* <div className="flex flex-row items-center">
                   <button

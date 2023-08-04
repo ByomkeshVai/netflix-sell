@@ -31,7 +31,6 @@ const PaymentConfirm = ({
       amount,
       transactionId,
     };
-    console.log(grabItem);
     setPayment(setData)
       .then((data) => {
         toast.success("Payment Added, Wait For Verification!");

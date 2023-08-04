@@ -19,7 +19,6 @@ const AllLabel = () => {
     },
   });
 
-  const hello = categories.map((items) => console.log(items));
   return (
     <div className="max-w-screen-xl mx-auto">
       <div className="flex gap-10 lg:gap-0 flex-row items-center justify-between overflow-x-auto">

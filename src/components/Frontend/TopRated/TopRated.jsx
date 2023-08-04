@@ -38,7 +38,6 @@ const TopRated = () => {
   // Filter items based on the selected tab type
   const filteredItems = items.filter((item) => item.type === selectedTab);
   const [tabIndex, setTabIndex] = useState(selectedTab);
-  console.log(selectedTab);
   return (
     <Fade>
       <Tabs

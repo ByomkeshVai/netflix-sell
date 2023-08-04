@@ -20,9 +20,6 @@ const SimilarCategory = ({ category }) => {
       return res.data;
     },
   });
-  console.log(items);
-
-  const maping = items.map((items) => items.name);
 
   return (
     <>
