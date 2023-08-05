@@ -12,3 +12,19 @@ export const imageUpload = async (image) => {
   const data = await response.json();
   return data;
 };
+
+export const addAddress = async (addressData, id) => {
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/add/address/${id}`,
+    {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("access-token")}`,
+      },
+      body: JSON.stringify(addressData),
+    }
+  );
+  const result = await response.json();
+  return result;
+};

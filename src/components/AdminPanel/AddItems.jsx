@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet";
 import AddItemForm from "./AddItemForm";
 import { imageUpload } from "../../api/utlits";
 import { addItemData } from "../../api/item";
+import noimg from "../../assets/noimg.png";
 
 const AddItems = () => {
   const navigate = useNavigate();
@@ -46,10 +47,25 @@ const AddItems = () => {
     setUploadButtonText("Uploading...");
 
     try {
-      const imageData1 = await imageUpload(image);
-      const imageData2 = await imageUpload(image2);
-      const imageData3 = await imageUpload(image3);
-      const imageData4 = await imageUpload(image4);
+      // Define default values for imageData1, imageData2, imageData3, and imageData4
+      let imageData1 = null;
+      let imageData2 = null;
+      let imageData3 = null;
+      let imageData4 = null;
+
+      // Uploading images conditionally
+      if (image) {
+        imageData1 = await imageUpload(image);
+      }
+      if (image2) {
+        imageData2 = await imageUpload(image2);
+      }
+      if (image3) {
+        imageData3 = await imageUpload(image3);
+      }
+      if (image4) {
+        imageData4 = await imageUpload(image4);
+      }
 
       const itemData = {
         name,
@@ -57,10 +73,18 @@ const AddItems = () => {
         duration: parseInt(duration),
         price: parseFloat(price),
         description,
-        image: imageData1.data.display_url,
-        image2: imageData2.data.display_url,
-        image3: imageData3.data.display_url,
-        image4: imageData4.data.display_url,
+        image: imageData1
+          ? imageData1.data.display_url
+          : "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930",
+        image2: imageData2
+          ? imageData2.data.display_url
+          : "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930",
+        image3: imageData3
+          ? imageData3.data.display_url
+          : "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930",
+        image4: imageData4
+          ? imageData4.data.display_url
+          : "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930",
         category,
         label,
         type: selectedOption,
@@ -84,16 +108,19 @@ const AddItems = () => {
   };
 
   const handleImageChange = (image) => {
-    setUploadButtonText(image.name);
+    setUploadButtonText(image ? image.name : "Upload Image");
   };
+
   const handleImageChange2 = (image2) => {
-    setUploadButtonText2(image2.name);
+    setUploadButtonText2(image2 ? image2.name : "2nd Upload Image");
   };
+
   const handleImageChange3 = (image3) => {
-    setUploadButtonText3(image3.name);
+    setUploadButtonText3(image3 ? image3.name : "3rd Upload Image");
   };
+
   const handleImageChange4 = (image4) => {
-    setUploadButtonText4(image4.name);
+    setUploadButtonText4(image4 ? image4.name : "4th Upload Image");
   };
 
   return (
