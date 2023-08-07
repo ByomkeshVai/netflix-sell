@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Stepper from "react-stepper-horizontal";
 import CurrentStepper from "./CurrentStepper";
+import AddLocation from "../Payment/AddLocation";
 
 const HereOrder = ({ order, refetch, user }) => {
   const navigate = useNavigate();
@@ -51,6 +52,8 @@ const HereOrder = ({ order, refetch, user }) => {
   const handlePayment = () => {
     navigate(`/customer/dashboard/payment-page/${order?.orderID}`);
   };
+
+  let [isEditModalOpen, setIsEditModalOpen] = useState(false);
   return (
     <div className="mt-5 border border-1 p-3">
       <div className="flex justify-between items-center">
@@ -67,11 +70,21 @@ const HereOrder = ({ order, refetch, user }) => {
               <h2 className="text-md ">{`${index + 1}: ${item}`}</h2>
             ))}
           </div>
-          <div className="mt-5">Price: {order?.prices}</div>
+          <div className="mt-5">Price: {order?.amount.amount}</div>
           <div>Placed On: {order?.date}</div>
           <div>Status: {order?.status}</div>
+          <div>Method: {order?.amount.method}</div>
+          <div>
+            <h2>Phone: {order?.phone ? order?.phone : "N/A"}</h2>
+            <h2>House/Road/Block: {order?.house ? order?.house : "N/A"}</h2>
+            <h2>
+              AddressRemarks:
+              {order?.addressRemarks ? order?.addressRemarks : "N/A"}
+            </h2>
+            <h2>District: {order?.district ? order?.district : "N/A"}</h2>
+          </div>
         </div>
-        <div>
+        <div className="flex flex-col gap-5">
           <button
             className="btn btn-active btn-error"
             disabled={
@@ -84,6 +97,19 @@ const HereOrder = ({ order, refetch, user }) => {
           >
             <h2>payment</h2>
           </button>
+          <div className="btn btn-active btn-md btn-primary">
+            <button onClick={() => setIsEditModalOpen(true)}>
+              <h2 className="text-lg">Add Address</h2>
+            </button>
+            <AddLocation
+              isEditModalOpen={isEditModalOpen}
+              closeModal={() => setIsEditModalOpen(false)}
+              orderID={order?.orderID}
+              id={order._id}
+              refetch={refetch}
+              setIsEditModalOpen={setIsEditModalOpen}
+            />
+          </div>
         </div>
       </div>
       <div className="max-w-full ">

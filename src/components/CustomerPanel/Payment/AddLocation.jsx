@@ -39,10 +39,10 @@ const AddLocation = ({
       district: selectedDistrict,
       addressRemarks: addressRemarks,
     };
+
     addAddress(addressData, id)
       .then((data) => {
         toast.success("Location info updated");
-        setLoading(false);
         refetch();
         setIsEditModalOpen(false);
       })

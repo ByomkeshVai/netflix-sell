@@ -5,6 +5,7 @@ import useSelect from "../../hooks/useSelect";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useState } from "react";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 const ForYouFr = ({ item }) => {
   const { image, name, price, stock, _id, duration, category, purchased } =

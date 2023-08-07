@@ -1,15 +1,18 @@
 import React from "react";
 import StatusModal from "./StatusModal";
 import { useState } from "react";
+import AddressModal from "./AddressModal";
+import { FcAddressBook } from "react-icons/fc";
 
 const OrderDataRow = ({ order, refetch, user }) => {
   let [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  let [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
   let classPending = "bg-yellow-600";
   let classActive = "bg-green-600";
   let classDenied = "bg-red-600";
   let classProccesing = "bg-pink-600";
   let classDelivered = "bg-blue-600";
-  let classHold = "bg-yello-200";
+  let classHold = "bg-yellow-900";
 
   let itemName = order?.itemNames?.map((str) => str.split(","));
 
@@ -58,6 +61,11 @@ const OrderDataRow = ({ order, refetch, user }) => {
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-md">
           <p className="text-gray-900 whitespace-no-wrap">{order?.promo}</p>
         </td>
+        <td className="px-5 py-5 border-b border-gray-200 bg-white text-md">
+          <p className="text-gray-900 whitespace-no-wrap">
+            {order?.amount.method}
+          </p>
+        </td>
 
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-md">
           <button className="relative cursor-pointer inline-block px-3 py-1 font-semibold text-slate-50 leading-tight disabled:text-gray-900">
@@ -75,6 +83,24 @@ const OrderDataRow = ({ order, refetch, user }) => {
             id={order._id}
             refetch={refetch}
             setIsEditModalOpen={setIsEditModalOpen}
+          />
+        </td>
+        <td className="px-5 py-5 border-b border-gray-200 bg-white text-md">
+          <button className="relative cursor-pointer inline-block px-3 py-1 font-semibold text-slate-50 leading-tight disabled:text-gray-900">
+            <span
+              className="text-gray-900 whitespace-no-wrap rounded-full px-3 py-1 text-slate-50"
+              onClick={() => setIsAddressModalOpen(true)}
+            >
+              <FcAddressBook size={32} />
+            </span>
+          </button>
+          <AddressModal
+            isOpen={isAddressModalOpen}
+            closeModal={() => setIsAddressModalOpen(false)}
+            order={order}
+            id={order._id}
+            refetch={refetch}
+            setIsAddressModalOpen={setIsAddressModalOpen}
           />
         </td>
       </tr>

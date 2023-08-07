@@ -2,33 +2,48 @@ import React, { useState } from "react";
 import { setPayment } from "../../../api/payment";
 import AddLocation from "./AddLocation";
 import Swal from "sweetalert2";
+import isEmpty from "lodash/isEmpty";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const ConfirmSingle = ({ order, refetch, user }) => {
   let [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const [phones, setPhones] = useState(order?.phone);
+  const navigate = useNavigate();
 
   const handleSubmitBkash = (e) => {
     e.preventDefault();
-    if (!phones) {
-      Swal.fire({
-        title: "Please add your Address first!",
-        icon: "error",
-        confirmButtonText: "OK",
-      });
-      return;
-    } else {
-      const setData = {
-        amount: order?.prices,
-        method: "Bkash",
-      };
-      setPayment(order?.orderID, setData)
-        .then((data) => {
-          window.location =
-            "https://shop.bkash.com/stream-cart-bangladesh01601699/paymentlink/default-payment";
-        })
-        .catch((err) => console.log(err));
-    }
+
+    const setData = {
+      amount: order?.prices,
+      method: "Bkash",
+    };
+    setPayment(order?.orderID, setData)
+      .then((data) => {
+        window.location =
+          "https://shop.bkash.com/stream-cart-bangladesh01601699/paymentlink/default-payment";
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleSubmitCOD = (e) => {
+    e.preventDefault();
+
+    const setData = {
+      amount: order?.prices,
+      method: "COD",
+    };
+    setPayment(order?.orderID, setData)
+      .then((data) => {
+        Swal.fire({
+          title: "Order On Processing",
+          icon: "success",
+          confirmButtonText: "Alright!",
+        });
+        navigate("/customer/dashboard/my-order");
+      })
+      .catch((err) => console.log(err));
   };
   return (
     <>
@@ -50,28 +65,6 @@ const ConfirmSingle = ({ order, refetch, user }) => {
             <div>Price: {order?.prices}</div>
             <div>Placed On: {order?.date}</div>
             <div>Order Status: {order?.status}</div>
-            <div>
-              <h2>Phone: {order?.phone ? order?.phone : "N/A"}</h2>
-              <h2>House/Road/Block: {order?.house ? order?.house : "N/A"}</h2>
-              <h2>
-                AddressRemarks:
-                {order?.addressRemarks ? order?.addressRemarks : "N/A"}
-              </h2>
-              <h2>District: {order?.district ? order?.district : "N/A"}</h2>
-            </div>
-          </div>
-          <div className="btn btn-active btn-md btn-primary">
-            <button onClick={() => setIsEditModalOpen(true)}>
-              <h2 className="text-lg">Add Address</h2>
-            </button>
-            <AddLocation
-              isEditModalOpen={isEditModalOpen}
-              closeModal={() => setIsEditModalOpen(false)}
-              orderID={order?.orderID}
-              id={order._id}
-              refetch={refetch}
-              setIsEditModalOpen={setIsEditModalOpen}
-            />
           </div>
         </div>
       </div>
@@ -92,7 +85,7 @@ const ConfirmSingle = ({ order, refetch, user }) => {
             alt=""
           />
         </button>
-        <button>
+        <button onClick={handleSubmitCOD}>
           <img
             className="h-48 w-36"
             src="https://static.vecteezy.com/system/resources/previews/020/574/330/original/cash-on-delivery-badge-pack-free-png.png"

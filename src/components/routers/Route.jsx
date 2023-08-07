@@ -31,6 +31,7 @@ import CoverArea from "../Frontend/Mcover/CoverArea";
 import ErrorPage from "../Shared/ErrorPage";
 import Reset from "../Shared/Reset";
 import ProductDetails from "../Shared/Details/ProductDetails";
+import UserArea from "../AdminPanel/UserDashboard/UserArea";
 
 export const router = createBrowserRouter([
   {
@@ -153,6 +154,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <ManageOrder />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/admin/dashboard/users",
+        element: (
+          <AdminRoute>
+            <UserArea />
           </AdminRoute>
         ),
       },

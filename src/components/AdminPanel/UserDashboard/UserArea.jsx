@@ -1,30 +1,29 @@
 import React from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
-import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet";
+import UserDataRow from "./UserDataRow";
 import EmptyState from "../../Shared/EmptyState";
-import OrderDataRow from "./OrderDataRow";
 
-const ManageOrder = () => {
+const UserArea = () => {
   const { user, loading } = useContext(AuthContext);
   const [axiosSecure] = useAxiosSecure();
-  const { refetch, data: order = [] } = useQuery({
-    queryKey: ["order"],
+  const { refetch, data: users = [] } = useQuery({
+    queryKey: ["users"],
     enabled: !loading,
     queryFn: async () => {
-      const res = await axiosSecure(`/all/order`);
+      const res = await axiosSecure(`/user`);
       return res.data;
     },
   });
-
   return (
     <>
       <Helmet>
-        <title>Stream Cart - Manage Order</title>
+        <title>Stream Cart - Manage User</title>
       </Helmet>
-      {order && Array.isArray(order) && order.length > 0 ? (
+      {users && Array.isArray(users) && users.length > 0 ? (
         <div className="container mx-auto px-4 sm:px-8">
           <div className="py-8">
             <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
@@ -36,66 +35,42 @@ const ManageOrder = () => {
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
-                        Item Name
+                        User Name
                       </th>
                       <th
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
-                        price
+                        Email
                       </th>
                       <th
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
-                        Discount Price
+                        UserID
                       </th>
                       <th
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
-                        Order ID
+                        Role
                       </th>
                       <th
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
-                        User Id
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
-                      >
-                        Promo
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
-                      >
-                        Method
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
-                      >
-                        Status
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
-                      >
-                        Address
+                        Action
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {order &&
-                      order.map((order) => (
-                        <OrderDataRow
-                          key={order?._id}
-                          order={order}
+                    {users &&
+                      users.map((users) => (
+                        <UserDataRow
+                          key={users?._id}
+                          users={users}
                           refetch={refetch}
-                          user={user}
+                          id={users._id}
                         />
                       ))}
                   </tbody>
@@ -106,11 +81,11 @@ const ManageOrder = () => {
         </div>
       ) : (
         <div className="max-w-screen-xl mx-auto hero mt-14">
-          <EmptyState message="No Order data available." />
+          <EmptyState message="No Users data available." />
         </div>
       )}
     </>
   );
 };
 
-export default ManageOrder;
+export default UserArea;
