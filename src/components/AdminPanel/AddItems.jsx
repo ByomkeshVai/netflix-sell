@@ -20,6 +20,12 @@ const AddItems = () => {
     setSelectedOption(option);
   };
 
+  const [selectedApply, setSelectedApply] = useState("");
+
+  const handleApplyChange = (option) => {
+    setSelectedApply(option);
+  };
+
   const [loading, setLoading] = useState(false);
   const [uploadButtonText, setUploadButtonText] = useState("Upload Image");
   const [uploadButtonText2, setUploadButtonText2] =
@@ -88,6 +94,7 @@ const AddItems = () => {
         category,
         label,
         type: selectedOption,
+        option: selectedApply,
       };
 
       console.log(itemData);
@@ -140,6 +147,7 @@ const AddItems = () => {
         uploadButtonText3={uploadButtonText3}
         uploadButtonText4={uploadButtonText4}
         handleOptionChange={handleOptionChange}
+        handleApplyChange={handleApplyChange}
       ></AddItemForm>
     </div>
   );

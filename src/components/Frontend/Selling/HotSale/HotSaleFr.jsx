@@ -1,15 +1,14 @@
 import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import useAdmin from "../../hooks/useAdmin";
-import useSelect from "../../hooks/useSelect";
-import { AuthContext } from "../../providers/AuthProvider";
+import useAdmin from "../../../../hooks/useAdmin";
+import useSelect from "../../../../hooks/useSelect";
+import { AuthContext } from "../../../../providers/AuthProvider";
 import { useState } from "react";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 
-const ForYouFr = ({ item }) => {
-  const { image, name, price, stock, _id, duration, category, purchased } =
-    item;
+const HotSaleFr = ({ hot }) => {
+  const { image, name, price, stock, _id, duration, category, purchased } = hot;
 
   const [isAdmin] = useAdmin();
   const [, refetch] = useSelect();
@@ -26,7 +25,7 @@ const ForYouFr = ({ item }) => {
 
   const randomID = generateRandomID();
 
-  const handleAddToSelect = (item) => {
+  const handleAddToSelect = (hot) => {
     if (user && user.email) {
       const selectItem = {
         selectItemId: _id,
@@ -62,27 +61,27 @@ const ForYouFr = ({ item }) => {
     <div className="card lg:w-72 mb-10 w-60 h-96 mx-auto bg-base-100 shadow-xl lg:ml-6 hover:scale-110 px-2 text-slate-50 bg-gradient-to-r from-blue-700 to-slate-600">
       <figure className="px-2 pt-3">
         <img
-          src={item?.image}
+          src={hot?.image}
           alt="images"
           className="mx-auto mt-4 mb-4 object-cover h-40 w-40 rounded-xl"
         />
       </figure>
       <div className="card-body items-center text-center">
         <h2 className="font-bold mt-[-24px] text-xl">
-          {item?.name.substring(0, 15)}
+          {hot?.name.substring(0, 15)}
         </h2>
-        <p className="text-md">Price: {item?.price} BDT</p>
-        <p className="text-sm">Validity: {item?.duration} Days</p>
-        <p className="text-sm">Stock: {item?.stock}</p>
+        <p className="text-md">Price: {hot?.price} BDT</p>
+        <p className="text-sm">Validity: {hot?.duration} Days</p>
+        <p className="text-sm">Stock: {hot?.stock}</p>
         <div className="">
           <div className="flex gap-3 justify-center mt-5">
             <button className="btn btn-sm rounded-md lg:px-5 border-0 btn-error text-slate-50 bg-gradient-to-r from-rose-700 to-rose-500">
-              <Link to={`/productDetails/${item?._id}`}>View Item</Link>
+              <Link to={`/productDetails/${hot?._id}`}>View Item</Link>
             </button>
             <button
               className="btn btn-sm rounded-md lg:px-5 border-0 btn-error text-slate-50 bg-gradient-to-r from-rose-700 to-rose-500"
               disabled={isAdmin}
-              onClick={() => handleAddToSelect(item)}
+              onClick={() => handleAddToSelect(hot)}
             >
               Add to Cart
             </button>
@@ -93,4 +92,4 @@ const ForYouFr = ({ item }) => {
   );
 };
 
-export default ForYouFr;
+export default HotSaleFr;

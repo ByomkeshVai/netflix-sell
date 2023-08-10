@@ -32,6 +32,7 @@ import ErrorPage from "../Shared/ErrorPage";
 import Reset from "../Shared/Reset";
 import ProductDetails from "../Shared/Details/ProductDetails";
 import UserArea from "../AdminPanel/UserDashboard/UserArea";
+import SaleItems from "../Frontend/SaleItems/SaleItems";
 
 export const router = createBrowserRouter([
   {
@@ -69,6 +70,15 @@ export const router = createBrowserRouter([
         loader: async ({ params }) => {
           return fetch(
             `${import.meta.env.VITE_API_URL}/single/items/${params.id}`
+          );
+        },
+      },
+      {
+        path: "showAll/:option",
+        element: <SaleItems></SaleItems>,
+        loader: async ({ params }) => {
+          return fetch(
+            `${import.meta.env.VITE_API_URL}/items/flashSale/${params.option}`
           );
         },
       },

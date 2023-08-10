@@ -18,6 +18,7 @@ const AddItemForm = ({
   uploadButtonText3,
   uploadButtonText4,
   handleOptionChange,
+  handleApplyChange,
 }) => {
   const [axiosSecure] = useAxiosSecure();
   const { user } = useContext(AuthContext);
@@ -250,6 +251,22 @@ const AddItemForm = ({
                 <option value="topRated">Top Rated Product</option>
                 <option value="newArrival">New Arrival</option>
                 <option value="nowTrending">Now Trending</option>
+              </select>
+            </div>
+            <div className="space-y-1 text-sm mx-auto">
+              <label htmlFor="option" className="block text-gray-600">
+                Select Shown Option:
+              </label>
+              <select
+                required
+                className="w-full px-4 py-3 border-rose-300 focus:outline-rose-500 rounded-md"
+                name="option"
+                onChange={(e) => handleApplyChange(e.target.value)}
+              >
+                <option value="">-- Select --</option>
+                <option value="flashSale">Flash Sale</option>
+                <option value="popularProduct">Popular Products</option>
+                <option value="hotSale">Hot Sale</option>
               </select>
             </div>
             <button
