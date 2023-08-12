@@ -30,6 +30,8 @@ const Credential = () => {
     },
   });
 
+  const [searchQuery, setSearchQuery] = useState("");
+
   const alluser = singleUser.map((alluser) => alluser.name);
   const userId = singleUser.map((alluser) => alluser.userID);
   const items = itemData.map((itemData) => itemData.name);
@@ -38,18 +40,47 @@ const Credential = () => {
   const [selectedUserId, setSelectedUserId] = useState("");
   const [selectedEmail, setSelectedEmail] = useState("");
 
-  const handleNameChange = (e) => {
-    const selectedName = e.target.value;
-    setSelectedName(selectedName);
+  const [suggestions, setSuggestions] = useState([]); // State for suggestions
 
-    // Find the corresponding userId for the selected name
-    const selectedPerson = singleUser.find(
-      (person) => person.name === selectedName
+  const handleNameChange = (e) => {
+    const searchValue = e.target.value;
+    setSearchQuery(searchValue);
+
+    // Reset selected values when the user types in the search field
+    setSelectedName("");
+    setSelectedUserId("");
+    setSelectedEmail("");
+  };
+
+  const handleSearchChange = (e) => {
+    const searchValue = e.target.value;
+    setSearchQuery(searchValue);
+
+    // Filter suggestions based on search query
+    const filteredSuggestions = singleUser.filter(
+      (person) =>
+        person.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+        person.userID.toString().includes(searchValue)
+    );
+    setSuggestions(filteredSuggestions);
+
+    // Update selected user's name if it matches the search query
+    const selectedPerson = filteredSuggestions.find(
+      (person) => person.name.toLowerCase() === searchValue.toLowerCase()
     );
     if (selectedPerson) {
+      setSelectedName(selectedPerson.name);
       setSelectedUserId(selectedPerson.userID);
       setSelectedEmail(selectedPerson.email);
     }
+  };
+
+  const handleSuggestionClick = (selectedPerson) => {
+    setSelectedName(selectedPerson.name);
+    setSelectedUserId(selectedPerson.userID);
+    setSelectedEmail(selectedPerson.email);
+    setSearchQuery(""); // Clear search query
+    setSuggestions([]); // Clear suggestions after selection
   };
 
   const handleSubmit = (event) => {
@@ -91,7 +122,31 @@ const Credential = () => {
                 <h2 className="text-center text-xl underline font-bold">
                   User Credential
                 </h2>
-
+                <div className="space-y-1 text-sm">
+                  <label htmlFor="search" className="block text-gray-600">
+                    Search User
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-3 border-rose-300 focus:outline-rose-500 rounded-md"
+                    placeholder="Search user..."
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                  />
+                  {suggestions.length > 0 && (
+                    <div className="absolute bg-white border border-gray-300 mt-1 rounded-md shadow-md">
+                      {suggestions.map((person) => (
+                        <div
+                          key={person.userID}
+                          className="cursor-pointer p-2 hover:bg-gray-100"
+                          onClick={() => handleSuggestionClick(person)}
+                        >
+                          {person.name} ({person.userID})
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
                 <div className="space-y-1 text-sm">
                   <div className="space-y-1 text-sm">
                     <label htmlFor="users" className="block text-gray-600">
@@ -104,11 +159,18 @@ const Credential = () => {
                       onChange={handleNameChange}
                     >
                       <option value="">Select a name</option>
-                      {singleUser.map((person) => (
-                        <option key={person.name} value={person.name}>
-                          {person.name + " " + `(${person.userID})`}
-                        </option>
-                      ))}
+                      <option value="">Select a name</option>
+                      {singleUser
+                        .filter((person) =>
+                          person.name
+                            .toLowerCase()
+                            .includes(searchQuery.toLowerCase())
+                        )
+                        .map((person) => (
+                          <option key={person.name} value={person.name}>
+                            {person.name + " " + `(${person.userID})`}
+                          </option>
+                        ))}
                     </select>
                     {selectedName && (
                       <div className="space-y-1 text-sm">
