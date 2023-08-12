@@ -90,7 +90,6 @@ const HereOrder = ({ order, refetch, user }) => {
             disabled={
               order?.status == "processing" ||
               order?.status == "Approved" ||
-              order?.status == "Hold" ||
               order?.status == "Delivered"
             }
             onClick={handlePayment}

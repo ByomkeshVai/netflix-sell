@@ -12,7 +12,7 @@ const OrderDataRow = ({ order, refetch, user }) => {
   let classDenied = "bg-red-600";
   let classProccesing = "bg-pink-600";
   let classDelivered = "bg-blue-600";
-  let classHold = "bg-yellow-900";
+  let classHold = "bg-orange-600";
 
   let itemName = order?.itemNames?.map((str) => str.split(","));
 

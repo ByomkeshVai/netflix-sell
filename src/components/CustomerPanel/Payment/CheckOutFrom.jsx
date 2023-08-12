@@ -91,12 +91,13 @@ const CheckOutFrom = ({ closeModal, select, selectInfo, price, refetch }) => {
     const form = event.target;
     const productId = select?.selectItemId;
     const name = user.displayName;
-    const email = user.email;
     const promo = promoCode;
     const itemName = select?.name;
     const prices = parseFloat(price);
     const discountPrice = finalPrice;
     const remarks = form.remarks.value;
+    const phone = form.phone.value;
+    const email = form.email.value;
     const checkItems = {
       productId,
       prices,
@@ -107,6 +108,7 @@ const CheckOutFrom = ({ closeModal, select, selectInfo, price, refetch }) => {
       promo,
       name,
       email,
+      phone,
       selectId: select._id,
       status: "unpaid",
       orderID: randomID.toString(),
@@ -133,13 +135,40 @@ const CheckOutFrom = ({ closeModal, select, selectInfo, price, refetch }) => {
             <div className="mt-2">
               <p className="text-md text-gray-900">Main Price: {price} (BDT)</p>
             </div>
+            <div className="space-y-1 text-sm py-3">
+              <label htmlFor="phone" className="block text-gray-900">
+                Phone
+              </label>
+              <input
+                className="w-full px-4 py-2 text-gray-900 border border-rose-300 focus:outline-rose-500 rounded-md "
+                name="phone"
+                id="phone"
+                type="number"
+                placeholder="Add Your Phone"
+                required
+              />
+            </div>
+            <div className="space-y-1 text-sm py-3">
+              <label htmlFor="email" className="block text-gray-900">
+                Email
+              </label>
+              <input
+                className="w-full px-4 py-2 text-gray-900 border border-rose-300 focus:outline-rose-500 rounded-md "
+                name="email"
+                id="email"
+                type="email"
+                placeholder="Add Your email"
+                required
+                defaultValue={user.email}
+              />
+            </div>
 
             <div className="space-y-1 text-sm py-3">
               <label htmlFor="remarks" className="block text-gray-900">
                 Remarks
               </label>
               <textarea
-                className="w-full px-4 py-3 text-gray-900 border border-rose-300 focus:outline-rose-500 rounded-md "
+                className="w-full px-4 py-2 text-gray-900 border border-rose-300 focus:outline-rose-500 rounded-md "
                 name="remarks"
                 id="remarks"
                 placeholder="Add Info"
