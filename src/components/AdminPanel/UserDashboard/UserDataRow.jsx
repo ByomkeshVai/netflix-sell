@@ -5,7 +5,7 @@ import DeleteModal from "../../Modal/DeleteModal";
 import toast from "react-hot-toast";
 import { deleteUser } from "./../../../api/auth";
 
-const UserDataRow = ({ users, refetch, user, id }) => {
+const UserDataRow = ({ users, refetch, user, id, index }) => {
   let [isEditModalOpen, setIsEditModalOpen] = useState(false);
   let [isOpen, setIsOpen] = useState(false);
   function openModal() {
@@ -42,10 +42,18 @@ const UserDataRow = ({ users, refetch, user, id }) => {
   return (
     <tr>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <p className="text-gray-900 whitespace-no-wrap font-bold">
+          {index + 1}
+        </p>
+      </td>
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900 whitespace-no-wrap">{users?.name}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900 whitespace-no-wrap">{users.email}</p>
+      </td>
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <p className="text-gray-900 whitespace-no-wrap">{users.phone}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-md">
         <p className="text-gray-900 whitespace-no-wrap">SC{users?.userID}</p>

@@ -59,29 +59,60 @@ const HereOrder = ({ order, refetch, user }) => {
       <div className="flex justify-between items-center">
         <div className="">
           <div className="flex gap-2 items-center">
-            <h2 className="text-md font-bold">Order ID: {order?.orderID}</h2>
-            <span className="text-sm ">
-              (Use this ID as your Bkash Reference Number)
+            <h2 className="lg:text-xl text-md font-bold">
+              Order ID: {order?.orderID}
+            </h2>
+            <span className="lg:text-xl text-md font-bold text-red-600 ">
+              (Use this ORDER ID as your bKash REFERENCE Number)
             </span>
           </div>
           <div>
-            <h2>My Items-</h2>
+            <h2 className="font-bold text-pink-600 mt-5 ">My Items-</h2>
             {order?.itemNames.map((item, index) => (
-              <h2 className="text-md ">{`${index + 1}: ${item}`}</h2>
+              <h2 className="text-md  text-green-600">{`${
+                index + 1
+              }: ${item}`}</h2>
             ))}
           </div>
-          <div className="mt-5">Price: {order?.amount.amount}</div>
-          <div>Placed On: {order?.date}</div>
-          <div>Status: {order?.status}</div>
-          <div>Method: {order?.amount.method}</div>
+          <hr className="mt-3 font-semibold" />
+          <div className="mt-5 flex items-center gap-1">
+            <h3 className="font-bold text-pink-600">Price: </h3>
+            {order?.amount.amount}{" "}
+            <h2 className="text-xl mt-[-3px] font-bold ">৳</h2>
+          </div>
+          <div className="flex items-center gap-1">
+            <h3 className="font-bold text-pink-600">Placed On:</h3>{" "}
+            {order?.date}
+          </div>
+          <div className="flex items-center gap-1">
+            <h3 className="font-bold text-pink-600 ">Status:</h3>{" "}
+            <h3 className="font-bold">{order?.status}</h3>
+          </div>
+          <div className="flex items-center gap-1">
+            <h3 className="font-bold text-pink-600">Method:</h3>{" "}
+            {order?.amount.method}
+          </div>
+          <div className="flex items-center gap-1">
+            <h3 className="font-bold text-pink-600">Phone: </h3>
+            {order?.phone ? order?.phone : "N/A"}
+          </div>
+          <div className="flex items-center gap-1">
+            <h3 className="font-bold text-pink-600">Email: </h3>
+            {order?.email ? order?.email : "N/A"}
+          </div>
           <div>
-            <h2>Phone: {order?.phone ? order?.phone : "N/A"}</h2>
-            <h2>House/Road/Block: {order?.house ? order?.house : "N/A"}</h2>
-            <h2>
-              AddressRemarks:
-              {order?.addressRemarks ? order?.addressRemarks : "N/A"}
+            <h2 className="flex items-center gap-1">
+              <h3 className="font-bold text-pink-600">House/Road/Block: </h3>{" "}
+              {order?.house ? order?.house : "N/A"}
             </h2>
-            <h2>District: {order?.district ? order?.district : "N/A"}</h2>
+            <div className="flex items-center gap-1">
+              <h2 className="font-bold text-pink-600">AddressRemarks:</h2>
+              {order?.addressRemarks ? order?.addressRemarks : "N/A"}
+            </div>
+            <div className="flex items-center gap-1">
+              <h2 className="font-bold text-pink-600">District:</h2>
+              {order?.district ? order?.district : "N/A"}
+            </div>
           </div>
         </div>
         <div className="flex flex-col gap-5">

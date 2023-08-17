@@ -6,7 +6,7 @@ import DeleteModal from "../../Modal/DeleteModal";
 import { deleteAccess } from "../../../api/credential";
 import toast from "react-hot-toast";
 
-const CredentialData = ({ credential, refetch }) => {
+const CredentialData = ({ credential, refetch, index }) => {
   let [isOpen, setIsOpen] = useState(false);
   let [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
@@ -28,6 +28,12 @@ const CredentialData = ({ credential, refetch }) => {
   return (
     <tr>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <p className="text-gray-900 whitespace-no-wrap">
+          <h3 className="font-bold">{index + 1}</h3>
+        </p>
+      </td>
+
+      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900 whitespace-no-wrap">{credential?.user}</p>
       </td>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -35,6 +41,7 @@ const CredentialData = ({ credential, refetch }) => {
           se{credential?.userID}
         </p>
       </td>
+
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900 whitespace-no-wrap">
           {credential?.itemName}

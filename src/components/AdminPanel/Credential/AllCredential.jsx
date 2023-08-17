@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import EmptyState from "../../Shared/EmptyState";
 import CredentialData from "./CredentialData";
 import { Helmet } from "react-helmet";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const AllCredential = () => {
   const [loading, setLoading] = useState(false);
@@ -19,6 +20,7 @@ const AllCredential = () => {
       return res.data;
     },
   });
+
   return (
     <>
       <Helmet>
@@ -32,6 +34,12 @@ const AllCredential = () => {
                 <table className="min-w-full leading-normal">
                   <thead>
                     <tr>
+                      <th
+                        scope="col"
+                        className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                      >
+                        #
+                      </th>
                       <th
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
@@ -79,9 +87,10 @@ const AllCredential = () => {
                   </thead>
                   <tbody>
                     {credential &&
-                      credential.map((credential) => (
+                      credential.map((credential, index) => (
                         <CredentialData
-                          key={credential?._id}
+                          index={index}
+                          key={index}
                           credential={credential}
                           refetch={refetch}
                         />

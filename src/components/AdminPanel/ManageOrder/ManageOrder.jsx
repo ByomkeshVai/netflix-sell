@@ -36,6 +36,12 @@ const ManageOrder = () => {
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
+                        #
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                      >
                         Item Name
                       </th>
                       <th
@@ -66,6 +72,12 @@ const ManageOrder = () => {
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
+                        Phone Number
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                      >
                         Promo
                       </th>
                       <th
@@ -73,6 +85,12 @@ const ManageOrder = () => {
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
                         Method
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                      >
+                        Date
                       </th>
                       <th
                         scope="col"
@@ -90,9 +108,10 @@ const ManageOrder = () => {
                   </thead>
                   <tbody>
                     {order &&
-                      order.map((order) => (
+                      order.map((order, index) => (
                         <OrderDataRow
-                          key={order?._id}
+                          index={index}
+                          key={index}
                           order={order}
                           refetch={refetch}
                           user={user}

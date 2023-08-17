@@ -9,6 +9,8 @@ import { updateItems } from "../../../api/select";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { addPayment } from "../../../api/payment";
+import { addDays, format, addHours, addMinutes } from "date-fns";
+import { utcToZonedTime, zonedTimeToUtc } from "date-fns-tz";
 
 const CheckOutFrom = ({ closeModal, select, selectInfo, price, refetch }) => {
   const navigate = useNavigate();
@@ -98,6 +100,14 @@ const CheckOutFrom = ({ closeModal, select, selectInfo, price, refetch }) => {
     const remarks = form.remarks.value;
     const phone = form.phone.value;
     const email = form.email.value;
+    const bdTimezone = "Asia/Dhaka"; // Timezone for Bangladesh
+    const currentDate = new Date();
+    const bdCurrentDate = utcToZonedTime(currentDate, bdTimezone);
+
+    // Using date-fns to format the current date and time in a 12-hour format
+    const formattedDate = format(bdCurrentDate, "dd-MM-yyyy");
+    const formattedTime = format(bdCurrentDate, "hh:mm a"); // 12-hour format with AM/PM
+
     const checkItems = {
       productId,
       prices,
@@ -113,7 +123,7 @@ const CheckOutFrom = ({ closeModal, select, selectInfo, price, refetch }) => {
       status: "unpaid",
       orderID: randomID.toString(),
       amount: "",
-      date: new Date(),
+      date: formattedDate + " " + " " + formattedTime,
 
       selectItems: select.map((item) => item._id),
       itemNames: select.map((item) => item.name),
@@ -133,18 +143,20 @@ const CheckOutFrom = ({ closeModal, select, selectInfo, price, refetch }) => {
         <div className="flex mt-2 justify-around">
           <div>
             <div className="mt-2">
-              <p className="text-md text-gray-900">Main Price: {price} (BDT)</p>
+              <p className="text-md font-bold text-red-600">
+                Base Price: {price} (BDT)
+              </p>
             </div>
             <div className="space-y-1 text-sm py-3">
               <label htmlFor="phone" className="block text-gray-900">
-                Phone
+                Phone Number
               </label>
               <input
                 className="w-full px-4 py-2 text-gray-900 border border-rose-300 focus:outline-rose-500 rounded-md "
                 name="phone"
                 id="phone"
                 type="number"
-                placeholder="Add Your Phone"
+                placeholder="Add Your Phone Number"
                 required
               />
             </div>

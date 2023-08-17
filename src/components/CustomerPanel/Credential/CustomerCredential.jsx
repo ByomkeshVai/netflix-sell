@@ -38,6 +38,12 @@ const CustomerCredential = () => {
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
+                        #
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                      >
                         User Name
                       </th>
 
@@ -69,9 +75,10 @@ const CustomerCredential = () => {
                   </thead>
                   <tbody>
                     {credential &&
-                      credential.map((credential) => (
+                      credential.map((credential, index) => (
                         <CustomerData
-                          key={credential?._id}
+                          key={index}
+                          index={index}
                           credential={credential}
                           refetch={refetch}
                         />

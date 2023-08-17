@@ -41,6 +41,9 @@ export const categories = [
   {
     category: "Medicine",
   },
+  {
+    category: "Books",
+  },
 ];
 
 // export const categories = [

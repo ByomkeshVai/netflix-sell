@@ -8,6 +8,7 @@ import { RiSunLine, RiMoonLine } from "react-icons/Ri";
 import logo from "../../../assets/main.png";
 import useSelect from "../../../hooks/useSelect";
 import ticket from "../../../assets/ticket/ticket.jpg";
+import "./DropdownMenu.css"; // Import your CSS file
 
 const variants = {
   open: { opacity: 1, x: 0 },
@@ -35,55 +36,134 @@ const Header = ({ toggleDarkMode, darkMode }) => {
   const Icon = darkMode ? RiSunLine : RiMoonLine;
   const [isOpen, setIsOpen] = useState(false);
 
+  const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
+
+  const toggleSubmenu = () => {
+    setIsSubmenuOpen(!isSubmenuOpen);
+  };
+
+  const [isSubmenuOpenStream, setIsSubmenuOpenStream] = useState(false);
+
+  const toggleSubmenuStream = () => {
+    setIsSubmenuOpenStream(!isSubmenuOpenStream);
+  };
+
   const Navbar = (
     <>
-      <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-green-500 duration-200 cursor-pointer active">
-        <Link to="/all/streaming">Streaming</Link>
-      </li>
-      <li class="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+      <div className="dropdown-menu">
+        <li
+          className={`relative p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer ${
+            isSubmenuOpen ? "active" : ""
+          }`}
+          onMouseEnter={toggleSubmenuStream}
+          onMouseLeave={toggleSubmenuStream}
+          onClick={(e) => {
+            if (window.innerWidth <= 768) {
+              e.preventDefault(); // Prevent navigation on click
+              toggleSubmenuStream();
+            }
+          }}
+        >
+          <Link to="/">Streaming</Link>
+          {isSubmenuOpenStream && (
+            <ul className=" mt-6 ml-28 lg:ml-0 lg:mt-12 lg:d-none absolute d-block  rounded-xl lg:flex p-2 max-w-full mx-auto text-center justify-center justify-items-center">
+              <li className="p-3 bg-slate-200 rounded-l-lg border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+                <Link
+                  to="/all/streaming?label=Netflix"
+                  className="text-gray-900"
+                >
+                  Netflix
+                </Link>
+              </li>
+              <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+                <Link
+                  to="/all/streaming?label=Hoichoi"
+                  className="text-gray-900"
+                >
+                  Hoichoi
+                </Link>
+              </li>
+              <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+                <Link
+                  to="/all/streaming?label=Spotify"
+                  className="text-gray-900"
+                >
+                  Spotify
+                </Link>
+              </li>
+              <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+                <Link
+                  to="/all/streaming?label=Amazon Prime"
+                  className="text-gray-900"
+                >
+                  Amazon Prime
+                </Link>
+              </li>
+              <li className="p-3 bg-slate-200   border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+                <Link to="/all/streaming" className="text-gray-900">
+                  More ...
+                </Link>
+              </li>
+            </ul>
+          )}
+        </li>
+      </div>
+      <li className="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
         <Link to="/all/mobile-cover">Cover Cart</Link>
       </li>
 
-      <li class="relative p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-        <Link to="" className="">
-          Air Ticket
-        </Link>
+      <li className="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+        <Link to="/all/mobile-cover">Gadget</Link>
       </li>
+      <div className="dropdown-menu">
+        <li
+          className={`relative p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer ${
+            isSubmenuOpen ? "active" : ""
+          }`}
+          onMouseEnter={toggleSubmenu}
+          onMouseLeave={toggleSubmenu}
+          onClick={(e) => {
+            if (window.innerWidth <= 768) {
+              e.preventDefault(); // Prevent navigation on click
+              toggleSubmenu();
+            }
+          }}
+        >
+          <Link to="/">Shop</Link>
+          {isSubmenuOpen && (
+            <ul className=" mt-8 ml-28 lg:ml-0 lg:mt-12 lg:d-none absolute d-block  rounded-xl lg:flex p-2 max-w-full mx-auto text-center justify-center justify-items-center">
+              <li className="p-3 bg-slate-200 rounded-l-lg border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+                <p className="text-gray-900">Boi Cart</p>
+              </li>
+              <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+                <p className="text-gray-900">Air Ticket</p>
+              </li>
+              <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+                <p className="text-gray-900">PC Components</p>
+              </li>
+              <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+                <p className="text-gray-900">Web Dev</p>
+              </li>
+              <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+                <p className="text-gray-900">Neon Customized Light</p>
+              </li>
+              <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+                <p className="text-gray-900">Fashion</p>
+              </li>
+              <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+                <p className="text-gray-900">Cosmetics</p>
+              </li>
+              <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+                <p className="text-gray-900">Mobile Recharge</p>
+              </li>
+              <li className="p-3 bg-slate-200 rounded-r-lg border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
+                <p className="text-gray-900">Buy Like</p>
+              </li>
+            </ul>
+          )}
+        </li>
+      </div>
 
-      <li tabIndex={0} className="p-4 border-b-2 duration-200 cursor-pointer">
-        <details>
-          <summary className="rounded-xl">Shop</summary>
-          <ul className="lg:p-6 rounded-xl bg-transparent border border-2 rounded-xl lg:flex p-2 max-w-full mx-auto text-center justify-center justify-items-center">
-            <li className="p-3 bg-slate-200 rounded-l-lg border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-              <p className="text-gray-900">Boi Cart</p>
-            </li>
-            <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-              <p className="text-gray-900">Gadget</p>
-            </li>
-            <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-              <p className="text-gray-900">PC Components</p>
-            </li>
-            <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-              <p className="text-gray-900">Web Dev</p>
-            </li>
-            <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-              <p className="text-gray-900">Neon Customized Light</p>
-            </li>
-            <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-              <p className="text-gray-900">Fashion</p>
-            </li>
-            <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-              <p className="text-gray-900">Cosmetics</p>
-            </li>
-            <li className="p-3 bg-slate-200  border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-              <p className="text-gray-900">Mobile Recharge</p>
-            </li>
-            <li className="p-3 bg-slate-200 rounded-r-lg border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
-              <p className="text-gray-900">Buy Like</p>
-            </li>
-          </ul>
-        </details>
-      </li>
       <li className="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-gray-900 duration-200 cursor-pointer">
         <Link to="">Contact</Link>
       </li>
@@ -92,6 +172,7 @@ const Header = ({ toggleDarkMode, darkMode }) => {
       </li>
     </>
   );
+
   return (
     <header className="relative z-50 bg-gradient-to-r to-transparent  mx-auto  font-bold  ">
       <div className="container flex items-center max-w-screen-2xl mx-auto lg:h-16 h-12  lg:p-6 lg:py-10">

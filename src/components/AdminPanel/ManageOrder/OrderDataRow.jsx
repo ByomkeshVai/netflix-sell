@@ -4,7 +4,7 @@ import { useState } from "react";
 import AddressModal from "./AddressModal";
 import { FcAddressBook } from "react-icons/fc";
 
-const OrderDataRow = ({ order, refetch, user }) => {
+const OrderDataRow = ({ order, refetch, user, index }) => {
   let [isEditModalOpen, setIsEditModalOpen] = useState(false);
   let [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
   let classPending = "bg-yellow-600";
@@ -33,6 +33,11 @@ const OrderDataRow = ({ order, refetch, user }) => {
       <tr>
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
           <p className="text-gray-900 whitespace-no-wrap">
+            <h3 className="font-bold">{index + 1}</h3>
+          </p>
+        </td>
+        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+          <p className="text-gray-900 whitespace-no-wrap">
             {itemName.map((splitStrings, index) => (
               <h2 key={index}>{splitStrings.join(", ")}</h2>
             ))}
@@ -59,12 +64,18 @@ const OrderDataRow = ({ order, refetch, user }) => {
           </p>
         </td>
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-md">
+          <p className="text-gray-900 whitespace-no-wrap">{order?.phone}</p>
+        </td>
+        <td className="px-5 py-5 border-b border-gray-200 bg-white text-md">
           <p className="text-gray-900 whitespace-no-wrap">{order?.promo}</p>
         </td>
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-md">
           <p className="text-gray-900 whitespace-no-wrap">
             {order?.amount.method}
           </p>
+        </td>
+        <td className="px-5 py-5 border-b border-gray-200 bg-white text-md">
+          <p className="text-gray-900 whitespace-no-wrap">{order?.date}</p>
         </td>
 
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-md">

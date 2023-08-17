@@ -35,6 +35,12 @@ const UserArea = () => {
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
+                        #
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                      >
                         User Name
                       </th>
                       <th
@@ -42,6 +48,12 @@ const UserArea = () => {
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
                         Email
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                      >
+                        Phone
                       </th>
                       <th
                         scope="col"
@@ -65,9 +77,10 @@ const UserArea = () => {
                   </thead>
                   <tbody>
                     {users &&
-                      users.map((users) => (
+                      users.map((users, index) => (
                         <UserDataRow
-                          key={users?._id}
+                          key={index}
+                          index={index}
                           users={users}
                           refetch={refetch}
                           id={users._id}
