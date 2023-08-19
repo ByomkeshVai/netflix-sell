@@ -26,6 +26,10 @@ const ProductDetails = () => {
       return res.data;
     },
   });
+  // Scroll to the top of the component when it's mounted
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

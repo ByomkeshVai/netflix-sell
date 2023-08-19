@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
@@ -18,7 +18,9 @@ const ManageOrder = () => {
       return res.data;
     },
   });
-
+  const [highlight, setHighlight] = useState(false);
+  const tableContainerClassName = highlight ? "bg-red-200" : "";
+  console.log(highlight);
   return (
     <>
       <Helmet>
@@ -31,7 +33,7 @@ const ManageOrder = () => {
               <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
                 <table className="min-w-full leading-normal">
                   <thead>
-                    <tr>
+                    <tr className={tableContainerClassName}>
                       <th
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
@@ -48,19 +50,19 @@ const ManageOrder = () => {
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
-                        price
+                        Price
                       </th>
                       <th
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
-                        Discount Price
+                        Discount
                       </th>
                       <th
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
-                        Order ID
+                        OrderID
                       </th>
                       <th
                         scope="col"
@@ -72,7 +74,7 @@ const ManageOrder = () => {
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
-                        Phone Number
+                        Phone
                       </th>
                       <th
                         scope="col"
@@ -102,7 +104,7 @@ const ManageOrder = () => {
                         scope="col"
                         className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                       >
-                        Address
+                        More
                       </th>
                     </tr>
                   </thead>
@@ -115,6 +117,8 @@ const ManageOrder = () => {
                           order={order}
                           refetch={refetch}
                           user={user}
+                          highlight={highlight}
+                          setHighlight={setHighlight}
                         />
                       ))}
                   </tbody>

@@ -12,6 +12,7 @@ import ForYou from "../../ForYou/ForYou";
 import FlashSale from "../Selling/FlashSale/FlashSale";
 import HotSale from "../Selling/HotSale/HotSale";
 import PopularProduct from "../Selling/PopularProduct/PopularProduct";
+import InfinityScroll from "../InfinityScroll/InfinityScroll";
 
 const Home = () => {
   return (
@@ -27,6 +28,7 @@ const Home = () => {
       <FlashSale></FlashSale>
       <HotSale></HotSale>
       <PopularProduct></PopularProduct>
+      <InfinityScroll></InfinityScroll>
     </>
   );
 };

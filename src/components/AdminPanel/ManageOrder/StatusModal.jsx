@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { useState } from "react";
@@ -9,7 +9,15 @@ import { toast } from "react-hot-toast";
 import { UpdateOrder } from "../../../api/order";
 import { stockUpdate } from "../../../api/stock";
 
-const StatusModal = ({ setIsEditModalOpen, isOpen, refetch, order, id }) => {
+const StatusModal = ({
+  setIsEditModalOpen,
+  isOpen,
+  refetch,
+  order,
+  id,
+  highlight,
+  setHighlight,
+}) => {
   const [status, setStatus] = useState("");
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
@@ -31,6 +39,7 @@ const StatusModal = ({ setIsEditModalOpen, isOpen, refetch, order, id }) => {
           refetch();
           setIsEditModalOpen(false);
           onDisable(false);
+          setHighlight(true); // Activate the highlight effect
         }
       })
       .catch((err) => console.log(err));
@@ -41,6 +50,18 @@ const StatusModal = ({ setIsEditModalOpen, isOpen, refetch, order, id }) => {
     console.log(order.selectItems);
     stockUpdate(order.selectItems);
   }
+  useEffect(() => {
+    if (highlight) {
+      const timeoutId = setTimeout(() => {
+        setHighlight(false); // Deactivate the highlight effect after 20 seconds
+      }, 20000);
+
+      return () => clearTimeout(timeoutId); // Clean up the timer on unmount or re-render
+    }
+  }, [highlight]);
+
+  // Add a class to the table container to apply the highlight effect
+
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog

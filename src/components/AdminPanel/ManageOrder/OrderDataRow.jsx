@@ -3,8 +3,16 @@ import StatusModal from "./StatusModal";
 import { useState } from "react";
 import AddressModal from "./AddressModal";
 import { FcAddressBook } from "react-icons/fc";
+import DeleteModal from "../../Modal/DeleteModal";
 
-const OrderDataRow = ({ order, refetch, user, index }) => {
+const OrderDataRow = ({
+  order,
+  refetch,
+  user,
+  index,
+  highlight,
+  setHighlight,
+}) => {
   let [isEditModalOpen, setIsEditModalOpen] = useState(false);
   let [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
   let classPending = "bg-yellow-600";
@@ -28,6 +36,7 @@ const OrderDataRow = ({ order, refetch, user, index }) => {
       : order?.status == "Delivered"
       ? classDelivered
       : classDenied;
+
   return (
     <>
       <tr>
@@ -87,6 +96,7 @@ const OrderDataRow = ({ order, refetch, user, index }) => {
               {order?.status}
             </span>
           </button>
+
           <StatusModal
             isOpen={isEditModalOpen}
             closeModal={() => setIsEditModalOpen(false)}
@@ -94,6 +104,8 @@ const OrderDataRow = ({ order, refetch, user, index }) => {
             id={order._id}
             refetch={refetch}
             setIsEditModalOpen={setIsEditModalOpen}
+            highlight={highlight}
+            setHighlight={setHighlight}
           />
         </td>
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-md">

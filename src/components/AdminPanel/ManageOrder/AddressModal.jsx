@@ -1,6 +1,8 @@
 import React from "react";
+import { useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+import DeleteModal from "../../Modal/DeleteModal";
 
 const AddressModal = ({
   setIsAddressModalOpen,
@@ -9,6 +11,22 @@ const AddressModal = ({
   order,
   id,
 }) => {
+  let [isOpen2, setIsOpen2] = useState(false);
+  function openModal() {
+    setIsOpen2(true);
+  }
+  function closeModal() {
+    setIsOpen2(false);
+  }
+  const modalHandler = (id) => {
+    deleteUser(id)
+      .then((data) => {
+        refetch();
+        toast.success("User deleted");
+      })
+      .catch((err) => console.log(err));
+    closeModal();
+  };
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog
@@ -60,16 +78,31 @@ const AddressModal = ({
                   <h2 className="text-lg text-center mb-2">
                     Division: {order?.district ? order?.district : "N/A"}
                   </h2>
+                  <h2 className="text-lg text-center mb-2">
+                    Remarks: {order?.remarks ? order?.remarks : "N/A"}
+                  </h2>
                 </div>
                 <hr className="mt-8 " />
                 <div className="mt-2 flex mt-2 justify-around">
                   <button
                     type="submit"
-                    className=" inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
+                    className=" inline-flex justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-slate-50 hover:bg-blue-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                     onClick={() => setIsAddressModalOpen(false)}
                   >
                     Okay
                   </button>
+                  <button
+                    className=" inline-flex justify-center rounded-md border border-transparent bg-red-300 px-4 py-2 text-sm font-medium text-gray-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
+                    onClick={openModal}
+                  >
+                    Delete
+                  </button>
+                  <DeleteModal
+                    isOpen={isOpen2}
+                    closeModal={closeModal}
+                    modalHandler={modalHandler}
+                    id={order._id}
+                  />
                 </div>
               </Dialog.Panel>
             </Transition.Child>
