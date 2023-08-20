@@ -4,11 +4,12 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { Link } from "react-router-dom";
 import useAdmin from "../../../hooks/useAdmin";
 import useCustomer from "../../../hooks/useCustomer";
-import { RiSunLine, RiMoonLine } from "react-icons/Ri";
+import { RiSunLine, RiMoonLine, RiSearchEyeFill } from "react-icons/Ri";
 import logo from "../../../assets/main.png";
 import useSelect from "../../../hooks/useSelect";
 import ticket from "../../../assets/ticket/ticket.jpg";
 import "./DropdownMenu.css"; // Import your CSS file
+import { GrSearch } from "react-icons/Gr";
 
 const variants = {
   open: { opacity: 1, x: 0 },
@@ -234,6 +235,13 @@ const Header = ({ toggleDarkMode, darkMode }) => {
             <div>
               <button className="ml-14" onClick={toggleDarkMode}>
                 <Icon size={26} />
+              </button>
+            </div>
+            <div>
+              <button className="ml-14">
+                <Link to={"/search"}>
+                  <GrSearch size={26} />
+                </Link>
               </button>
             </div>
             <ul className="ml-4 xl:w-48 flex items-center justify-end">

@@ -33,6 +33,7 @@ import Reset from "../Shared/Reset";
 import ProductDetails from "../Shared/Details/ProductDetails";
 import UserArea from "../AdminPanel/UserDashboard/UserArea";
 import SaleItems from "../Frontend/SaleItems/SaleItems";
+import Search from "../Frontend/Search/Search";
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
       {
         path: "/all/mobile-cover",
         element: <CoverArea></CoverArea>,
+      },
+      {
+        path: "/search",
+        element: <Search></Search>,
       },
       {
         path: "/productDetails/:id",

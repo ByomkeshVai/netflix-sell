@@ -1,6 +1,6 @@
 import React from "react";
 import { setPayment } from "../../../api/payment";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import Stepper from "react-stepper-horizontal";
@@ -52,7 +52,6 @@ const HereOrder = ({ order, refetch, user }) => {
   const handlePayment = () => {
     navigate(`/customer/dashboard/payment-page/${order?.orderID}`);
   };
-
   let [isEditModalOpen, setIsEditModalOpen] = useState(false);
   return (
     <div className="mt-5 border border-1 p-3">
@@ -113,15 +112,28 @@ const HereOrder = ({ order, refetch, user }) => {
               <h2 className="font-bold text-pink-600">District:</h2>
               {order?.district ? order?.district : "N/A"}
             </div>
+            <div className="flex items-center gap-1 mt-2">
+              <h2 className="font-bold text-red-600 lg:text-xl text-md">
+                {`IF STATUS IS “ DELIVERED “ THEN CHECK “ ACCOUNT > MY
+                SUBSCRIPTION OR`}{" "}
+                <button>
+                  <Link to={"/customer/dashboard/credential"}>
+                    {" "}
+                    <h2 className="underline">CLICK HERE</h2>{" "}
+                  </Link>
+                </button>
+              </h2>
+            </div>
           </div>
         </div>
         <div className="flex flex-col gap-5">
           <button
             className="btn btn-active btn-error"
             disabled={
-              order?.status == "processing" ||
-              order?.status == "Approved" ||
-              order?.status == "Delivered"
+              (order?.status == "processing" ||
+                order?.status == "Approved" ||
+                order?.status == "Delivered") &&
+              !(order?.amount.method == "COD")
             }
             onClick={handlePayment}
           >
