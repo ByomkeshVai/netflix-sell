@@ -20,7 +20,15 @@ const ManageOrder = () => {
   });
   const [highlight, setHighlight] = useState(false);
   const tableContainerClassName = highlight ? "bg-red-200" : "";
-  console.log(highlight);
+
+  // Step 1: Add state for filtering by status
+  const [statusFilter, setStatusFilter] = useState("");
+
+  // Step 2: Filter orders based on status
+  const filteredOrders = order.filter((order) => {
+    return statusFilter == "" || order.status == statusFilter;
+  });
+
   return (
     <>
       <Helmet>
@@ -29,6 +37,23 @@ const ManageOrder = () => {
       {order && Array.isArray(order) && order.length > 0 ? (
         <div className="container mx-auto px-4 sm:px-8">
           <div className="py-8">
+            <div className="flex justify-end mb-4">
+              <div>
+                {/* Filter by status */}
+                <select
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value)}
+                  className="px-3 py-2 border rounded-lg"
+                >
+                  <option value="">All</option>
+                  <option value="Approved">Approved</option>
+                  <option value="Delivered">Delivered</option>
+                  <option value="Denied">Denied</option>
+                  <option value="processing">Processing</option>
+                  <option value="Hold">Hold</option>
+                </select>
+              </div>
+            </div>
             <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
               <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
                 <table className="min-w-full leading-normal">
@@ -109,12 +134,12 @@ const ManageOrder = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {order &&
-                      order.map((order, index) => (
+                    {filteredOrders &&
+                      filteredOrders.map((order, index) => (
                         <OrderDataRow
-                          index={index}
-                          key={index}
+                          key={index} // It's better to use a unique identifier here
                           order={order}
+                          index={index}
                           refetch={refetch}
                           user={user}
                           highlight={highlight}
