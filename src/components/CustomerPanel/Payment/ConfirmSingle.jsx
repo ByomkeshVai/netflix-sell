@@ -27,6 +27,20 @@ const ConfirmSingle = ({ order, refetch, user }) => {
       .catch((err) => console.log(err));
   };
 
+  // const handleSubmitBkash = (e) => {
+  //   e.preventDefault();
+
+  //   const setData = {
+  //     amount: order?.prices,
+  //     method: "Bkash",
+  //   };
+  //   setPayment(order?.orderID, setData)
+  //     .then((data) => {
+  //       BkashAPICall();
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+
   const handleSubmitCOD = (e) => {
     e.preventDefault();
 

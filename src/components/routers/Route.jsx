@@ -35,6 +35,11 @@ import UserArea from "../AdminPanel/UserDashboard/UserArea";
 import SaleItems from "../Frontend/SaleItems/SaleItems";
 import Search from "../Frontend/Search/Search";
 
+import ReactGA from "react-ga";
+
+ReactGA.initialize("UA-282600309-1");
+ReactGA.pageview("/");
+
 export const router = createBrowserRouter([
   {
     path: "/",
